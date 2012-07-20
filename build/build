@@ -1,0 +1,549 @@
+#!/usr/bin/php
+<?php
+/**
+* CP+B build system
+* based on config files used by chirpy
+*
+* @author cszopinski@cpbgroup.com
+*
+* TODO: use platform specific dirctory separator : / vs \
+* 		use array to list out all file/folder names excluded from push to stage
+*		check paths of folders and giving helpful suggestions BEFORE running the full script
+* 		toggle between PROD / DEV comment blocks
+*/
+
+
+// config variables
+$js_dir 	= '../www/javascripts'; 	// directory to scan for js config files
+$css_dir	= '../www/stylesheets';
+$img_dir	= '../www/images';
+$stage_dir	= '../stage';		// directory where site will be staged	
+
+
+// -- DON'T EDIT BELOW THIS LINE -- //
+
+
+// working variables
+$b			= pathinfo(getcwd());
+$base 		= $b['dirname'];
+$stage_dir 	= realpath($stage_dir);
+$start		= microtime(true);
+$pretty_archive_files = false; // set to true if you want to back up files to an /archive directory before prettifying
+
+// set up
+date_default_timezone_set('America/Denver');
+
+echo "\nCP+B build system starting ".date('r')."\n\n";
+
+
+
+// display some help
+echo "CONFIGURATION: before running for the first time, please configure the javascript, css, and image directory at the top of the script. \nPaths are relative to the parent of the build folder (usually trunk)\n\n";
+echo "./build minconcatcss	- compresses all css based on .config file in css folder \n";
+echo "./build images		- smushes all images in the images folder via smush.it \n";
+echo "./build minconcatjs		- compresses all js files based on .config file in javascript folder. Uses Google Closure \n";
+echo "./build jsdoc		- generate jsdocs";
+echo "./build jshint		- test code against jshint";
+echo "./build prettyjs		- format js (beautifier) \n";
+echo "./build images minconcatjs minconcatcss jsdoc jshint prettyjs 	- this will do it all \n";
+echo "./build stage		- compresses images, js, and css. Moves to stage folder with production code blocks enabled, and dev blocks removed. When staging, please manually delete files from the stage server FIRST, before running this command.\n";
+echo "\n";
+
+// $contents = file_get_contents($base."/test.html");
+// echo enable_production_blocks(remove_development_blocks($contents));
+
+
+// check to see if there is something to do, otherwise give a suggestion
+if($argv[1] == ''){
+	die("Nothing to do, try adding css images and/or js to the command \n\n");
+}
+
+
+// kick things off here
+echo "( working in: $base )\n";
+
+//deprecate this eventually
+if(in_array('js', $argv)){
+	compress_javascript($js_dir);
+}
+
+//same as js
+if(in_array('minconcatjs', $argv)){
+	compress_javascript($js_dir);
+}
+
+if(in_array('jsdoc', $argv)){
+	echo exec('mkdir output');
+
+	echo "\n\n--- Running JSDOC--- \n\n\n";
+	echo exec('./jsdoc.sh > output/jsdoc.txt && open output/jsdoc.txt');
+}
+
+if(in_array('jshint', $argv)){
+	echo exec('mkdir output');
+
+	echo "\n\n--- Running JSHint--- \n\n\n";
+	echo exec('./tools/jshint/bin/hint  ' . $js_dir . ' > output/jshint.txt && open output/jshint.txt');
+}
+
+if(in_array('prettyjs', $argv)){
+	pretty_js($b, $js_dir);
+}
+
+//deprecate this eventually
+if(in_array('css', $argv)){
+	compress_css($css_dir);
+}
+
+//same as above
+if(in_array('minconcatcss', $argv)){
+	compress_css($css_dir);
+}
+
+if(in_array('images', $argv)){
+	compress_images($img_dir);
+}
+
+if(in_array('stage', $argv)){
+	stage();
+}
+
+// finish
+$duration = number_format(microtime(true) - $start, 2);
+echo "\n\n--- BUILD COMPLETE ($duration s)--- \n\n\n";
+
+
+
+
+/* -- METHODS -- */
+function pretty_js($cwd, $folder){
+	global $base;
+	global $site_root;
+	$f = realpath($folder);
+	
+	echo "\n\n** Prettifiying JAVASCRIPT **\n";
+	echo "  Scanning folder: $f \n";
+	// load config file
+	$js_configs = scan_folder_for_config($f);
+	
+	// loop over config files
+	foreach($js_configs as $k=>$v){
+		// echo "Config files: $k | $v \n";
+		
+		echo 'Processing Config File: ' . $js_configs[$k]->getRealPath() . "\n";
+		$xml = simplexml_load_file($js_configs[$k]->getRealPath());
+		$baseJSPath=preg_replace('/\/[a-zA-Z\.]+$/', '/', $js_configs[$k]->getRealPath());
+
+		$cwd=realpath(dirname(__FILE__) . "/") . "/";
+//		echo 'CWD: ' . $cwd;
+		$jsBeautifier=$cwd . 'tools/js-beautifier/beautify.js';
+		$rhino=$cwd . 'tools/rhino/js.jar';
+		
+		
+		// start over config directives here
+		foreach($xml->FileGroup as $k=>$v){
+			// determine which new files need to be created
+			$file = $v['Name'];
+			$parent_file = create_min_file_name($file);
+	
+	
+			// list sub files, grab sub file contents, store in a variable, separated by \n & filename
+			foreach($v->children() as $sub){
+				$processFile=$sub['PrettyFile'];
+				if($processFile!="false"){
+					$subfile = $baseJSPath.''.$sub['Path'];
+					if(file_exists($subfile)){
+						$path = pathinfo($subfile);
+						if($path['extension'] == 'js'){
+							if($pretty_archive_files === true){
+								$archiveFilePath=$path['dirname'] . '/archive/';
+								if(!file_exists($archiveFilePath)){
+									// create directory for archive
+									mkdir($archiveFilePath);
+								}
+								$archiveFilePath .= $path['basename'];
+								// copy current file to archive
+								$rc=copy($subfile, $archiveFilePath);
+							}
+							$command='java -cp ' . $rhino . ' org.mozilla.javascript.tools.shell.Main ' . $jsBeautifier . ' ' . $subfile;
+							echo "Making it Pretty: " . $subfile . "\n";
+							$output = shell_exec($command);
+							$fh = fopen($subfile, 'w+');
+							fwrite($fh, $output);
+							fclose($fh);
+						}
+					}else{
+						echo "ERROR: file does not exist: ".$subfile."\n";
+					}
+				}
+			} // end foreach
+		}
+	
+	} // end foreach loop here
+	echo "\n\n* Finished making js files pretty.  Unmodified files have been saved to the archive/ sub-directory\n\n";
+}
+
+
+// SCAN A FOLDER LOOKING FOR .config FILES
+// returns an array of files. CURRENTLY DEALS WITH ONLY THE FIRST CONFIG FILE
+function scan_folder_for_config($folder){
+	$Directory 	= new RecursiveDirectoryIterator($folder);
+	$Iterator 	= new RecursiveIteratorIterator($Directory);
+	$Regex 		= new RegexIterator($Iterator, '/^.+\.config$/i', RecursiveRegexIterator::MATCH);
+	return iterator_to_array($Regex, FALSE);
+}
+
+
+
+// COMPRESS JAVASCRIPT FILES VIA GOOGLE CLOSURE (can be modified to use YUICompressor) 
+function compress_javascript($folder){
+	global $base;
+	$f = realpath($folder);
+	
+	echo "\n\n** COMPRESSING JAVASCRIPT **\n";
+	echo "  Scanning folder: $f \n";
+	// load config file
+	$js_configs = scan_folder_for_config($f);
+	
+	// loop over config files
+	foreach($js_configs as $k=>$v){
+		// echo "Config files: $k | $v \n";
+
+		$xml = simplexml_load_file($js_configs[$k]->getRealPath());
+		$xml_node_count = count($xml->children());
+	
+		// show some status
+		echo "  Reading config file: ".$js_configs[0]->getFilename()."\n";
+		echo "  ".$xml_node_count." files will be created\n\n";
+	
+	
+		// start over config directives here
+		foreach($xml->FileGroup as $k=>$v){
+			echo "\n-----------\n  File ". $v['Name'] ." contains ".count($v)." files:\n";
+		
+			$c = "\n/** @preserve \ncreated by CP+B build script at ". date('r') ." http://cpbgroup.com \n*/\n";				// concat variable
+
+			// determine which new files need to be created
+			$file = $v['Name'];
+			$parent_file = create_min_file_name($file);
+	
+	
+			// list sub files, grab sub file contents, store in a variable, separated by \n & filename
+			foreach($v->children() as $sub){
+				echo "       - ".$sub['Path']."\n";
+			
+				$subfile = $f.'/'.$sub['Path'];
+				if(file_exists($subfile)){
+					$path = pathinfo($subfile);
+			
+					$c .= "\n/** @preserve \nFILE: ".$sub['Path']." \n*/\n";
+					$c .= file_get_contents($subfile);
+				}else{
+					echo "ERROR: file does not exist: ".$subfile."\n";
+				}
+			} // end foreach
+
+
+			$output = $f . '/' . $parent_file;
+			$results = compile('closure', $c, $output);
+		}
+	
+	} // end foreach loop here
+}
+
+
+// COMPRESS CSS FILES VIA YUICompressor
+function compress_css($folder){
+	global $base;
+	$f = realpath($folder);
+	
+	
+	// load config file
+	echo "\n\n** COMPRESSING CSS **\n";
+	echo "  Scanning folder: $f \n";
+	$js_configs = scan_folder_for_config($f);
+	
+	// loop over config files
+	foreach($js_configs as $k=>$v){
+	
+		$xml = simplexml_load_file($js_configs[$k]->getRealPath());
+		$xml_node_count = count($xml->children());
+	
+		// show some status
+		echo "  Reading config file: ".$js_configs[0]->getFilename()."\n";
+		echo "  ".$xml_node_count." files will be created\n\n";
+	
+	
+		// start loop here
+		foreach($xml->FileGroup as $k=>$v){
+			echo "\n-----------\n  File ". $v['Name'] ." contains ".count($v)." files:\n";
+		
+			$c = "\n/** @preserve \ncreated by CP+B build script at ". date('r') ." http://cpbgroup.com \n*/\n";				// concat variable
+	
+
+			// determine which new files need to be created
+			$file = $v['Name'];
+			$parent_file = create_min_file_name($file);
+	
+	
+			// list sub files, grab sub file contents, store in a variable, separated by \n & filename
+			foreach($v->children() as $sub){
+				echo "       - ".$sub['Path']."\n";
+			
+				$subfile = $f.'/'.$sub['Path'];
+				// echo $subfile."\n";
+				if(file_exists($subfile)){
+					$path = pathinfo($subfile);
+			
+					$c .= "\n/** @preserve \nFILE: ".$sub['Path']." \n*/\n";
+					$c .= file_get_contents($subfile);
+					//var_dump(pathinfo($subfile));
+				}else{
+					echo "ERROR: file does not exist: ".$subfile."\n";
+				}
+			}
+
+
+			// echo "  Store as file: $compressedfilepath \n";
+			$output = $f . '/' . $parent_file;
+			$results = compile('YUI', $c, $output);
+			// var_dump($result);
+	
+		} // end loop here
+	}
+}
+
+
+// COMPRESS CSS FILES VIA Smush.it
+function compress_images($folder){
+	global $base;
+	$f = realpath($folder);
+	
+	// show some status
+	echo "\n\n** COMPRESSING IMAGES **\n";
+	echo "  Scanning folder: $f \n";
+	
+		
+	$compiler 			= escapeshellarg($base)."/build/tools/smushit/smushit.jar";
+	$params 			= "-verbose=true -dryRun=false -imgExtensions=gif,png,jpeg -imageDir=".escapeshellarg($f);
+	$cmd = 'java -jar '.$compiler." ".$params;
+	// echo $cmd;
+	passthru($cmd);
+}
+
+
+
+function compile($compiler='closure', $contents, $output){
+	if($compiler == 'closure'){
+		compile_closure($contents, $output);
+	}
+	
+	if($compiler == 'YUI'){
+		compile_YUI($contents, $output);
+	}
+}
+
+
+function compile_closure($contents, $output){
+	global $base;
+	
+	$tempfilepath = create_file($output, $contents, TRUE);
+	
+	
+	$compilation_level 	= 'SIMPLE_OPTIMIZATIONS'; 		// WHITESPACE_ONLY', 'SIMPLE_OPTIMIZATIONS', ADVANCED_OPTIMIZATIONS
+	$formatting 		= 'PRETTY_PRINT'; 				// PRINT_INPUT_DELIMITER
+	$compiler 			= escapeshellarg($base)."/build/tools/closure/compiler.jar --warning_level QUIET --summary_detail_level 3 --compilation_level $compilation_level";
+	$params 			= "--js " . escapeshellarg($tempfilepath). " --js_output_file " . escapeshellarg($output);
+
+	/* CLOSURE CAN ALSO CONCATENATE MANY FILES FOR US AT ONCE: 
+	java -jar /Users/coreysi/Sites/amex/open/open.com/trunk/build/tools/closure/compiler.jar --js ../javascripts/plugins/jquery-1.5.1.min.js --js ../javascripts/plugins/jquery-ui-1.8.6.custom.js --js ../javascripts/open.com/home.open.com.demo.js --js ../javascripts/open.com/quiz.home.open.com.js --js ../javascripts/open.com/home.open.com.app_center.js --js ../javascripts/open.com/linkFader.jquery.js --js ../javascripts/open.com/home.open.com.login.js --js_output_file ../javascripts/open.min.js
+	*/
+	
+
+	$cmd = 'java -jar '.$compiler." ".$params;
+	// echo $cmd;
+	$result = shell_exec($cmd);
+	
+	// remove .tmp file
+	unlink($tempfilepath);
+	
+	return $result;
+}
+
+
+function compile_YUI($contents, $output){
+	global $base;
+	
+	$tempfilepath 		= create_file($output, $contents, TRUE);
+	
+	$compiler 			= escapeshellarg($base)."/build/tools/yui/yuicompressor-2.4.6.jar";
+	$params 			= "-v " . escapeshellarg($tempfilepath) . " > " . escapeshellarg($output);
+		
+	$cmd = 'java -jar '.$compiler." ".$params;
+	//echo $cmd . "\n";
+	$result = shell_exec($cmd);
+	
+	// remove .tmp file
+	unlink($tempfilepath);
+	
+	return $result;
+}
+
+
+// translates a filename like open.js to open.min.js
+function create_min_file_name($filename){
+	$f = explode('.', $filename);
+	
+	if( strtolower($f[count($f)-2]) == 'min' ){
+		// do nothing, we're already a min file
+	}else{
+		array_splice($f, -1, 1, array('min', $f[count($f)-1]));
+	}
+	return implode('.', $f);	
+}
+
+// translates a temp filename like open.js to open.temp.js
+function create_temp_file_name($filename){
+	$f = explode('.', $filename);
+	
+	if( strtolower($f[count($f)-2]) == 'temp' ){
+		// do nothing, we're already a min file
+	}else{
+		array_splice($f, -1, 1, array('temp', $f[count($f)-1]));
+	}
+	return implode('.', $f);	
+}
+
+
+// create the requested file, checking for existing file first
+// optionall, create a .tmp version of the file first
+function create_file($path, $contents, $temp=FALSE){
+	// echo "createfile : $path, temp: $temp \n";
+	
+	if($temp){
+		// $path .= '.tmp';
+		$p = pathinfo($path);		
+		$path = $p['dirname'].'/'.create_temp_file_name($p['basename']);
+		// echo $path."\n";
+	}
+	
+	if(file_exists($path)){
+		// echo "  file exists, overwriting\n";
+		file_put_contents($path, $contents, LOCK_EX);
+	}else{
+		file_put_contents($path, $contents, LOCK_EX);
+	}
+	
+	return $path;
+}
+
+
+
+// stage the site
+function stage(){
+	echo "\n-- STAGING SITE --\n";
+	global $base;
+	global $stage_dir;
+	global $css_dir;
+	global $js_dir;
+	
+	// remove existing files from stage (DONE MANUALLY FOR SAFETY)
+	
+	
+	// compress css
+	compress_css($css_dir);
+	
+	// compress js
+	compress_javascript($js_dir);
+	
+	// compress images
+	
+	
+	// move files to stage folder
+	echo "\n** COPYING FILES TO STAGE **\n";
+	echo "  from: $base/www\n";
+	echo "  to: $stage_dir\n";
+	recurse_copy($base . '/www', $stage_dir);
+	
+	// start loop of files
+	$iterator 	= new RecursiveIteratorIterator( new RecursiveDirectoryIterator($stage_dir) );
+	$files 		= new RegexIterator($iterator, '/\.html$|\.php$/i', RecursiveRegexIterator::MATCH); // other file types can be included here
+	
+	foreach ($files as $path) {
+	      	$file = $path->getRealPath();
+			$contents = ''; // reset
+			$contents = file_get_contents($file);
+			$prod = enable_production_blocks(remove_development_blocks($contents));
+			file_put_contents($file, $prod);
+	    }
+}
+
+
+// scan html to remove <!-- BEGIN:DEV --> through <!-- END:DEV -->
+function remove_development_blocks($string){
+	
+	while( stripos($string, '<!-- BEGIN:DEV -->') !== FALSE ){
+		
+		$dev_start 	= stripos($string, '<!-- BEGIN:DEV -->');
+		$dev_end 	= stripos($string, '<!-- END:DEV -->');
+		
+		if($dev_start == FALSE){
+			break;
+		}
+		$string = substr_replace($string, '', $dev_start, ($dev_end-$dev_start)+ strlen('<!-- END:DEV -->'));	
+	}	
+	
+	return $string;
+}
+
+
+// scan html to enable <!-- BEGIN:PROD! through !END:PROD -->
+function enable_production_blocks($string){
+	$string = str_replace('<!-- BEGIN:PROD', '<!-- BEGIN:PROD -->', $string);
+	return str_replace('END:PROD -->', '<!-- END:PROD -->', $string);
+}
+
+
+
+
+
+function recurse_copy($src, $dst) { 
+	// echo "Copying all files and folders. \n";
+	// echo "  from: $src\n";
+	// echo "  to: $dst\n";
+	
+    $dir = opendir($src); 
+    @mkdir($dst); 
+    while(false !== ( $file = readdir($dir)) ) { 
+	
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($src . '/' . $file) ) { 
+				if($file != '.svn' && $file != '.git' && $file != '.gitignore' && $file != 'build' && $file != 'unit'  && $file != 'prototypes' && $file != 'jsdoc'  && $file != 'includes'){						// adjust here to ignore folders
+					recurse_copy($src . '/' . $file,$dst . '/' . $file); 
+				}
+            } else { 
+				$info = pathinfo($file);
+				
+				if( preg_match('/\.r[0-9]+/', $file) > 0 ){						// ignore files with revision numbers .r1234
+					echo "**** $file has .r something \n";
+				}else{
+					if($info['extension'] != 'tmp' && $info['extension'] != 'config' && $info['extension'] != 'mine'){  // adjust here to ignore files
+						copy($src . '/' . $file,$dst . '/' . $file); 
+					}
+				}
+				
+				
+            } 
+        } 
+    } 
+    closedir($dir); 
+}
+
+
+
+// tests
+// echo create_min_file_name('open.js') ."\n";
+// echo create_min_file_name('open.min.js') ."\n";
+// echo create_min_file_name('ax.global.open.js') ."\n";
+
+?>

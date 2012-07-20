@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>kBAOptionsBackupFile</key>
+	<true/>
+	<key>kBAOptionsBraces</key>
+	<integer>2</integer>
+	<key>kBAOptionsColumnAlignment</key>
+	<integer>0</integer>
+	<key>kBAOptionsColumnize</key>
+	<false/>
+	<key>kBAOptionsCurrentSaveLocationPath</key>
+	<string></string>
+	<key>kBAOptionsFilenameMethod</key>
+	<integer>2</integer>
+	<key>kBAOptionsFirstLaunch</key>
+	<false/>
+	<key>kBAOptionsFormatSelectors</key>
+	<integer>1</integer>
+	<key>kBAOptionsGroup</key>
+	<false/>
+	<key>kBAOptionsImproveComments</key>
+	<true/>
+	<key>kBAOptionsIndent</key>
+	<integer>0</integer>
+	<key>kBAOptionsIndentChildren</key>
+	<false/>
+	<key>kBAOptionsMode</key>
+	<integer>0</integer>
+	<key>kBAOptionsNewlineBetweenRules</key>
+	<false/>
+	<key>kBAOptionsRecentSaveLocationAliases</key>
+	<array/>
+	<key>kBAOptionsSafeMode</key>
+	<true/>
+	<key>kBAOptionsSeparation</key>
+	<integer>2</integer>
+	<key>kBAOptionsSort</key>
+	<integer>0</integer>
+</dict>
+</plist>

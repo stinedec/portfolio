@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset={+IO.encoding+}" />
+		
+		<title>Index - JavaScript Documentation</title>
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<style type="text/css">
+		{+include("static/default.css")+}
+		</style>
+	</head>
+	
+	<body>
+		<h1>{+JSDOC.opt.D.title+}</h1>
+		<div id="index">
+			{+include("static/header.html")+}
+			{+publish.classesIndex+}
+		</div>
+		
+		<div id="content">
+			<h1 class="classTitle">Class Index</h1>
+			
+			<ul>
+			<for each="thisClass" in="data">
+				<li>
+					{+(new Link().toSymbol(thisClass.alias))+}
+					{+resolveLinks(summarize(thisClass.classDesc))+}
+				</li>
+			</for>
+			</ul>
+			
+		</div>
+		<div id="fineprint">
+			<a href="http://www.cpbgroup.com"><img src="logo.gif" alt="CPB Group Homepage" /></a>
+			<div>
+				<if test="JSDOC.opt.D.copyright">
+				<p>&copy;{+JSDOC.opt.D.copyright+} <a href="http://www.cpbgroup.com">Crispin Porter + Bogusky</a></p>
+				</if>
+				<p>Generated: {+new Date()+}</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+README
+==============
+Command:
+php build [options]
+
+Options:
+- images: minify and concatenate js
+- minconcatcss: minify and concatenate css
+- minconcatjs: minify and concatenate js
+- jsdoc: generate jsdocs
+- jshint: test code against jshint
+- prettyjs: format js
+
+Examples:
+php build minconcatjs jsdoc jshint prettyjs

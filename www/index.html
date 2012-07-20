@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html lang="en" class="ie7 nojs"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8 nojs"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9 nojs"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="en" class="nojs"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<meta property="og:site_name" content="" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:url" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_US" />
+
+		<title></title>
+
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<!-- BEGIN:PROD
+		<link rel="stylesheet" href="generated/app.min.css" />
+		END:PROD -->
+
+		<!-- BEGIN:DEV -->
+		<link rel="stylesheet" href="stylesheets/reset.css" />
+		<link rel="stylesheet" href="stylesheets/app/app.css" />
+		<link rel="stylesheet" href="stylesheets/app/print.css" />
+		<!-- END:DEV -->
+
+		<script type="text/template" id="example_backbone_template">
+			Test Template
+		</script>
+
+	</head>
+	<body>
+		<!-- BEGIN: section_main -->
+		<div id="section_main">
+			<noscript>
+				<p>Javascript is currently disabled. Please <a href="http://www.google.com/support/bin/answer.py?answer=23852" target="_blank">enable javascript</a> for the optimal experience!</p>
+			</noscript>
+
+			<div id="header_global"></div>
+
+			<div id="section_content"></div>
+
+			<div id="footer_global"></div>
+
+		</div>
+		<!-- END: section_main -->
+
+		<!-- BEGIN:PROD
+		<script src="javascripts/lib/LAB.min.js"></script>
+		<script>
+			var config = {
+
+			};
+
+			$LAB
+				//Libs & plug-ins
+				.script('javascripts/lib/jquery-1.7.2.min.js').wait()
+				.script('javascripts/lib/underscore-min.js').wait()
+				.script('javascripts/lib/backbone-min.js').wait()
+				//Site-specific
+				.script('javascripts/generated/app.min.js').wait(function() {
+					window.isDebugMode = false;
+					App.Global.init(config);
+					//App.Analytics.init('PUT_ACCOUNT_ID_HERE', 'page_track_name');
+				});
+				//Google Analytics
+				// .script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js').wait();
+		</script>
+		END:PROD -->
+
+		<!-- BEGIN:DEV -->
+		<script src="javascripts/lib/LAB-debug.min.js"></script>
+		<script>
+			var config = {
+
+			};
+
+			$LAB
+				.setOptions({
+					'Debug': true
+				})
+				// Libraries
+				.script('javascripts/lib/jquery-1.7.2.js').wait()
+				.script('javascripts/lib/underscore.js').wait()
+				.script('javascripts/lib/backbone.js').wait()
+				// Plugins
+				// Backbone - Config
+				.script('javascripts/app/config/AppConfig.js')
+				// Backbone - Routers
+				.script('javascripts/app/router/AppRouter.js')
+				// Backbone - Models
+				// Backbone - Views
+				// Site-Specific JS - Global
+				.script('javascripts/app/app.utilities.js').wait()
+				.script('javascripts/app/app.analytics.js').wait()
+				// Page-Specific JS
+				.script('javascripts/app/app.global.js').wait(function() {
+					window.isDebugMode = true;
+					App.Global.init(config);
+					// App.Analytics.init('PUT_ACCOUNT_ID_HERE', 'page_track_name');
+				});
+				// .script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js')
+		</script>
+		<!-- END:DEV -->
+
+	</body>
+</html>
