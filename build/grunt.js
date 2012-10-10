@@ -1,18 +1,23 @@
+var _ = require('underscore');
+
 module.exports = function(grunt) {
 
-	var ROOT = '../../www';
-	var CSS = ROOT + '/stylesheets';
-	var JS = ROOT + '/javascripts';
-	var JSBIN = JS + '/generated';
-	var CSSBIN = CSS + '/generated';
+	var config = {};
+
+	config.root = '../www';
+	config.images = config.root + '/images';
+	config.stylesheets = config.root + '/stylesheets';
+	config.javascripts = config.root + '/javascripts';
+	config.jsbin = config.javascripts + '/generated';
+	config.cssbin = config.stylesheets + '/generated';
 
 	// Project configuration.
-	grunt.initConfig({
+	var projectConfig = {
 
 		// JS linting
 		lint: {
 			src: [
-				JS + '/app/**/*.js'
+				config.javascripts + '/app/**/*.js'
 			]
 		},
 
@@ -30,55 +35,11 @@ module.exports = function(grunt) {
 			files: '<config:lint.src>'
 		},
 
-		// CSS minconcat
-		cssmin: {
-			app: {
-				src: [
-					CSS + '/reset.css',
-					CSS + '/app/app.css',
-					CSS + '/app/print.css'
-				],
-				dest: CSSBIN + '/app.min.css'
-			}
-		},
-
-		// JS minconcat
-		min: {
-			app: {
-				src: [
-					'<config:lint.src>'
-				],
-				dest: JSBIN + '/app.min.js'
-			}
-		},
-
-		// Copy files for QUnit testing
-		copy: {
-			qunit: {
-				options: {
-					basePath: JS
-				},
-				files: {
-					'test/app': [
-						JS + '/generated/app.min.js',
-						JS + '/lib/jquery-1.7.2.min.js',
-						JS + '/lib/backbone.min.js',
-						JS + '/lib/underscore.min.js'
-					]
-				}
-			}
-		},
-
-		// Run QUnit test via PhantomJS
-		qunit: {
-			all: ['test/**/*.html']
-		},
-
 		// Generate YUIDocs
 		yuidoc: {
 			compile: {
 				options: {
-					paths: JS + '/app/',
+					paths: config.javascripts + '/app/',
 					outdir: 'docs',
 					project: {
 						logo: '../templates/logo.png'
@@ -86,17 +47,22 @@ module.exports = function(grunt) {
 				}
 			}
 		}
-	});
+
+	};
+
+	_.extend(projectConfig, require('./tasks/requirejs.js')(config));
+	_.extend(projectConfig, require('./tasks/csstasks.js')(config));
+
+	grunt.initConfig(projectConfig);
 
 	// Default task.
-	grunt.registerTask('default', 'cssmin min copy:qunit qunit');
-	grunt.registerTask('jstest', 'min copy:qunit qunit');
+	grunt.registerTask('default', 'cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
 
 	// load grunt plugins
-	grunt.loadNpmTasks('grunt-beautify');
-	grunt.loadNpmTasks('grunt-contrib');
-	grunt.loadNpmTasks('grunt-crusher');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-css');
+	grunt.loadNpmTasks('grunt-beautify');
 
 };
