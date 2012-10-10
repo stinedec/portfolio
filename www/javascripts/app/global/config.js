@@ -1,5 +1,10 @@
 var App = App || {};
 
+// Polyfill has(); requirejs will use has() for minconcat switch on build.
+var has = function() {
+	return false;
+}
+
 require.config({
 
 	// Maximum load time for scripts.
@@ -41,13 +46,16 @@ require.config({
 
 });
 
-define(['jquery', 'backbone', 'app-global'], function($, Backbone, AppGlobal) {
+// Switch for minconcat behaviors.
+if ( has('useMinAssets') ) {
+	window.isDebugMode = false;
+} else {
+	window.isDebugMode = true;
+}
 
-	return function() {
+require(['jquery', 'backbone', 'app-global'], function($, Backbone, AppGlobal) {
 
-		AppGlobal.utilities.init();
-		AppGlobal.init();
-
-	}
+	AppGlobal.utilities.init();
+	AppGlobal.init();
 
 });
