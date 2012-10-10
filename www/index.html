@@ -57,62 +57,13 @@
 		<!-- END: section_main -->
 
 		<!-- BEGIN:PROD
-		<script src="javascripts/lib/LAB.min.js"></script>
-		<script>
-			var config = {
 
-			};
+		<script src="/javascripts/lib/require.js" data-main="/javascripts/generated/app.main.min"></script>
 
-			$LAB
-				//Libs & plug-ins
-				.script('javascripts/lib/jquery-1.7.2.min.js').wait()
-				.script('javascripts/lib/underscore-min.js').wait()
-				.script('javascripts/lib/backbone-min.js').wait()
-				//Site-specific
-				.script('javascripts/generated/app.min.js').wait(function() {
-					window.isDebugMode = false;
-					App.Global.init(config);
-					//App.Analytics.init('PUT_ACCOUNT_ID_HERE', 'page_track_name');
-				});
-				//Google Analytics
-				// .script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js').wait();
-		</script>
 		END:PROD -->
 
-		<!-- BEGIN:DEV -->
-		<script src="javascripts/lib/LAB-debug.min.js"></script>
-		<script>
-			var config = {
+		<script src="/javascripts/lib/require.js" data-main="/javascripts/app/sections/main/config"></script>
 
-			};
-
-			$LAB
-				.setOptions({
-					'Debug': true
-				})
-				// Libraries
-				.script('javascripts/lib/jquery-1.7.2.js').wait()
-				.script('javascripts/lib/underscore.js').wait()
-				.script('javascripts/lib/backbone.js').wait()
-				// Plugins
-				// Backbone - Config
-				.script('javascripts/app/config/AppConfig.js')
-				// Backbone - Routers
-				.script('javascripts/app/router/AppRouter.js')
-				// Backbone - Models
-				// Backbone - Views
-				// Site-Specific JS - Global
-				.script('javascripts/app/app.utilities.js').wait()
-				.script('javascripts/app/app.analytics.js').wait()
-				// Page-Specific JS
-				.script('javascripts/app/app.global.js').wait(function() {
-					window.isDebugMode = true;
-					App.Global.init(config);
-					// App.Analytics.init('PUT_ACCOUNT_ID_HERE', 'page_track_name');
-				});
-				// .script(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js')
-		</script>
-		<!-- END:DEV -->
 
 	</body>
 </html>
