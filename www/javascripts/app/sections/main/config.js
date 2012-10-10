@@ -18,7 +18,7 @@ require.config({
 
 // Switch for minconcat assets.
 if ( has('useMinAssets') ) {
-	window.isDebugMode = false;
+	window.isDebugMode = true;
 	require.config({
 		paths: {
 			'config-global': 'generated/app.global.min'
