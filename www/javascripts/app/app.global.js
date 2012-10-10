@@ -11,7 +11,7 @@ _.extend(App, Backbone.Events);
 App.Global = (function(window, document) {
 
 	App.$window = $(window);
-	App.$html = $(document.documentElement).removeClass('nojs');
+	App.$html = $(document.documentElement);
 	App.$body = $(document.body);
 
 	var self = {
