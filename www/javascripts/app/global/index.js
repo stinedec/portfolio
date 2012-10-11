@@ -7,6 +7,7 @@
 define(function(require) {
 
 	var $ = require('jquery'),
+		_ = require('underscore'),
 		Backbone = require('backbone'),
 		Utilities = require('app-utilities'),
 		Analytics = require('app-analytics'),

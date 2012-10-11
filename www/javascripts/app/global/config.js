@@ -8,11 +8,11 @@ var has = function() {
 require.config({
 
 	// Maximum load time for scripts.
-	waitSeconds: 45,
+	'waitSeconds': 45,
 
-	baseUrl: "/javascripts",
+	'baseUrl': '/javascripts',
 
-	paths: {
+	'paths': {
 
 		// Core Libraries
 		'jquery': 'lib/jquery-1.7.2.min',
@@ -35,11 +35,15 @@ require.config({
 	},
 
 	// Sets the configuration for your third party scripts that are not AMD compatible
-	shim: {
+	'shim': {
+
+		'underscore': {
+			'exports': '_'
+		},
 
 		'backbone': {
-			deps: ['underscore', 'jquery'],
-			exports: 'Backbone' //attaches 'Backbone' to the window object
+			'deps': ['underscore', 'jquery'],
+			'exports': 'Backbone'
 		}
 
 	}
