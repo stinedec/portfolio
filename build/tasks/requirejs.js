@@ -6,9 +6,9 @@ module.exports = function(config) {
 
 			global: {
 				options: {
-					name: 'app/global/config',
+					name: 'app/config',
 					baseUrl: config.javascripts,
-					mainConfigFile: config.javascripts + '/app/global/config.js',
+					mainConfigFile: config.javascripts + '/app/config.js',
 					// Exclusions from minconcat use empty:
 					paths: {
 						'jquery': 'empty:',

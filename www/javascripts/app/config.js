@@ -20,17 +20,17 @@ require.config({
 		'backbone': 'lib/backbone-min',
 
 		// Backbone Submodules
-		'global-configs': 'app/global/config/index',
-		'global-routers': 'app/global/router/index',
-		'global-models': 'app/global/model/index',
-		'global-collections': 'app/global/collection/index',
-		'global-views': 'app/global/view/index',
-		'global-templates': 'app/global/template/index',
+		'global-configs': 'app/config/index',
+		'global-routers': 'app/router/index',
+		'global-models': 'app/model/index',
+		'global-collections': 'app/collection/index',
+		'global-views': 'app/view/index',
+		'global-templates': 'app/template/index',
 
 		// Singleton Method Collections
-		'app-utilities': 'app/global/app.utilities',
-		'app-analytics': 'app/global/app.analytics',
-		'app-global': 'app/global/index'
+		'app-utilities': 'app/app.utilities',
+		'app-analytics': 'app/app.analytics',
+		'app-global': 'app/index'
 
 	},
 

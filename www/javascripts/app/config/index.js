@@ -1,6 +1,6 @@
 /**
  * @module App
- * @submodule App.Model
+ * @submodule App.Config
  * @class Index
  * @constructor
  */
@@ -9,7 +9,7 @@ define(function(require) {
 
 	return {
 
-		'ExampleModel': require('app/global/model/ExampleModel')
+		'AppConfig': require('app/config/AppConfig')
 
 	};
 

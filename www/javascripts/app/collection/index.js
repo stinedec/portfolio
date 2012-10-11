@@ -9,7 +9,7 @@ define(function(require) {
 
 	return {
 
-		'ExampleCollection': require('app/global/model/ExampleCollection')
+		'ExampleCollection': require('app/model/ExampleCollection')
 
 	};
 

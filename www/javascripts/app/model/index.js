@@ -1,6 +1,6 @@
 /**
  * @module App
- * @submodule App.View
+ * @submodule App.Model
  * @class Index
  * @constructor
  */
@@ -9,7 +9,7 @@ define(function(require) {
 
 	return {
 
-		'ExampleView': require('app/global/view/ExampleView')
+		'ExampleModel': require('app/model/ExampleModel')
 
 	};
 

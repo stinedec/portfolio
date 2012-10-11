@@ -9,7 +9,7 @@ define(function(require) {
 
 	return {
 
-		'ExampleTemplate': require('plugins/text!app/global/template/ExampleTemplate.html')
+		'ExampleTemplate': require('plugins/text!app/template/ExampleTemplate.html')
 
 	};
 
