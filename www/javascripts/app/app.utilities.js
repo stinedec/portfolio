@@ -9,10 +9,10 @@ define(function(require, exports, module) {
 	var $ = require('jquery'),
 		_ = require('underscore');
 
-	var methods = {
+	var self = {
 
 		init: function() {
-			methods.normalizeLogs();
+			self.normalizeLogs();
 		},
 
 		/**
@@ -275,6 +275,6 @@ define(function(require, exports, module) {
 
 	};
 
-	exports = _.extend(exports, methods);
+	exports = _.extend(exports, self);
 
 });

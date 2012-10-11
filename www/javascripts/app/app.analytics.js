@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 			}
 		};
 
-	var methods = {
+	var self = {
 
 		/**
 		 * Initializes analytics with the specified GA account.
@@ -176,6 +176,6 @@ define(function(require, exports, module) {
 		}
 	};
 
-	exports = _.extend(exports, methods);
+	exports = _.extend(exports, self);
 
 });

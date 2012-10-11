@@ -4,7 +4,7 @@
  * @static
  */
 
-define(function(require) {
+define(function(require, exports, module) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
@@ -18,44 +18,37 @@ define(function(require) {
 
 	_.extend(App, Backbone.Events);
 
-	return (function() {
+	App.$window = $(window);
+	App.$html = $(document.documentElement);
+	App.$body = $(document.body);
 
-		App.$window = $(window);
-		App.$html = $(document.documentElement);
-		App.$body = $(document.body);
+	var self = {
 
-		var self = {
+		'views': Views,
+		'templates': Templates,
+		'routers': Routers,
+		'utilities': Utilities,
+		'analytics': Analytics,
 
-			/**
-			 * Make public what ought be public.
-			 */
-			'views': Views,
-			'templates': Templates,
-			'routers': Routers,
-			'utilities': Utilities,
-			'analytics': Analytics,
+		/**
+		 * Initialize Application. Responsible for instantiating Backbone router
+		 * and starting Backbone history.
+		 * @method App.Global.init
+		 * @param config {Object} JS App configuration object, typically passed from the middle tier.
+		 */
+		'init': function(config) {
 
-			/**
-			 * Initialize Application. Responsible for instantiating Backbone router
-			 * and starting Backbone history.
-			 * @method App.Global.init
-			 * @param config {Object} JS App configuration object, typically passed from the middle tier.
-			 */
-			'init': function(config) {
+			App.config = new Configs.AppConfig(config);
+			App.appRouter = new Routers.AppRouter();
+			App.exampleView = new Views.ExampleView();
 
-				App.config = new Configs.AppConfig(config);
-				App.appRouter = new Routers.AppRouter();
-				App.exampleView = new Views.ExampleView();
+			Backbone.history.start();
 
-				Backbone.history.start();
+			log('Global : Initialized');
 
-				log('Global : Initialized');
+		}
+	};
 
-			}
-		};
-
-		return self;
-
-	})();
+	exports = _.extend(exports, self);
 
 });
