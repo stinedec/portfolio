@@ -4,7 +4,9 @@
  * @static
  */
 
-define(['jquery'], function($) {
+define(function(require) {
+
+	var $ = require('jquery');
 
 	return (function(window, document) {
 

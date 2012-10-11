@@ -4,7 +4,16 @@
  * @static
  */
 
-define(['jquery', 'backbone', 'app-utilities', 'app-analytics', 'global-configs', 'global-routers', 'global-views', 'global-templates'], function($, Backbone, Utilities, Analytics, Configs, Routers, Views, Templates) {
+define(function(require) {
+
+	var $ = require('jquery'),
+		Backbone = require('backbone'),
+		Utilities = require('app-utilities'),
+		Analytics = require('app-analytics'),
+		Configs = require('global-configs'),
+		Routers = require('global-routers'),
+		Views = require('global-views'),
+		Templates = require ('global-templates');
 
 	_.extend(App, Backbone.Events);
 

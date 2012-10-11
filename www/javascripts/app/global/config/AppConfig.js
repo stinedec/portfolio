@@ -5,8 +5,9 @@
  * @constructor
  */
 
+define(function(require) {
 
-define(['jquery', 'backbone'], function($, Backbone) {
+	var Backbone = require('backbone');
 
 	return Backbone.Model.extend({
 

@@ -53,7 +53,7 @@ if ( has('useMinAssets') ) {
 	window.isDebugMode = true;
 }
 
-require(['jquery', 'backbone', 'app-global'], function($, Backbone, AppGlobal) {
+require(['app-global'], function(AppGlobal) {
 
 	AppGlobal.utilities.init();
 	AppGlobal.init();
