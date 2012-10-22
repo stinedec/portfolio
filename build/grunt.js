@@ -35,6 +35,11 @@ module.exports = function(grunt) {
 			files: '<config:lint.src>'
 		},
 
+		// Run QUnit test via PhantomJS
+		qunit: {
+			local: ['http://local.boilerplate/javascripts/test/test.html']
+		},
+
 		// Generate YUIDocs
 		yuidoc: {
 			compile: {
@@ -61,7 +66,6 @@ module.exports = function(grunt) {
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-beautify');
 

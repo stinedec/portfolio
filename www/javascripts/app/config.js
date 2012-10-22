@@ -59,6 +59,12 @@ if ( has('useMinAssets') ) {
 
 require(['app-global'], function(AppGlobal) {
 
+	// If in unit tests, do not init.
+	if ( top !== self ) {
+		window.isDebugMode = false;
+		return;
+	}
+
 	AppGlobal.utilities.init();
 	AppGlobal.init();
 
