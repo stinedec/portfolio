@@ -1,7 +1,8 @@
 
 // Tests : Global : Utilities
 
-var iframe, iframeWindow;
+var i, // testing iframe.
+	w; // testing iframe's window object.
 
 module("Global Utilities", {
 
@@ -9,16 +10,16 @@ module("Global Utilities", {
 
 		stop();
 
-		iframeLoad('/', function(i){
+		iframeLoad('/', function(iframe){
 
-			iframe = i;
-			iframeWindow = i.contentWindow;
-			iframeWindow.qunits = {};
+			i = iframe;
+			w = i.contentWindow;
+			w.qunits = {};
 
-			iframeWindow.require(['app-global'], function(AppGlobal) {
+			w.require(['app-global'], function(AppGlobal) {
 				AppGlobal.utilities.init();
 				AppGlobal.init();
-				iframeWindow.qunits.utilities = AppGlobal.utilities;
+				w.qunits.utilities = AppGlobal.utilities;
 			});
 
 			start();
@@ -28,11 +29,11 @@ module("Global Utilities", {
 	},
 
 	teardown: function() {
-		// delete iframeWindow.qunits;
+		document.body.removeChild(i);
 	}
 
 });
 
 test("Utilties Exists", function() {
-	equal( typeof iframeWindow.qunits.utilities, "object" );
+	equal( typeof w.qunits.utilities, "object" );
 });

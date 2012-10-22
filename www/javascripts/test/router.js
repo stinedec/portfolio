@@ -1,7 +1,8 @@
 
 // Tests : Backbone : Routers
 
-var iframe, iframeWindow;
+var i, // testing iframe.
+	w; // testing iframe's window object.
 
 module("Backbone Routers", {
 
@@ -9,16 +10,16 @@ module("Backbone Routers", {
 
 		stop();
 
-		iframeLoad('/', function(i){
+		iframeLoad('/', function(iframe){
 
-			iframe = i;
-			iframeWindow = i.contentWindow;
-			iframeWindow.qunits = {};
+			i = iframe;
+			w = i.contentWindow;
+			w.qunits = {};
 
-			iframeWindow.require(['app-global'], function(AppGlobal) {
+			w.require(['app-global'], function(AppGlobal) {
 				AppGlobal.utilities.init();
 				AppGlobal.init();
-				iframeWindow.qunits.AppRouter = new AppGlobal.routers.AppRouter();
+				w.qunits.AppRouter = new AppGlobal.routers.AppRouter();
 			});
 
 			start();
@@ -28,11 +29,11 @@ module("Backbone Routers", {
 	},
 
 	teardown: function() {
-		// delete iframeWindow.qunits;
+		document.body.removeChild(i);
 	}
 
 });
 
 test("AppRouter Exists", function() {
-	equal( typeof iframeWindow.qunits.AppRouter, "object" );
+	equal( typeof w.qunits.AppRouter, "object" );
 });

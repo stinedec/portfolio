@@ -1,7 +1,8 @@
 
 // Tests : Backbone : Views
 
-var iframe, iframeWindow;
+var i, // testing iframe.
+	w; // testing iframe's window object.
 
 module("Backbone Views", {
 
@@ -9,16 +10,16 @@ module("Backbone Views", {
 
 		stop();
 
-		iframeLoad('/', function(i){
+		iframeLoad('/', function(iframe){
 
-			iframe = i;
-			iframeWindow = i.contentWindow;
-			iframeWindow.qunits = {};
+			i = iframe;
+			w = i.contentWindow;
+			w.qunits = {};
 
-			iframeWindow.require(['app-global'], function(AppGlobal) {
+			w.require(['app-global'], function(AppGlobal) {
 				AppGlobal.utilities.init();
 				AppGlobal.init();
-				iframeWindow.qunits.ExampleView = new AppGlobal.views.ExampleView();
+				w.qunits.ExampleView = new AppGlobal.views.ExampleView();
 			});
 
 			start();
@@ -28,11 +29,11 @@ module("Backbone Views", {
 	},
 
 	teardown: function() {
-		// delete iframeWindow.qunits;
+		document.body.removeChild(i);
 	}
 
 });
 
 test("ExampleView Exists", function() {
-	equal( typeof iframeWindow.qunits.ExampleView, "object" );
+	equal( typeof w.qunits.ExampleView, "object" );
 });
