@@ -29,7 +29,7 @@ module("Backbone Routers", {
 	},
 
 	teardown: function() {
-		document.body.removeChild(i);
+		iframeUnload(i);
 	}
 
 });

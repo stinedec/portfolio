@@ -1,6 +1,4 @@
 
-// Custom iframe loader, with callbacks for qUnit.
-
 var iframeLoad = function(pageURL, cb){
 
 	var iframe = document.createElement('iframe');
@@ -14,5 +12,11 @@ var iframeLoad = function(pageURL, cb){
 
 	iframe.src = pageURL;
 	document.body.appendChild(iframe);
+
+}
+
+var iframeUnload = function(iframe){
+
+	document.body.removeChild(iframe);
 
 }

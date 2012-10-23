@@ -29,7 +29,7 @@ module("Backbone Views", {
 	},
 
 	teardown: function() {
-		document.body.removeChild(i);
+		iframeUnload(i);
 	}
 
 });
