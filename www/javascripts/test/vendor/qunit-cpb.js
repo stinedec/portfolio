@@ -6,7 +6,7 @@ var iframeLoad = function(pageURL, cb){
 	iframe.onload = function(event) {
 
 		// Return iframe to callback.
-		cb(event.target);
+		cb(iframe);
 
 	};
 

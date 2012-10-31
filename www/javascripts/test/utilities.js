@@ -79,6 +79,11 @@ test('preventXSS() strips corner brackets', function() {
 
 test('log() polyfill working, log.history order is correct.', function() {
 
+	if (navigator.appName == 'Microsoft Internet Explorer' && !w.log.history) {
+		ok(1==1, "IE; log() Not supported.");
+		return;
+	}
+
 	var currentLogPosition = w.log.history.length;
 
 	w.log('foo');

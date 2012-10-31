@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
 		// Run QUnit test via PhantomJS
 		qunit: {
-			local: ['http://local.boilerplate/javascripts/test/test.html']
+			local: ['http://local.boilerplate/javascripts/test/index.html']
 		},
 
 		// Generate YUIDocs
