@@ -112,10 +112,10 @@ define(function(require, exports, module) {
 		},
 
 		'setupCustomSelect': function() {
-			$('.input_select.custom').each(function() {
+			$('.input-select.custom').each(function() {
 
 				var $this = $(this),
-					polyfill = '<span class="selected" /><span class="cap_right"><span class="arrow">&nbsp;</span></span>';
+					polyfill = '<span class="selected" /><span class="cap-right"><span class="arrow">&nbsp;</span></span>';
 
 				$this.find('select').wrap('<span />').before(polyfill).bind('change', function() {
 					$this.find('.selected').text($.text($this.find(':selected')));
