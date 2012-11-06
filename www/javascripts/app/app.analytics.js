@@ -12,7 +12,7 @@ App.Analytics = (function(window, document) {
 		_$body = $(document.body),
 		_trackingMap = {
 			'click': {
-				'id_of_some_object': {
+				'id-of-some-object': {
 					'trackFunction': function(e) {
 						self.customEventTrack(['param1', 'param2', 'param3']);
 					}

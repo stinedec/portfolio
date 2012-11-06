@@ -21,7 +21,7 @@ var IndexView = Backbone.View.extend({
 	'render': function() {
 
 		var view = this,
-			indexTemplate = _.template($('#example_backbone_template').text(), {});
+			indexTemplate = _.template($('#example-backbone-template').text(), {});
 
 		view.$el.html(indexTemplate);
 	}
