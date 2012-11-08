@@ -5,7 +5,7 @@
  * @constructor
  */
 
-var IndexView = Backbone.View.extend({
+var ExampleView = Backbone.View.extend({
 
 	'events': {},
 
