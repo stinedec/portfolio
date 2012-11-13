@@ -15,7 +15,7 @@ require.config({
 	'paths': {
 
 		// Core Libraries
-		'jquery': 'lib/jquery-1.7.2.min',
+		'jquery': 'lib/jquery-1.8.2.min',
 		'underscore': 'lib/underscore-min',
 		'backbone': 'lib/backbone-min',
 

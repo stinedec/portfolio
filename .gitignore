@@ -1,0 +1,11 @@
+# Ignore sass cache
+.sass-cache/
+
+# Ignore generated docs
+docs/
+
+# Ignore modules installed for grunt
+node_modules/
+
+# Ignore generated files
+generated/
