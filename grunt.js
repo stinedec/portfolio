@@ -82,15 +82,15 @@ module.exports = function(grunt) {
 			global: {
 				options: {
 					name: 'app/config',
-					baseUrl: config.javascripts,
-					mainConfigFile: config.javascripts + '/app/config.js',
+					baseUrl: JS,
+					mainConfigFile: JS + '/app/config.js',
 					// Exclusions from minconcat use empty:
 					paths: {
 						'jquery': 'empty:',
 						'underscore': 'empty:',
 						'backbone': 'empty:'
 					},
-					out: config.jsbin + '/app.global.min.js'
+					out: JSBIN + '/app.global.min.js'
 				}
 			}
 
@@ -117,13 +117,13 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'cssmin min');
-	grunt.registerTask('jstest', 'min copy:qunit qunit');
+	grunt.registerTask('default', 'cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-beautify');
 	grunt.loadNpmTasks('grunt-crusher');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-jslint');
 
