@@ -8,9 +8,7 @@ define(function(require, exports, module) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
-		Backbone = require('backbone'),
-
-	_.extend(App, Backbone.Events);
+		Backbone = require('backbone');
 
 	var self = {
 

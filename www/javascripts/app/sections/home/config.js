@@ -13,6 +13,7 @@ require.config({
 
 		// Main Modules
 		'global': 'app/global/config',
+		'home': 'app/sections/home/index',
 
 		// Backbone Submodules
 		'home-configs': 'app/sections/home/config/index',
@@ -22,21 +23,26 @@ require.config({
 		'home-views': 'app/sections/home/view/index',
 		'home-templates': 'app/sections/home/template/index'
 	}
+
 });
 
 // Switch for minconcat assets.
 if (has('useMinAssets')) {
-	window.loadPath = 'generated/app.global.min';
+	window.globalPath = 'generated/app.global.min';
 } else {
-	window.loadPath = 'app/global/config';
+	window.globalPath = 'app/global/config';
 }
 
 var sectionInit = function(AppGlobal) {
 	AppGlobal.utilities.init();
 	AppGlobal.init();
+
+	require(['home'], function(Home){
+		Home.init();
+	});
 }
 
-require([window.loadPath], function(AppGlobal) {
+require([window.globalPath], function(AppGlobal) {
 
 	// If in unit tests, do not init.
 	if ( top !== self ) {
