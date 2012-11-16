@@ -81,16 +81,38 @@ module.exports = function(grunt) {
 
 			global: {
 				options: {
-					name: 'app/config',
+					name: 'app/global/config',
 					baseUrl: JS,
-					mainConfigFile: JS + '/app/config.js',
+					mainConfigFile: JS + '/app/global/config.js',
 					// Exclusions from minconcat use empty:
 					paths: {
 						'jquery': 'empty:',
 						'underscore': 'empty:',
 						'backbone': 'empty:'
 					},
+					has: {
+						'useMinAssets': true
+					},
 					out: JSBIN + '/app.global.min.js'
+				}
+			},
+
+			home: {
+				options: {
+					name: 'app/sections/home/config',
+					baseUrl: JS,
+					mainConfigFile: JS + '/app/sections/home/config.js',
+					// Exclusions from minconcat use empty:
+					paths: {
+						'jquery': 'empty:',
+						'underscore': 'empty:',
+						'backbone': 'empty:',
+						'global': 'empty:'
+					},
+					has: {
+						'useMinAssets': true
+					},
+					out: JSBIN + '/app.home.min.js'
 				}
 			}
 
