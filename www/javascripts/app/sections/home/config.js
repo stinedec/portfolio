@@ -11,6 +11,9 @@ require.config({
 
 	'paths': {
 
+		// Main Modules
+		'global': 'app/global/config',
+
 		// Backbone Submodules
 		'home-configs': 'app/sections/home/config/index',
 		'home-routers': 'app/sections/home/router/index',
@@ -18,29 +21,22 @@ require.config({
 		'home-collections': 'app/sections/home/collection/index',
 		'home-views': 'app/sections/home/view/index',
 		'home-templates': 'app/sections/home/template/index'
-
 	}
-
 });
 
 // Switch for minconcat assets.
 if (has('useMinAssets')) {
-	require.config({
-		paths: {
-			'global': 'generated/app.global.min'
-		}
-	});
+	window.loadPath = 'generated/app.global.min';
 } else {
-	require.config({
-		paths: {
-			'global': 'app/global/config'
-		}
-	});
+	window.loadPath = 'app/global/config';
 }
 
-// Load dependencies. In the minconcat environment AppGlobal will be undefined, since config-global would refer
-// to the entire optimized global module. (Need to work on this, and the naming convention).
-require(['global'], function(AppGlobal) {
+var sectionInit = function(AppGlobal) {
+	AppGlobal.utilities.init();
+	AppGlobal.init();
+}
+
+require([window.loadPath], function(AppGlobal) {
 
 	// If in unit tests, do not init.
 	if ( top !== self ) {
@@ -48,19 +44,13 @@ require(['global'], function(AppGlobal) {
 		return;
 	}
 
+	// If in minconcat, AppGlobal refers to the concatenated file, and will therefore be undefined.
+	// In this case, you will then need to require the 'global' path, which was loaded as a part of the minified file.
+
 	if (AppGlobal) {
-
-		AppGlobal.utilities.init();
-		AppGlobal.init();
-
+		sectionInit(AppGlobal);
 	} else {
-
-		require(['app/global/config'], function(AppGlobal) {
-
-			AppGlobal.utilities.init();
-			AppGlobal.init();
-
-		});
+		require(['global'], sectionInit);
 	}
 
 });
