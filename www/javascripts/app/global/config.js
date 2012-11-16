@@ -52,7 +52,7 @@ require.config({
 
 // Switch for minconcat behaviors.
 if ( has('useMinAssets') ) {
-	window.isDebugMode = true;
+	window.isDebugMode = false;
 } else {
 	window.isDebugMode = true;
 }
