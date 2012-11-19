@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.View
- * @class ExampleView
+ * @class Home.ExampleView
  * @constructor
  */
 

@@ -146,6 +146,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-beautify');
 	grunt.loadNpmTasks('grunt-crusher');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-jslint');
 

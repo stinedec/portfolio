@@ -1,6 +1,7 @@
 /**
  * @module App
- * @class Utilities
+ * @submodule App.Global
+ * @class App.Global.Utilities
  * @static
  */
 
@@ -17,7 +18,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Test support for the canvas element
-		 * @method App.Utilities.supportsCanvas
+		 * @method Utilities.supportsCanvas
 		 */
 		'supportsCanvas': function() {
 			var canvas = document.createElement('canvas');
@@ -30,7 +31,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Check for support of INPUT placeholder attribute.
-		 * @method App.Utilities.supportsPlaceholder
+		 * @method Utilities.supportsPlaceholder
 		 */
 		'supportsPlaceholder': function() {
 			var i = document.createElement('input');
@@ -43,7 +44,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Use placeholder text when INPUT tag is empty.
-		 * @method App.Utilities.setInputPlaceholder
+		 * @method Utilities.setInputPlaceholder
 		 * @param input {String} ID of INPUT tag
 		 * @param placeholderTxt {String}
 		 */
@@ -64,7 +65,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Test for support of CSS3 property.
-		 * @method App.Utilities.supportsCss3
+		 * @method Utilities.supportsCss3
 		 * @param property {String} property to test
 		 */
 		'supportsCss3': function(property) {
@@ -96,7 +97,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Test to see if device is an iPad.
-		 * @method App.Utilities.isIpad
+		 * @method Utilities.isIpad
 		 */
 		'isIpad': function() {
 			return (navigator.userAgent.match(/iPad/i) === null) ? false : true;
@@ -104,7 +105,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Strip characters from string that may be used in an XSS attack.
-		 * @method App.Utilities.preventXSS
+		 * @method Utilities.preventXSS
 		 * @param value {String} Property to clean.
 		 */
 		'preventXSS': function(value) {

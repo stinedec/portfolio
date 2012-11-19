@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.Model
- * @class AppConfig
+ * @class Global.AppConfig
  * @constructor
  */
 

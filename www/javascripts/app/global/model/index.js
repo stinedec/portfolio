@@ -1,8 +1,7 @@
 /**
  * @module App
- * @submodule App.Model
- * @class Index
- * @constructor
+ * @submodule App.Global
+ * @class App.Global.Model
  */
 
 define(function(require) {

@@ -1,3 +1,10 @@
+/**
+ * @module App
+ * @submodule App.Home
+ * @class App.Home.Config
+ * @static
+ */
+
 var App = App || {};
 
 // Polyfill has(); requirejs will use has() for minconcat switch on build.

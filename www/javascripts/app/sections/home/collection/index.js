@@ -1,8 +1,7 @@
 /**
  * @module App
- * @submodule App.Collection
- * @class Index
- * @constructor
+ * @submodule App.Home
+ * @class App.Home.Collection
  */
 
 define(function(require) {

@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.Collection
- * @class ExampleCollection
+ * @class Global.ExampleCollection
  * @constructor
  */
 

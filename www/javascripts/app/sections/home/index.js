@@ -1,6 +1,7 @@
 /**
  * @module App
- * @class Home
+ * @submodule App.Home
+ * @class App.Home.Index
  * @static
  */
 

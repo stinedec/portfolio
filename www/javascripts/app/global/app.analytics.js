@@ -1,6 +1,7 @@
 /**
  * @module App
- * @class Analytics
+ * @submodule App.Global
+ * @class App.Global.Analytics
  * @static
  */
 
@@ -25,7 +26,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Initializes analytics with the specified GA account.
-		 * @method App.Analytics.init
+		 * @method Analytics.init
 		 * @param account {String} Account ID
 		 * @param pageName {String} Page Name
 		 */
@@ -47,7 +48,7 @@ define(function(require, exports, module) {
 		/**
 		 * Use this function to bind tracking against any custom event
 		 * triggered against the App object.
-		 * @method App.Analytics.bindCustomEvents
+		 * @method Analytics.bindCustomEvents
 		 */
 		'bindCustomEvents': function() {
 
@@ -59,7 +60,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Fires a pageview to the page specified.
-		 * @method App.Analytics.pageTrack
+		 * @method Analytics.pageTrack
 		 * @param pageName {String} Name of page to be tracked
 		 */
 		'pageTrack': function(pageName) {
@@ -71,7 +72,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Fires a custom GA event.
-		 * @method App.Analytics.customEventTrack
+		 * @method Analytics.customEventTrack
 		 * @param args {Array} Array of arguments for custom GA Event
 		 */
 		'customEventTrack': function(args) {
@@ -80,7 +81,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Tracks Likes/Unlikes via the FB API's events.
-		 * @method App.Analytics.socialTrackFacebook
+		 * @method Analytics.socialTrackFacebook
 		 */
 		'socialTrackFacebook': function() {
 			FB.Event.subscribe('edge.create', function(targetUrl) {
@@ -99,7 +100,7 @@ define(function(require, exports, module) {
 
 		/**
 		 * Tracks Tweets via the twitter API.
-		 * @method App.Analytics.socialTrackTwitter
+		 * @method Analytics.socialTrackTwitter
 		 */
 		'socialTrackTwitter': function() {
 			function extractParamFromUri(uri, paramName) {
@@ -140,7 +141,7 @@ define(function(require, exports, module) {
 		 * The event handler is responsible for determining if the event
 		 * and element exist in a data dictionary (_trackingMap) and
 		 * invokes the respective function (usually Omniture tracking).
-		 * @method App.Analytics.delegateEvents
+		 * @method Analytics.delegateEvents
 		 * @param map {Object} Delegate object
 		 */
 		'delegateEvents': function(map) {

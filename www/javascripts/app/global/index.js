@@ -1,6 +1,7 @@
 /**
  * @module App
- * @class Global
+ * @submodule App.Global
+ * @class App.Global.Index
  * @static
  */
 

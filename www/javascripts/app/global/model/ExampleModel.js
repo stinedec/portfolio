@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.Model
- * @class ExampleModel
+ * @class Global.ExampleModel
  * @constructor
  */
 

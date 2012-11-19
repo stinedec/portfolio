@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.Router
- * @class AppRouter
+ * @class Global.AppRouter
  * @constructor
  */
 
