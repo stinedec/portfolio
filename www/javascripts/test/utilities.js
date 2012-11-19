@@ -4,7 +4,7 @@
 var i, // testing iframe.
 	w; // testing iframe's window object.
 
-module('Global Utilities', {
+module('Global : Utilities', {
 
 	setup: function() {
 
@@ -16,13 +16,23 @@ module('Global Utilities', {
 			w = i.contentWindow;
 			w.qunits = {};
 
-			w.require(['app-global'], function(AppGlobal) {
+			w.sectionInit = function(AppGlobal) {
 				AppGlobal.utilities.init();
 				AppGlobal.init();
 				w.qunits.utilities = AppGlobal.utilities;
-			});
+			}
 
-			start();
+			w.require([w.globalPath], function(AppGlobal) {
+				if (AppGlobal) {
+					w.sectionInit(AppGlobal);
+					start();
+				} else {
+					w.require(['global'], function(AppGlobal) {
+						w.sectionInit(AppGlobal);
+						start();
+					});
+				}
+			});
 
 		});
 

@@ -7,15 +7,7 @@
 
 var App = App || {};
 
-// Polyfill has(); requirejs will use has() for minconcat switch on build.
-var has = function() {
-	return false;
-}
-
 require.config({
-
-	// Maximum load time for scripts.
-	'waitSeconds': 45,
 
 	'baseUrl': '/javascripts',
 
@@ -57,11 +49,10 @@ require.config({
 
 });
 
-// Switch for minconcat behaviors.
-if ( has('useMinAssets') ) {
-	window.isDebugMode = false;
-} else {
+if ( !App.useMinAssets ) {
 	window.isDebugMode = true;
+} else {
+	window.isDebugMode = false;
 }
 
 define(['app-index'], function(AppIndex) {

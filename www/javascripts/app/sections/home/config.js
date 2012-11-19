@@ -14,6 +14,9 @@ var has = function() {
 
 require.config({
 
+	// Maximum load time for scripts.
+	'waitSeconds': 45,
+
 	'baseUrl': '/javascripts',
 
 	'paths': {
@@ -34,13 +37,16 @@ require.config({
 });
 
 // Switch for minconcat assets.
-if (has('useMinAssets')) {
+if ( has('useMinAssets') ) {
 	window.globalPath = 'generated/app.global.min';
+	App.useMinAssets = true;
 } else {
 	window.globalPath = 'app/global/config';
+	App.useMinAssets = false;
 }
 
 var sectionInit = function(AppGlobal) {
+
 	AppGlobal.utilities.init();
 	AppGlobal.init();
 
@@ -51,9 +57,10 @@ var sectionInit = function(AppGlobal) {
 
 require([window.globalPath], function(AppGlobal) {
 
-	// If in unit tests, do not init.
-	if ( top !== self ) {
+	// Run unit tests if in qUnit environment.
+	if ( typeof isQunit !== 'undefined' ) {
 		window.isDebugMode = false;
+		runQunit();
 		return;
 	}
 

@@ -5,8 +5,13 @@ var iframeLoad = function(pageURL, cb){
 
 	iframe.onload = function(event) {
 
+		// Create flag in iframe for testing environment.
+		iframe.contentWindow.isQunit = true;
+
 		// Return iframe to callback.
-		cb(iframe);
+		iframe.contentWindow.runQunit = function(){
+			cb(iframe);
+		};
 
 	};
 
