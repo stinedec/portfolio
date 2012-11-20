@@ -5,13 +5,13 @@
  * @constructor
  */
 
-define(function(require) {
+define(function (require) {
 
 	var Backbone = require('backbone');
 
 	return Backbone.Router.extend({
 
-		initialize: function() {
+		initialize: function () {
 
 			log('Backbone : Global : AppRouter : Initialized');
 		},
@@ -20,7 +20,7 @@ define(function(require) {
 			'': 'index'
 		},
 
-		'index': function() {}
+		'index': function () {}
 
 	});
 

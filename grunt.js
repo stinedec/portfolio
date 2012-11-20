@@ -67,21 +67,21 @@ module.exports = function(grunt) {
 		requirejs: require('./build/tasks/requirejs.js')(config),
 
 		jslint: {
-			files: ['source/javascripts/**'],
+			files: ['www/javascripts/app/**/*.js'],
 			exclude: ['**/ignore-*.js'],
-			directives: { // example directives
+			directives: {
 				browser: true,
+				nomen: true, // Tolerate dangling _ (underscore).
+				plusplus: true, // Tolerate ++/--.
 				unparam: true,
 				todo: true,
-				predef: [ // array of pre-defined globals
-				'jQuery']
+				predef: ['jQuery', 'require', 'define', 'log', 'App', 'FB', '_gaq'] // array of pre-defined globals
 			},
 			options: {
 				junit: 'docs/jslint/junit.xml',
-				// write the output to a JUnit XML
 				log: 'docs/jslint/lint.log',
 				jslintXml: 'docs/jslint/jslint_xml.xml',
-				errorsOnly: true // only display errors
+				errorsOnly: true
 			}
 		}
 	});

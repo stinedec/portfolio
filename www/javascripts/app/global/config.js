@@ -49,13 +49,13 @@ require.config({
 
 });
 
-if ( !App.useMinAssets ) {
+if (!App.useMinAssets) {
 	window.isDebugMode = true;
 } else {
 	window.isDebugMode = false;
 }
 
-define(['app-index'], function(AppIndex) {
+define(['app-index'], function (AppIndex) {
 
 	return AppIndex;
 

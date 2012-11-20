@@ -4,7 +4,7 @@
  * @class App.Global.Router
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

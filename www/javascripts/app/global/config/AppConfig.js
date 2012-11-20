@@ -5,7 +5,7 @@
  * @constructor
  */
 
-define(function(require) {
+define(function (require) {
 
 	var _ = require('underscore'),
 		Backbone = require('backbone');
@@ -14,11 +14,11 @@ define(function(require) {
 
 		'defaults': {},
 
-		'initialize': function(options) {
+		'initialize': function (options) {
 			_.extend(this.defaults, options);
 		},
 
-		'propertyAsBool': function(prop) {
+		'propertyAsBool': function (prop) {
 
 			if (!this.get(prop)) {
 				return;

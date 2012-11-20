@@ -4,7 +4,7 @@
  * @class App.Global.View
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

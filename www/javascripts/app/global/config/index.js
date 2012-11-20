@@ -4,7 +4,7 @@
  * @class App.Global.Config
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

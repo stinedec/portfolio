@@ -5,7 +5,7 @@
  * @constructor
  */
 
-define(function(require) {
+define(function (require) {
 
 	var Backbone = require('backbone');
 
@@ -13,7 +13,7 @@ define(function(require) {
 
 		'defaults': {},
 
-		'initialize': function() {}
+		'initialize': function () {}
 
 	});
 

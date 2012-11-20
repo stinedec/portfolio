@@ -5,15 +5,16 @@
  * @constructor
  */
 
-define(function(require) {
+define(function (require) {
 
-	var Backbone = require('backbone');
+	var Backbone = require('backbone'),
+		Models = require('global-models');
 
 	return Backbone.Collection.extend({
 
-		'model': ItemModel,
+		'model': Models.ExampleModel,
 
-		'initialize': function() {
+		'initialize': function () {
 
 			log('Backbone : ExampleCollection : Initialized');
 

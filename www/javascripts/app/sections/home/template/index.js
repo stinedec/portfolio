@@ -4,7 +4,7 @@
  * @class App.Home.Template
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

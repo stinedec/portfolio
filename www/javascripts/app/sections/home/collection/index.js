@@ -4,7 +4,7 @@
  * @class App.Home.Collection
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

@@ -4,7 +4,7 @@
  * @class App.Global.Collection
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

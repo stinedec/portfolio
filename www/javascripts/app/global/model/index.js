@@ -4,7 +4,7 @@
  * @class App.Global.Model
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

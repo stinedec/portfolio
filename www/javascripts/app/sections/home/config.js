@@ -8,9 +8,9 @@
 var App = App || {};
 
 // Polyfill has(); requirejs will use has() for minconcat switch on build.
-var has = function() {
+var has = function () {
 	return false;
-}
+};
 
 require.config({
 
@@ -37,7 +37,7 @@ require.config({
 });
 
 // Switch for minconcat assets.
-if ( has('useMinAssets') ) {
+if (has('useMinAssets')) {
 	window.globalPath = 'generated/app.global.min';
 	App.useMinAssets = true;
 } else {
@@ -45,20 +45,20 @@ if ( has('useMinAssets') ) {
 	App.useMinAssets = false;
 }
 
-var sectionInit = function(AppGlobal) {
+var sectionInit = function (AppGlobal) {
 
 	AppGlobal.utilities.init();
 	AppGlobal.init();
 
-	require(['home'], function(Home){
+	require(['home'], function (Home) {
 		Home.init();
 	});
-}
+};
 
-require([window.globalPath], function(AppGlobal) {
+require([window.globalPath], function (AppGlobal) {
 
 	// Run unit tests if in qUnit environment.
-	if ( typeof isQunit !== 'undefined' ) {
+	if (window.isQunit) {
 		window.isDebugMode = false;
 		runQunit();
 		return;

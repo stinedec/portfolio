@@ -5,17 +5,15 @@
  * @static
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
 	var $ = require('jquery'),
-		_ = require('underscore');
-
-	var _$window = $(window),
+		_ = require('underscore'),
 		_$body = $(document.body),
 		_trackingMap = {
 			'click': {
 				'id-of-some-object': {
-					'trackFunction': function(e) {
+					'trackFunction': function (e) {
 						self.customEventTrack(['param1', 'param2', 'param3']);
 					}
 				}
@@ -30,7 +28,7 @@ define(function(require, exports, module) {
 		 * @param account {String} Account ID
 		 * @param pageName {String} Page Name
 		 */
-		'init': function(account, pageName) {
+		'init': function (account, pageName) {
 			if (account === undefined) {
 				return;
 			}
@@ -50,9 +48,9 @@ define(function(require, exports, module) {
 		 * triggered against the App object.
 		 * @method Analytics.bindCustomEvents
 		 */
-		'bindCustomEvents': function() {
+		'bindCustomEvents': function () {
 
-			App.bind('customEvent', function(pageName) {
+			App.bind('customEvent', function (pageName) {
 				self.pageTrack(pageName);
 			});
 
@@ -63,7 +61,7 @@ define(function(require, exports, module) {
 		 * @method Analytics.pageTrack
 		 * @param pageName {String} Name of page to be tracked
 		 */
-		'pageTrack': function(pageName) {
+		'pageTrack': function (pageName) {
 			if (!pageName) {
 				return;
 			}
@@ -75,7 +73,7 @@ define(function(require, exports, module) {
 		 * @method Analytics.customEventTrack
 		 * @param args {Array} Array of arguments for custom GA Event
 		 */
-		'customEventTrack': function(args) {
+		'customEventTrack': function (args) {
 			window._gaq.push(['_trackEvent', args[0], args[1], args[2]]);
 		},
 
@@ -83,14 +81,14 @@ define(function(require, exports, module) {
 		 * Tracks Likes/Unlikes via the FB API's events.
 		 * @method Analytics.socialTrackFacebook
 		 */
-		'socialTrackFacebook': function() {
-			FB.Event.subscribe('edge.create', function(targetUrl) {
+		'socialTrackFacebook': function () {
+			FB.Event.subscribe('edge.create', function (targetUrl) {
 				if (_gaq === 'undefined') {
 					return;
 				}
 				window._gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
 			});
-			FB.Event.subscribe('edge.remove', function(targetUrl) {
+			FB.Event.subscribe('edge.remove', function (targetUrl) {
 				if (_gaq === 'undefined') {
 					return;
 				}
@@ -102,32 +100,38 @@ define(function(require, exports, module) {
 		 * Tracks Tweets via the twitter API.
 		 * @method Analytics.socialTrackTwitter
 		 */
-		'socialTrackTwitter': function() {
+		'socialTrackTwitter': function () {
 			function extractParamFromUri(uri, paramName) {
+
+				var query, parts, params, i;
+
 				if (!uri) {
 					return;
 				}
-				var uri = uri.split('#')[0]; // Remove anchor.
-				var parts = uri.split('?'); // Check for query params.
-				if (parts.length == 1) {
+
+				uri = uri.split('#')[0]; // Remove anchor.
+				parts = uri.split('?'); // Check for query params.
+
+				if (parts.length === 1) {
 					return;
 				}
-				var query = decodeURI(parts[1]);
+
+				query = decodeURI(parts[1]);
 
 				// Find url param.
 				paramName += '=';
-				var params = query.split('&');
-				for (var i = 0, param; param = params[i]; ++i) {
+				params = query.split('&');
+				for (i = 0, param; param = params[i]; i++) {
 					if (param.indexOf(paramName) === 0) {
 						return unescape(param.split('=')[1]);
 					}
 				}
 			}
 
-			twttr.events.bind('tweet', function(event) {
+			twttr.events.bind('tweet', function (event) {
 				if (event) {
 					var targetUrl;
-					if (event.target && event.target.nodeName == 'IFRAME') {
+					if (event.target && event.target.nodeName === 'IFRAME') {
 						targetUrl = extractParamFromUri(event.target.src, 'url');
 					}
 					window._gaq.push(['_trackSocial', 'twitter', 'tweet', targetUrl]);
@@ -144,33 +148,32 @@ define(function(require, exports, module) {
 		 * @method Analytics.delegateEvents
 		 * @param map {Object} Delegate object
 		 */
-		'delegateEvents': function(map) {
-			var events = [];
+		'delegateEvents': function (map) {
+			var events = [],
+				event;
 
-			for (var event in map) {
+			for (event in map) {
 				if (map.hasOwnProperty(event)) {
 					events.push(event);
 				}
 			}
 
-			_$body.on(events.join(' ').toString(), 'div, object, span, p, a, form, input, li, img', function(e, altID) {
+			_$body.on(events.join(' ').toString(), 'div, object, span, p, a, form, input, li, img', function (e, altID) {
 				var event = (e.namespace) ? e.type + '.' + e.namespace : e.type,
 					link = e.currentTarget,
-					selector = altID || link.getAttribute('data-track') || link.id;
+					selector = altID || link.getAttribute('data-track') || link.id,
+					trackElem,
+					trackFn;
 
 				if (typeof map === 'undefined' || typeof map[event] === 'undefined' || typeof map[event][selector] === 'undefined') {
 					return;
 				}
 
-				var trackElem = map[event][selector];
+				trackElem = map[event][selector];
 				if (trackElem) {
-					var fn = trackElem.trackFunction;
-					if (typeof fn === 'function') {
-						switch (selector) {
-						default:
-							fn.apply(window, [e]);
-							break;
-						}
+					trackFn = trackElem.trackFunction;
+					if (typeof trackFn === 'function') {
+						trackFn.apply(window, [e]);
 					}
 				}
 			});

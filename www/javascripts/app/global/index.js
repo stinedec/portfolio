@@ -5,7 +5,7 @@
  * @static
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 		Configs = require('global-configs'),
 		Routers = require('global-routers'),
 		Views = require('global-views'),
-		Templates = require ('global-templates');
+		Templates = require('global-templates');
 
 	_.extend(App, Backbone.Events);
 
@@ -37,7 +37,7 @@ define(function(require, exports, module) {
 		 * @method App.Global.init
 		 * @param config {Object} JS App configuration object, typically passed from the middle tier.
 		 */
-		'init': function(config) {
+		'init': function (config) {
 
 			App.config = new Configs.AppConfig(config);
 			App.appRouter = new Routers.AppRouter();

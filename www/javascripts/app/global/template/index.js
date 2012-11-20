@@ -4,7 +4,7 @@
  * @class App.Global.Template
  */
 
-define(function(require) {
+define(function (require) {
 
 	return {
 

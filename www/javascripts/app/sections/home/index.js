@@ -5,11 +5,9 @@
  * @static
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
-	var $ = require('jquery'),
-		_ = require('underscore'),
-		Backbone = require('backbone');
+	var _ = require('underscore');
 
 	var self = {
 
@@ -19,7 +17,7 @@ define(function(require, exports, module) {
 		 * @method App.Home.init
 		 * @param config {Object} JS App configuration object, typically passed from the middle tier.
 		 */
-		'init': function(config) {
+		'init': function (config) {
 
 			log('Section : Home : Initialized');
 

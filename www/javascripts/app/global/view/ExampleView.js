@@ -5,7 +5,7 @@
  * @constructor
  */
 
-define(function(require) {
+define(function (require) {
 
 	var _ = require('underscore'),
 		Backbone = require('backbone');
@@ -14,7 +14,7 @@ define(function(require) {
 
 		'events': {},
 
-		'initialize': function(options) {
+		'initialize': function (options) {
 
 			_.bindAll(this);
 
@@ -23,7 +23,7 @@ define(function(require) {
 			log('Backbone : Global : ExampleView : Initialized');
 		},
 
-		'render': function() {
+		'render': function () {
 
 			var view = this;
 
