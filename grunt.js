@@ -1,3 +1,9 @@
+/**
+ * @module Build
+ * @class Build.Config
+ * @static
+ */
+
 module.exports = function(grunt) {
 
 	var config = {};
@@ -7,83 +13,37 @@ module.exports = function(grunt) {
 	config.javascripts = config.root + '/javascripts';
 	config.jsbin = config.javascripts + '/generated';
 	config.cssbin = config.stylesheets + '/generated';
+	config.docsbin = 'docs';
 
 	// Project configuration.
 	grunt.initConfig({
 
-		// JS linting
-		lint: {
-			src: [
-				config.javascripts + '/app/**/*.js'
-			]
+		'lint': {
+			'src': [ config.javascripts + '/app/**/*.js' ]
 		},
 
-		// JS beautifier options
-		beautifier: {
-			options: {
-				indentSize: 1,
-				indentChar: '\t',
-				spaceAfterAnonFunction: false
+		'beautifier': {
+			'options': {
+				'indentSize': 1,
+				'indentChar': '\t',
+				'spaceAfterAnonFunction': false
 			}
 		},
 
-		// JS beautifier
-		beautify: {
-			files: '<config:lint.src>'
+		'beautify': {
+			'files': '<config:lint.src>'
 		},
 
-		// CSS minconcat
-		cssmin: {
-			app: {
-				src: [
-					config.stylesheets + '/reset.css',
-					config.stylesheets + '/app/app.css',
-					config.stylesheets + '/app/print.css'
-				],
-				dest: config.cssbin + '/app.min.css'
-			}
-		},
+		'cssmin': require('./build/tasks/cssmin.js')(config),
 
-		// Run QUnit test via PhantomJS
-		qunit: {
-			local: ['http://local.boilerplate:8888/javascripts/test/index.html'],
-			dev: ['http://dev.foo.com/javascripts/test/index.html'],
-			stage: ['http://stage.foo.com/javascripts/test/index.html']
-		},
+		'qunit': require('./build/tasks/qunit.js')(config),
 
-		// Generate YUIDocs
-		yuidoc: {
-			compile: {
-				options: {
-					paths: config.javascripts + '/app/',
-					outdir: 'docs',
-					project: {
-						logo: '../templates/logo.png'
-					}
-				}
-			}
-		},
+		'yuidoc': require('./build/tasks/yuidoc.js')(config),
 
-		requirejs: require('./build/tasks/requirejs.js')(config),
+		'requirejs': require('./build/tasks/requirejs.js')(config),
 
-		jslint: {
-			files: ['www/javascripts/app/**/*.js'],
-			exclude: ['**/ignore-*.js'],
-			directives: {
-				browser: true,
-				nomen: true, // Tolerate dangling _ (underscore).
-				plusplus: true, // Tolerate ++/--.
-				unparam: true,
-				todo: true,
-				predef: ['jQuery', 'require', 'define', 'log', 'App', 'FB', '_gaq'] // array of pre-defined globals
-			},
-			options: {
-				junit: 'docs/jslint/junit.xml',
-				log: 'docs/jslint/lint.log',
-				jslintXml: 'docs/jslint/jslint_xml.xml',
-				errorsOnly: true
-			}
-		}
+		'jslint': require('./build/tasks/jslint.js')(config)
+
 	});
 
 	// Default task.
