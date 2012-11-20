@@ -1,10 +1,12 @@
 module.exports = function(grunt) {
 
-	var ROOT = 'www';
-	var CSS = ROOT + '/stylesheets';
-	var JS = ROOT + '/javascripts';
-	var JSBIN = JS + '/generated';
-	var CSSBIN = CSS + '/generated';
+	var config = {};
+
+	config.root = 'www';
+	config.stylesheets = config.root + '/stylesheets';
+	config.javascripts = config.root + '/javascripts';
+	config.jsbin = config.javascripts + '/generated';
+	config.cssbin = config.stylesheets + '/generated';
 
 	// Project configuration.
 	grunt.initConfig({
@@ -12,7 +14,7 @@ module.exports = function(grunt) {
 		// JS linting
 		lint: {
 			src: [
-				JS + '/app/**/*.js'
+				config.javascripts + '/app/**/*.js'
 			]
 		},
 
@@ -34,41 +36,26 @@ module.exports = function(grunt) {
 		cssmin: {
 			app: {
 				src: [
-					CSS + '/reset.css',
-					CSS + '/app/app.css',
-					CSS + '/app/print.css'
+					config.stylesheets + '/reset.css',
+					config.stylesheets + '/app/app.css',
+					config.stylesheets + '/app/print.css'
 				],
-				dest: CSSBIN + '/app.min.css'
-			}
-		},
-
-		// Copy files for QUnit testing
-		copy: {
-			qunit: {
-				options: {
-					basePath: JS
-				},
-				files: {
-					'test/app': [
-						JS + '/generated/app.min.js',
-						JS + '/lib/jquery-1.7.2.min.js',
-						JS + '/lib/backbone.min.js',
-						JS + '/lib/underscore.min.js'
-					]
-				}
+				dest: config.cssbin + '/app.min.css'
 			}
 		},
 
 		// Run QUnit test via PhantomJS
 		qunit: {
-			all: ['test/**/*.html']
+			local: ['http://local.boilerplate:8888/javascripts/test/index.html'],
+			dev: ['http://dev.foo.com/javascripts/test/index.html'],
+			stage: ['http://stage.foo.com/javascripts/test/index.html']
 		},
 
 		// Generate YUIDocs
 		yuidoc: {
 			compile: {
 				options: {
-					paths: JS + '/app/',
+					paths: config.javascripts + '/app/',
 					outdir: 'docs',
 					project: {
 						logo: '../templates/logo.png'
@@ -77,46 +64,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		requirejs: {
-
-			global: {
-				options: {
-					name: 'app/global/config',
-					baseUrl: JS,
-					mainConfigFile: JS + '/app/global/config.js',
-					// Exclusions from minconcat use empty:
-					paths: {
-						'jquery': 'empty:',
-						'underscore': 'empty:',
-						'backbone': 'empty:'
-					},
-					has: {
-						'useMinAssets': true
-					},
-					out: JSBIN + '/app.global.min.js'
-				}
-			},
-
-			home: {
-				options: {
-					name: 'app/sections/home/config',
-					baseUrl: JS,
-					mainConfigFile: JS + '/app/sections/home/config.js',
-					// Exclusions from minconcat use empty:
-					paths: {
-						'jquery': 'empty:',
-						'underscore': 'empty:',
-						'backbone': 'empty:',
-						'global': 'empty:'
-					},
-					has: {
-						'useMinAssets': true
-					},
-					out: JSBIN + '/app.home.min.js'
-				}
-			}
-
-		},
+		requirejs: require('./build/tasks/requirejs.js')(config),
 
 		jslint: {
 			files: ['source/javascripts/**'],
