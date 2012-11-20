@@ -111,7 +111,6 @@ define(function (require, exports, module) {
 
 				uri = uri.split('#')[0]; // Remove anchor.
 				parts = uri.split('?'); // Check for query params.
-
 				if (parts.length === 1) {
 					return;
 				}
@@ -162,8 +161,7 @@ define(function (require, exports, module) {
 				var event = (e.namespace) ? e.type + '.' + e.namespace : e.type,
 					link = e.currentTarget,
 					selector = altID || link.getAttribute('data-track') || link.id,
-					trackElem,
-					trackFn;
+					trackElem, trackFn;
 
 				if (typeof map === 'undefined' || typeof map[event] === 'undefined' || typeof map[event][selector] === 'undefined') {
 					return;

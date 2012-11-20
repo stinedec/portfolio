@@ -130,14 +130,14 @@ define(function (require, exports, module) {
 			});
 		},
 
-		/*
+/*
 		  @description Normalizes the console.log method
 		*/
 		// usage: log('inside coolFunc',this,arguments);
 		// http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
 		'normalizeLogs': function () {
 			window.log = function () {
-			/*@cc_on
+/*@cc_on
 			  return;
 			  @*/
 				if (window.isDebugMode) {
@@ -155,7 +155,7 @@ define(function (require, exports, module) {
 				}
 			};
 
-			/*@cc_on
+/*@cc_on
 			  return;
 			  @*/
 			if (!window.isDebugMode) {

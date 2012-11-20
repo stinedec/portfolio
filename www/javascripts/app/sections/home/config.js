@@ -66,7 +66,6 @@ require([window.globalPath], function (AppGlobal) {
 
 	// If in minconcat, AppGlobal refers to the concatenated file, and will therefore be undefined.
 	// In this case, you will then need to require the 'global' path, which was loaded as a part of the minified file.
-
 	if (AppGlobal) {
 		sectionInit(AppGlobal);
 	} else {

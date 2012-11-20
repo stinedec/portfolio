@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 			'options': {
 				'indentSize': 1,
 				'indentChar': '\t',
-				'spaceAfterAnonFunction': false
+				'spaceAfterAnonFunction': true
 			}
 		},
 
