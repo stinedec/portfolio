@@ -14,7 +14,9 @@ var App = App || {};
 	var has, sectionInit;
 
 	// Polyfill has(); requirejs will use has() for minconcat switch on build.
-	has = function () { return false; };
+	has = function () {
+		return false;
+	};
 
 	require.config({
 

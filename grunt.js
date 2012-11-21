@@ -18,10 +18,6 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 
-		'lint': {
-			'src': [ config.javascripts + '/app/**/*.js' ]
-		},
-
 		'beautifier': {
 			'options': {
 				'indentSize': 1,
@@ -31,7 +27,7 @@ module.exports = function(grunt) {
 		},
 
 		'beautify': {
-			'files': '<config:lint.src>'
+			'files': [ config.javascripts + '/app/**/*.js' ]
 		},
 
 		'cssmin': require('./build/tasks/cssmin.js')(config),
