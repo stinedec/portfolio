@@ -10,9 +10,10 @@ define(function (require, exports, module) {
 	'use strict';
 
 	var $ = require('jquery'),
-		_ = require('underscore');
+		_ = require('underscore'),
+		self;
 
-	var self = {
+	self = {
 
 		init: function () {
 			self.normalizeLogs();
@@ -35,11 +36,7 @@ define(function (require, exports, module) {
 		 * @method Utilities.supportsPlaceholder
 		 */
 		'supportsPlaceholder': function () {
-			var i = document.createElement('input');
-			if (i.hasOwnProperty('placeholder')) {
-				return true;
-			}
-			return false;
+			return document.createElement('input').placeholder !== undefined;
 		},
 
 		/**
@@ -75,7 +72,7 @@ define(function (require, exports, module) {
 				len = vendors.length;
 
 			// No css support detected
-			if (typeof cssStyle === 'undefined') {
+			if (cssStyle === undefined) {
 				return false;
 			}
 
@@ -109,7 +106,7 @@ define(function (require, exports, module) {
 		 * @param value {String} Property to clean.
 		 */
 		'preventXSS': function (value) {
-			return value.toString().replace(/\<|\>/g, '');
+			return value.toString().replace(/<|>/g, '');
 		},
 
 		'setupCustomSelect': function () {
@@ -146,10 +143,12 @@ define(function (require, exports, module) {
 					log.history = log.history || []; // store logs to an array for reference
 					log.history.push(arguments);
 					if (window.console) {
-						console.log(Array.prototype.slice.call(arguments));
+						window.console.log(Array.prototype.slice.call(arguments));
 					}
-					if (typeof App !== 'undefined' && typeof App.trigger === 'function') {
-						App.trigger('log', arguments);
+					if (App !== undefined) {
+						if (typeof App.trigger === 'function') {
+							App.trigger('log', arguments);
+						}
 					}
 				} else {
 					log.history = log.history || []; // store logs to an array for reference
@@ -169,7 +168,7 @@ define(function (require, exports, module) {
 						if (window.console) {
 							log.history = log.history || []; // store logs to an array for reference
 							for (i = 0, len = log.history.length; i < len; i++) {
-								console.log(Array.prototype.slice.call(log.history[i]));
+								window.console.log(Array.prototype.slice.call(log.history[i]));
 							}
 						}
 					}
