@@ -12,17 +12,20 @@ define(function (require, exports, module) {
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		_$body = $(document.body),
-		_trackingMap = {
-			'click': {
-				'id-of-some-object': {
-					'trackFunction': function (e) {
-						self.customEventTrack(['param1', 'param2', 'param3']);
-					}
+		_trackingMap,
+		self;
+
+	_trackingMap = {
+		'click': {
+			'id-of-some-object': {
+				'trackFunction': function (e) {
+					self.customEventTrack(['param1', 'param2', 'param3']);
 				}
 			}
-		};
+		}
+	};
 
-	var self = {
+	self = {
 
 		/**
 		 * Initializes analytics with the specified GA account.
@@ -122,14 +125,14 @@ define(function (require, exports, module) {
 				// Find url param.
 				paramName += '=';
 				params = query.split('&');
-				for (i = 0, param; param = params[i]; i++) {
-					if (param.indexOf(paramName) === 0) {
-						return unescape(param.split('=')[1]);
+				for (i = 0; i < params.length; i++) {
+					if (params[i].indexOf(paramName) === 0) {
+						return window.unescape(params[i].split('=')[1]);
 					}
 				}
 			}
 
-			twttr.events.bind('tweet', function (event) {
+			window.twttr.events.bind('tweet', function (event) {
 				if (event) {
 					var targetUrl;
 					if (event.target && event.target.nodeName === 'IFRAME') {
@@ -150,6 +153,7 @@ define(function (require, exports, module) {
 		 * @param map {Object} Delegate object
 		 */
 		'delegateEvents': function (map) {
+
 			var events = [],
 				event;
 
@@ -163,9 +167,10 @@ define(function (require, exports, module) {
 				var event = (e.namespace) ? e.type + '.' + e.namespace : e.type,
 					link = e.currentTarget,
 					selector = altID || link.getAttribute('data-track') || link.id,
-					trackElem, trackFn;
+					trackElem,
+					trackFn;
 
-				if (typeof map === 'undefined' || typeof map[event] === 'undefined' || typeof map[event][selector] === 'undefined') {
+				if (map === undefined || map[event] === undefined || map[event][selector] === undefined) {
 					return;
 				}
 
