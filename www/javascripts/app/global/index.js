@@ -7,6 +7,8 @@
 
 define(function (require, exports, module) {
 
+	'use strict';
+
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		Backbone = require('backbone'),
@@ -15,7 +17,8 @@ define(function (require, exports, module) {
 		Configs = require('global-configs'),
 		Routers = require('global-routers'),
 		Views = require('global-views'),
-		Templates = require('global-templates');
+		Templates = require('global-templates'),
+		self;
 
 	_.extend(App, Backbone.Events);
 
@@ -23,7 +26,7 @@ define(function (require, exports, module) {
 	App.$html = $(document.documentElement);
 	App.$body = $(document.body);
 
-	var self = {
+	self = {
 
 		'views': Views,
 		'templates': Templates,

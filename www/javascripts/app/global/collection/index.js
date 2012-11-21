@@ -6,6 +6,8 @@
 
 define(function (require) {
 
+	'use strict';
+
 	return {
 
 		'ExampleCollection': require('app/global/model/ExampleCollection')

@@ -6,6 +6,8 @@
 
 define(function (require) {
 
+	'use strict';
+
 	return {
 
 		'AppRouter': require('app/global/router/AppRouter')

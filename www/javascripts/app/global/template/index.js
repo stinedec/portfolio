@@ -6,6 +6,8 @@
 
 define(function (require) {
 
+	'use strict';
+
 	return {
 
 		'ExampleTemplate': require('plugins/text!app/global/template/ExampleTemplate.html')

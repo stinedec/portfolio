@@ -7,6 +7,8 @@
 
 define(function (require) {
 
+	'use strict';
+
 	var Backbone = require('backbone'),
 		Models = require('global-models');
 

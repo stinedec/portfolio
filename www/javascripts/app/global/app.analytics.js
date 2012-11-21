@@ -7,6 +7,8 @@
 
 define(function (require, exports, module) {
 
+	'use strict';
+
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		_$body = $(document.body),

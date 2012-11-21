@@ -7,9 +7,12 @@
 
 define(function (require, exports, module) {
 
-	var _ = require('underscore');
+	'use strict';
 
-	var self = {
+	var _ = require('underscore'),
+		self;
+
+	self = {
 
 		/**
 		 * Initialize Application. Responsible for instantiating Backbone router

@@ -7,56 +7,62 @@
 
 var App = App || {};
 
-require.config({
+(function () {
 
-	'baseUrl': '/javascripts',
+	'use strict';
 
-	'paths': {
+	require.config({
 
-		// Core Libraries
-		'jquery': 'lib/jquery-1.8.2.min',
-		'underscore': 'lib/underscore-min',
-		'backbone': 'lib/backbone-min',
+		'baseUrl': '/javascripts',
 
-		// Backbone Submodules
-		'global-configs': 'app/global/config/index',
-		'global-routers': 'app/global/router/index',
-		'global-models': 'app/global/model/index',
-		'global-collections': 'app/global/collection/index',
-		'global-views': 'app/global/view/index',
-		'global-templates': 'app/global/template/index',
+		'paths': {
 
-		// Singleton Method Collections
-		'app-utilities': 'app/global/app.utilities',
-		'app-analytics': 'app/global/app.analytics',
-		'app-index': 'app/global/index'
+			// Core Libraries
+			'jquery': 'lib/jquery-1.8.2.min',
+			'underscore': 'lib/underscore-min',
+			'backbone': 'lib/backbone-min',
 
-	},
+			// Backbone Submodules
+			'global-configs': 'app/global/config/index',
+			'global-routers': 'app/global/router/index',
+			'global-models': 'app/global/model/index',
+			'global-collections': 'app/global/collection/index',
+			'global-views': 'app/global/view/index',
+			'global-templates': 'app/global/template/index',
 
-	// Sets the configuration for your third party scripts that are not AMD compatible
-	'shim': {
+			// Singleton Method Collections
+			'app-utilities': 'app/global/app.utilities',
+			'app-analytics': 'app/global/app.analytics',
+			'app-index': 'app/global/index'
 
-		'underscore': {
-			'exports': '_'
 		},
 
-		'backbone': {
-			'deps': ['underscore', 'jquery'],
-			'exports': 'Backbone'
+		// Sets the configuration for your third party scripts that are not AMD compatible
+		'shim': {
+
+			'underscore': {
+				'exports': '_'
+			},
+
+			'backbone': {
+				'deps': ['underscore', 'jquery'],
+				'exports': 'Backbone'
+			}
+
 		}
 
+	});
+
+	if (!App.useMinAssets) {
+		window.isDebugMode = true;
+	} else {
+		window.isDebugMode = false;
 	}
 
-});
+	define(['app-index'], function (AppIndex) {
 
-if (!App.useMinAssets) {
-	window.isDebugMode = true;
-} else {
-	window.isDebugMode = false;
-}
+		return AppIndex;
 
-define(['app-index'], function (AppIndex) {
+	});
 
-	return AppIndex;
-
-});
+}());
