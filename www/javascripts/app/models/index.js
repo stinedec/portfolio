@@ -1,7 +1,7 @@
 /**
  * @module App
  * @submodule App.Global
- * @class App.Global.Router
+ * @class App.Global.Model
  */
 
 define(function (require) {
@@ -10,7 +10,7 @@ define(function (require) {
 
 	return {
 
-		'AppRouter': require('app/global/router/AppRouter')
+		'ExampleModel': require('models/ExampleModel')
 
 	};
 

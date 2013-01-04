@@ -1,7 +1,7 @@
 /**
  * @module App
  * @submodule App.Global
- * @class App.Global.Model
+ * @class App.Global.View
  */
 
 define(function (require) {
@@ -9,9 +9,8 @@ define(function (require) {
 	'use strict';
 
 	return {
-
-		'ExampleModel': require('app/global/model/ExampleModel')
-
+		'ExampleView': require('views/ExampleView'),
+		'SubView': require('views/SubView')
 	};
 
 });

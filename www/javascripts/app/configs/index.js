@@ -10,7 +10,7 @@ define(function (require) {
 
 	return {
 
-		'AppConfig': require('app/global/config/AppConfig')
+		'AppConfig': require('configs/AppConfig')
 
 	};
 

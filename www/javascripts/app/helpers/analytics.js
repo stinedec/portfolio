@@ -5,12 +5,13 @@
  * @static
  */
 
-define(function (require, exports, module) {
+define(function (require) {
 
 	'use strict';
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
+		App = require('app'),
 		_$body = $(document.body),
 		_trackingMap,
 		self;
@@ -185,6 +186,6 @@ define(function (require, exports, module) {
 		}
 	};
 
-	exports = _.extend(exports, self);
+	return self;
 
 });

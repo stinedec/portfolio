@@ -1,7 +1,7 @@
 /**
  * @module App
  * @submodule App.Global
- * @class App.Global.View
+ * @class App.Global.Template
  */
 
 define(function (require) {
@@ -10,7 +10,7 @@ define(function (require) {
 
 	return {
 
-		'ExampleView': require('app/global/view/ExampleView')
+		'ExampleTemplate': require('plugins/text!templates/ExampleTemplate.html')
 
 	};
 

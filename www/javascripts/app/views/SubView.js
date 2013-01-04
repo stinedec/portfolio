@@ -1,7 +1,7 @@
 /**
  * @module Backbone
  * @submodule Backbone.View
- * @class Home.ExampleView
+ * @class Global.ExampleView
  * @constructor
  */
 
@@ -22,7 +22,7 @@ define(function (require) {
 
 			this.render();
 
-			log('Backbone : Global : ExampleView : Initialized');
+			log('Backbone : Global : SubView : Initialized');
 		},
 
 		'render': function () {
