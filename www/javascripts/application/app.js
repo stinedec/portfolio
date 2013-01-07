@@ -10,18 +10,9 @@ define(function (require, exports, module) {
 		_ = require('underscore'),
 		Backbone = require('backbone'),
 		Utilities = require('helpers/utilities'),
-		Models = require('models/index'),
-		Views = require('views/index'),
-		Templates = require('templates/index'),
-		Configs = require('configs/index'),
-		Routers = require('routers/index'),
-		App;
+		App = require('application/index');
 
-	App = {
-
-		'models': Models,
-		'views': Views,
-		'templates': Templates,
+	_.extend(App, {
 
 		/**
 		 * Initialize Application. Responsible for instantiating Backbone router
@@ -37,19 +28,19 @@ define(function (require, exports, module) {
 
 			Utilities.init();
 
-			App.Config = new Configs.AppConfig(config);
-			App.Router = new Routers.AppRouter();
+			this.config = new App.models.AppConfig(config);
+			this.router = new App.routers.AppRouter();
+			this.collection = new App.collections.ExampleCollection([{'name': 'Carl'}]);
 
 			Backbone.history.start();
-
-			var exampleView = new Views.ExampleView();
 
 			log('Global : Initialized');
 
 		}
-	};
+	});
 
 	_.extend(App, Backbone.Events);
 
 	exports = _.extend(exports, App);
+
 });

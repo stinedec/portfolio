@@ -9,14 +9,15 @@ define(function (require) {
 
 	'use strict';
 
-	var Backbone = require('backbone'),
-		Models = require('global-models');
+	var _ = require('underscore'),
+		Backbone = require('backbone'),
+		App = require('app');
 
 	return Backbone.Collection.extend({
 
-		'model': Models.ExampleModel,
-
 		'initialize': function () {
+
+			this.model = App.models.ExampleModel;
 
 			log('Backbone : ExampleCollection : Initialized');
 

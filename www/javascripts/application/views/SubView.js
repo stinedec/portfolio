@@ -10,7 +10,8 @@ define(function (require) {
 	'use strict';
 
 	var _ = require('underscore'),
-		Backbone = require('backbone');
+		Backbone = require('backbone'),
+		App = require('app');
 
 	return Backbone.View.extend({
 

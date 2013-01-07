@@ -1,9 +1,8 @@
 /**
- * @module Main
+ * @module App.config
  */
-(function() {
-	'use strict';
 
+(function() {
 	require.config({
 
 		'baseUrl': 'javascripts',
@@ -16,18 +15,18 @@
 			'backbone': 'lib/backbone-min',
 
 			// Backbone Submodules
-			'configs': 'app/configs',
-			'routers': 'app/routers',
-			'models': 'app/models',
-			'collections': 'app/collections',
-			'views': 'app/views',
-			'templates': 'app/templates',
+			'routers': 'application/routers',
+			'models': 'application/models',
+			'collections': 'application/collections',
+			'views': 'application/views',
+			'templates': 'application/templates',
 
 			// Helper Modules
-			'helpers': 'app/helpers',
+			'helpers': 'application/helpers',
 
 			// Application
-			'app': 'app/app'
+			'app': 'application/app',
+			'sections': 'application/sections'
 
 		},
 
@@ -46,15 +45,4 @@
 		}
 
 	});
-
-	define(function (require) {
-
-		var App = require('app');
-
-		App.init({
-			'useMinAssets': false
-		});
-
-	});
-
 })();

@@ -13,7 +13,9 @@ define(function (require) {
 
 	return Backbone.Model.extend({
 
-		'defaults': {},
+		'defaults': {
+			'name': 'John'
+		},
 
 		'initialize': function () {}
 
