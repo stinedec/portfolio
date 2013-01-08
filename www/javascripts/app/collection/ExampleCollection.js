@@ -1,8 +1,5 @@
 /**
- * @module Backbone
- * @submodule Backbone.Collection
- * @class Global.ExampleCollection
- * @constructor
+ * @module collection/ExampleCollection
  */
 
 define(function (require) {
@@ -11,7 +8,7 @@ define(function (require) {
 
 	var _ = require('underscore'),
 		Backbone = require('backbone'),
-		App = require('app');
+		App = require('global');
 
 	return Backbone.Collection.extend({
 

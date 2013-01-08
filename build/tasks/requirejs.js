@@ -11,9 +11,9 @@ module.exports = function(config) {
 
 		'global': {
 			'options': {
-				'name': 'app/global/config',
+				'name': 'app/main',
 				'baseUrl': config.javascripts,
-				'mainConfigFile': config.javascripts + '/app/global/config.js',
+				'mainConfigFile': config.javascripts + '/app/config.js',
 				// Exclusions from minconcat use empty:
 				'paths': {
 					'jquery': 'empty:',
@@ -21,31 +21,11 @@ module.exports = function(config) {
 					'backbone': 'empty:'
 				},
 				'has': {
-					'useMinAssets': true
+					'debugMode': false
 				},
-				'out': config.jsbin + '/app.global.min.js'
-			}
-		},
-
-		'home': {
-			'options': {
-				'name': 'app/sections/home/config',
-				'baseUrl': config.javascripts,
-				'mainConfigFile': config.javascripts + '/app/sections/home/config.js',
-				// Exclusions from minconcat use empty:
-				'paths': {
-					'jquery': 'empty:',
-					'underscore': 'empty:',
-					'backbone': 'empty:',
-					'global': 'empty:'
-				},
-				'has': {
-					'useMinAssets': true
-				},
-				'out': config.jsbin + '/app.home.min.js'
+				'out': config.jsbin + '/main.min.js'
 			}
 		}
-
 	};
 
-}
+};

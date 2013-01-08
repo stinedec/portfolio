@@ -1,8 +1,5 @@
 /**
- * @module Backbone
- * @submodule Backbone.Model
- * @class Global.AppConfig
- * @constructor
+ * @module model/AppConfig
  */
 
 define(function (require) {

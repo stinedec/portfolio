@@ -1,8 +1,5 @@
 /**
- * @module Backbone
- * @submodule Backbone.View
- * @class Global.ExampleView
- * @constructor
+ * @module view/ExampleView
  */
 
 define(function (require) {
@@ -11,8 +8,7 @@ define(function (require) {
 
 	var _ = require('underscore'),
 		Backbone = require('backbone'),
-		App = require('app'),
-		Home = require('sections/home/home');
+		App = require('global');
 
 	return Backbone.View.extend({
 
@@ -24,12 +20,12 @@ define(function (require) {
 
 			this.render();
 
-			log('Backbone : Home : ExampleView : Initialized');
+			log('Backbone : Global : ExampleView : Initialized');
 		},
 
 		'render': function () {
 
-			var subview = new Home.views.SubView();
+			var subview = new App.views.SubView();
 
 		}
 

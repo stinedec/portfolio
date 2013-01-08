@@ -1,8 +1,5 @@
 /**
- * @module App
- * @submodule App.Global
- * @class App.Global.Analytics
- * @static
+ * @module helpers/analytics
  */
 
 define(function (require) {
@@ -11,7 +8,7 @@ define(function (require) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
-		App = require('app'),
+		App = require('global'),
 		_$body = $(document.body),
 		_trackingMap,
 		self;

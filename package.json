@@ -5,7 +5,7 @@
 		"grunt-beautify": ">= 0.1.0",
 		"grunt-crusher": ">= 0.1.0",
 		"grunt-jslint": ">= 0.1.0",
-		"grunt-css": ">= 0.2.1",
+		"grunt-css": "0.3.2",
 		"grunt-contrib-requirejs": ">= 0.1.0",
 		"grunt-contrib-yuidoc": ">= 0.3.2",
 		"underscore": ">= 0.1.0"

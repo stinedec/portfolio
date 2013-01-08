@@ -1,5 +1,5 @@
 /**
- * @module App
+ * @module global
  */
 
 define(function (require, exports, module) {
@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 		_ = require('underscore'),
 		Backbone = require('backbone'),
 		Utilities = require('helpers/utilities'),
-		App = require('application/index');
+		App = require('app/index');
 
 	_.extend(App, {
 
@@ -24,15 +24,14 @@ define(function (require, exports, module) {
 
 			var config = config || {};
 
-			window.isDebugMode = (!config.useMinAssets) ? true : false;
-
 			Utilities.init();
 
 			this.config = new App.models.AppConfig(config);
 			this.router = new App.routers.AppRouter();
-			this.collection = new App.collections.ExampleCollection([{'name': 'Carl'}]);
 
 			Backbone.history.start();
+
+			var exampleView = new App.views.ExampleView();
 
 			log('Global : Initialized');
 

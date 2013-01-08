@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'cssmin jslint requirejs');
+	grunt.registerTask('default', 'cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
 
 	// load grunt plugins

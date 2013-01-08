@@ -1,8 +1,5 @@
 /**
- * @module Backbone
- * @submodule Backbone.Model
- * @class Global.ExampleModel
- * @constructor
+ * @module model/ExampleModel
  */
 
 define(function (require) {
@@ -13,9 +10,7 @@ define(function (require) {
 
 	return Backbone.Model.extend({
 
-		'defaults': {
-			'name': 'John'
-		},
+		'defaults': {},
 
 		'initialize': function () {}
 

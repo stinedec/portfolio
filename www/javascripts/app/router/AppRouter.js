@@ -1,8 +1,5 @@
 /**
- * @module Backbone
- * @submodule Backbone.Router
- * @class Global.AppRouter
- * @constructor
+ * @module router/AppRouter
  */
 
 define(function (require) {
