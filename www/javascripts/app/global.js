@@ -22,8 +22,9 @@ define(function (require, exports, module) {
 		 */
 		'init': function (config) {
 
-			var config = config || {},
-				exampleView;
+			var exampleView;
+
+			config = config || {};
 
 			Utilities.init();
 

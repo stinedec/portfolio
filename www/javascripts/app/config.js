@@ -8,7 +8,9 @@
 
 	// Use Requirejs optimizer has() integration for custom builds.
 	// Polyfill has() when not provided via Requirejs optimizer.
-	var has = has || function () {
+	var has;
+
+	has = has || function () {
 		return true;
 	};
 
@@ -65,4 +67,4 @@
 	// Require global here for optimizer build.
 	require(['global']);
 
-})();
+}());
