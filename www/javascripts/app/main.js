@@ -1,12 +1,18 @@
 /**
  * @module main
  */
-(function() {
+ 
+(function () {
+
 	'use strict';
 
-	require(['config', 'global'], function(config, App) {
+	require(['config'], function () {
 
-		App.init();
+		require(['global'], function (App) {
+
+			App.init();
+
+		});
 
 	});
 

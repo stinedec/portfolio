@@ -22,7 +22,8 @@ define(function (require, exports, module) {
 		 */
 		'init': function (config) {
 
-			var config = config || {};
+			var config = config || {},
+				exampleView;
 
 			Utilities.init();
 
@@ -31,7 +32,7 @@ define(function (require, exports, module) {
 
 			Backbone.history.start();
 
-			var exampleView = new App.views.ExampleView();
+			exampleView = new App.views.ExampleView();
 
 			log('Global : Initialized');
 

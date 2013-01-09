@@ -2,11 +2,13 @@
  * @module config
  */
 
-(function() {
+(function () {
+
+	'use strict';
 
 	// Use Requirejs optimizer has() integration for custom builds.
 	// Polyfill has() when not provided via Requirejs optimizer.
-	var has = has || function(){
+	var has = has || function () {
 		return true;
 	};
 
@@ -15,8 +17,8 @@
 
 	require.config({
 
-		// Maximum load time for scripts.
-		'waitSeconds': 45,
+		// Disable timeout for scripts.
+		'waitSeconds': 0,
 
 		'baseUrl': 'javascripts',
 
@@ -59,5 +61,8 @@
 		}
 
 	});
+
+	// Require global here for optimizer build.
+	require(['global']);
 
 })();

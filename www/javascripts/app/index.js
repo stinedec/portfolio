@@ -2,7 +2,9 @@
  * @module index
  */
 
-define(function(require) {
+define(function (require) {
+
+	'use strict';
 
 	return {
 

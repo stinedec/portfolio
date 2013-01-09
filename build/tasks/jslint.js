@@ -26,7 +26,8 @@ module.exports = function(config) {
 			'junit': config.docsbin + '/jslint/junit.xml',
 			'log': config.docsbin + '/jslint/lint.log',
 			'jslintXml': config.docsbin + '/jslint/jslint_xml.xml',
-			'errorsOnly': true
+			'errorsOnly': true,
+			'failOnError': false
 		}
 
 	};
