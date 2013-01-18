@@ -6,7 +6,8 @@ define(function (require) {
 
 	'use strict';
 
-	var _ = require('underscore'),
+	var $ = require('jquery'),
+		_ = require('underscore'),
 		Backbone = require('backbone'),
 		App = require('global');
 
@@ -25,7 +26,9 @@ define(function (require) {
 
 		'render': function () {
 
-			var subview = new App.views.SubView();
+			var subview = new App.views.SubView({
+				'el': '#section-main'
+			});
 
 		}
 

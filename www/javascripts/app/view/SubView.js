@@ -6,7 +6,8 @@ define(function (require) {
 
 	'use strict';
 
-	var _ = require('underscore'),
+	var $ = require('jquery'),
+		_ = require('underscore'),
 		Backbone = require('backbone'),
 		App = require('global');
 
@@ -23,7 +24,9 @@ define(function (require) {
 			log('Backbone : Global : SubView : Initialized');
 		},
 
-		'render': function () {}
+		'render': function () {
+			this.$el.append(_.template(App.templates.ExampleTemplate, {}));
+		}
 
 	});
 

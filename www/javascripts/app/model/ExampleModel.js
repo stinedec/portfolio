@@ -6,7 +6,10 @@ define(function (require) {
 
 	'use strict';
 
-	var Backbone = require('backbone');
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Backbone = require('backbone'),
+		App = require('global');
 
 	return Backbone.Model.extend({
 

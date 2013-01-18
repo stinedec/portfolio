@@ -13,7 +13,7 @@ define(function (require) {
 
 	self = {
 
-		init: function () {
+		initialize: function () {
 			self.normalizeLogs();
 		},
 

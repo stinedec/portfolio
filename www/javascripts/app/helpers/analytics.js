@@ -31,7 +31,7 @@ define(function (require) {
 		 * @param account {String} Account ID
 		 * @param pageName {String} Page Name
 		 */
-		'init': function (account, pageName) {
+		'initialize': function (account, pageName) {
 			if (account === undefined) {
 				return;
 			}

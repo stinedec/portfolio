@@ -17,16 +17,16 @@ define(function (require, exports, module) {
 		/**
 		 * Initialize Application. Responsible for instantiating Backbone router
 		 * and starting Backbone history.
-		 * @method Main.init
+		 * @method App.initialize
 		 * @param config {Object} JS App configuration object, typically passed from the middle tier.
 		 */
-		'init': function (config) {
+		'initialize': function (config) {
 
 			var exampleView;
 
 			config = config || {};
 
-			Utilities.init();
+			Utilities.initialize();
 
 			this.config = new App.models.AppConfig(config);
 			this.router = new App.routers.AppRouter();

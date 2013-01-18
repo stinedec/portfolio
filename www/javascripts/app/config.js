@@ -29,7 +29,7 @@
 			'config': 'app/config',
 
 			// Core Libraries
-			'jquery': 'lib/jquery-1.8.2.min',
+			'jquery': 'lib/jquery-1.9.0.min',
 			'underscore': 'lib/underscore-min',
 			'backbone': 'lib/backbone-min',
 
