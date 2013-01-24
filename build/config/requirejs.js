@@ -1,7 +1,7 @@
 /**
  * @module Build
- * @submodule Build.Tasks
- * @class Build.Tasks.RequireJS
+ * @submodule Build.Config
+ * @class Build.Config.RequireJS
  * @static
  */
 

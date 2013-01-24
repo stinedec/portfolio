@@ -1,7 +1,7 @@
 /**
  * @module Build
- * @submodule Build.Tasks
- * @class Build.Tasks.Yuidoc
+ * @submodule Build.Config
+ * @class Build.Config.Yuidoc
  * @static
  */
 

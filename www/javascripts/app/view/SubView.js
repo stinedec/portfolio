@@ -25,7 +25,9 @@ define(function (require) {
 		},
 
 		'render': function () {
-			this.$el.append(_.template(App.templates.ExampleTemplate, {}));
+			this.$el.append(_.template(App.templates.ExampleTemplate, {
+				'url': 'https://github.com/cpbtechnology/US-boilerplate-backbonejs'
+			}));
 		}
 
 	});

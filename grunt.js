@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 	config.javascripts = config.root + '/javascripts';
 	config.jsbin = config.javascripts + '/generated';
 	config.cssbin = config.stylesheets + '/generated';
+	config.images = config.root + '/images';
 	config.docsbin = 'docs';
 
 	// Project configuration.
@@ -30,28 +31,33 @@ module.exports = function(grunt) {
 			'files': [ config.javascripts + '/app/**/*.js' ]
 		},
 
-		'cssmin': require('./build/tasks/cssmin.js')(config),
+		'compass': require('./build/config/compass.js')(config),
 
-		'qunit': require('./build/tasks/qunit.js')(config),
+		'cssmin': require('./build/config/cssmin.js')(config),
 
-		'yuidoc': require('./build/tasks/yuidoc.js')(config),
+		'qunit': require('./build/config/qunit.js')(config),
 
-		'requirejs': require('./build/tasks/requirejs.js')(config),
+		'yuidoc': require('./build/config/yuidoc.js')(config),
 
-		'jslint': require('./build/tasks/jslint.js')(config)
+		'requirejs': require('./build/config/requirejs.js')(config),
+
+		'jslint': require('./build/config/jslint.js')(config),
+
+		'watch': require('./build/config/watch.js')(config)
 
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'cssmin requirejs');
+	grunt.registerTask('default', 'compass:app cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-beautify');
+	grunt.loadNpmTasks('grunt-compass');
+	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-crusher');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
-	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-jslint');
 
 };

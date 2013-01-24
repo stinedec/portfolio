@@ -27,7 +27,7 @@ define(function (require) {
 		'render': function () {
 
 			var subview = new App.views.SubView({
-				'el': '#section-main'
+				'el': '#section-content'
 			});
 
 		}

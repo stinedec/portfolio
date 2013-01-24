@@ -9,3 +9,6 @@ node_modules/
 
 # Ignore generated files
 generated/
+
+# Ignore generated sprites
+sprite-s??????????.png

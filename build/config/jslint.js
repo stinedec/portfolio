@@ -1,7 +1,7 @@
 /**
  * @module Build
- * @submodule Build.Tasks
- * @class Build.Tasks.JSLint
+ * @submodule Build.Config
+ * @class Build.Config.JSLint
  * @static
  */
 
