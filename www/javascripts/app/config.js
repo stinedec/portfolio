@@ -44,7 +44,11 @@
 			'helpers': 'app/helpers',
 
 			// Application
-			'global': 'app/global'
+			'global': 'app/global',
+
+			// 3rd party
+			'facebook': '//connect.facebook.net/en_US/all',
+			'google-analytics': '//google-analytics.com/ga'
 
 		},
 
@@ -58,6 +62,10 @@
 			'backbone': {
 				'deps': ['underscore', 'jquery'],
 				'exports': 'Backbone'
+			},
+
+			'facebook': {
+				'exports': 'FB'
 			}
 
 		}

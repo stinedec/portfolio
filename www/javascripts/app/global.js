@@ -10,7 +10,8 @@ define(function (require, exports, module) {
 		_ = require('underscore'),
 		Backbone = require('backbone'),
 		Utilities = require('helpers/utilities'),
-		App = require('app/index');
+		App = require('app/index'),
+		settings = require('settings');
 
 	_.extend(App, {
 
@@ -28,7 +29,7 @@ define(function (require, exports, module) {
 
 			Utilities.initialize();
 
-			this.config = new App.models.AppConfig(config);
+			this.config = new App.models.AppConfig(settings);
 			this.router = new App.routers.AppRouter();
 
 			Backbone.history.start();
