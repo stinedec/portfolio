@@ -3,10 +3,7 @@
 //
 //
 
-
-
-// Utilities
-@import "utilities/index";
+@import "base/mixins";
 @import "base/webfonts";
 
 @media screen {
@@ -20,13 +17,6 @@
 
 	// Section Modules
 	@import "modules/example-view";
-
-	// Reusable Modules
-
-	// States
-	@import "states/ie";
-	@import "states/nojs";
-	@import "states/ipad";
 
 }
 

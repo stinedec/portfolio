@@ -3,6 +3,13 @@
 //
 //
 
+// Variables
+$black: rgb(0,0,0);
+$darkGrey: lighten($black, 20%);
+$mediumGrey: lighten($black, 50%);
+$lightGrey: lighten($black, 75%);
+$pageWidth: 960px;
+
 body {
 	background: $darkGrey;
 	min-width: $pageWidth;
