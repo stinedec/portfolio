@@ -11,9 +11,9 @@ module.exports = function(config) {
 
 		'app': {
 			'src': [
-				config.cssbin + '/style.css'
+				config.cssbin + '/app.css'
 			],
-			'dest': config.cssbin + '/style.min.css'
+			'dest': config.cssbin + '/app.min.css'
 		}
 
 	};

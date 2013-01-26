@@ -18,12 +18,13 @@ module.exports = function(config) {
 				'paths': {
 					'jquery': 'empty:',
 					'underscore': 'empty:',
-					'backbone': 'empty:'
+					'backbone': 'empty:',
+					'settings': 'empty:'
 				},
 				'has': {
-					'debugMode': false
+					'debugMode': true
 				},
-				'out': config.jsbin + '/main.min.js'
+				'out': config.jsbin + '/app.min.js'
 			}
 		}
 	};

@@ -25,11 +25,11 @@
 		<script>document.documentElement.className = document.documentElement.className.replace('no-js', '');</script>
 
 		<!-- BEGIN:PROD
-		<link rel="stylesheet" href="stylesheets/generated/style.min.css" />
+		<link rel="stylesheet" href="stylesheets/generated/app.min.css" />
 		END:PROD -->
 
 		<!-- BEGIN:DEV -->
-		<link rel="stylesheet" href="stylesheets/generated/style.css" />
+		<link rel="stylesheet" href="stylesheets/generated/app.css" />
 		<!-- END:DEV -->
 
 	</head>
@@ -49,24 +49,23 @@
 		</div>
 		<!-- END: section-main -->
 
-		<script src="javascripts/lib/require.js"></script>
-
 		<!-- BEGIN:DEV -->
+		<script src="javascripts/lib/require.js" data-main="javascripts/app/main"></script>
 		<script>
 			define('settings', {
 				'gaAccountId': 'GA_ACCOUNT_ID_HERE',
 				'fbAccountId': 'FB_ACCOUNT_ID_HERE'
 			});
-			require(['javascripts/app/config', 'javascripts/app/main']);
 		</script>
 		<!-- END:DEV -->
 
 		<!-- BEGIN:PROD
+		<script src="javascripts/lib/require.js" data-main="javascripts/generated/app.min"></script>
 		<script>
 			define('settings', {
-				'gaAccount': 'GA_ACCOUNT_ID_HERE',
+				'gaAccountId': 'GA_ACCOUNT_ID_HERE',
+				'fbAccountId': 'FB_ACCOUNT_ID_HERE'
 			});
-			require(['javascripts/app/config', 'javascripts/app/main.min']);
 		</script>
 		END:PROD -->
 
