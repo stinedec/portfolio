@@ -12,9 +12,7 @@ module.exports = function(grunt) {
 
   var _ = grunt.utils._,
     fs = require('fs'),
-    exec = require('child_process').exec,
-    commands = [],
-    commandIndex = 0;
+    exec = require('child_process').exec;
 
 
   grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
