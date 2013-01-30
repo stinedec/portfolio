@@ -39,9 +39,7 @@ define(function (require, exports, module) {
 			log('Global : Initialized');
 
 		}
-	});
-
-	_.extend(App, Backbone.Events);
+	}, Backbone.Events);
 
 	exports = _.extend(exports, App);
 
