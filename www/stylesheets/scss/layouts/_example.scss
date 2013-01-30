@@ -4,7 +4,7 @@
 //
 
 // Variables
-$black: rgb(0,0,0);
+$black: rgb(0, 0, 0);
 $darkGrey: lighten($black, 20%);
 $mediumGrey: lighten($black, 50%);
 $lightGrey: lighten($black, 75%);
@@ -23,13 +23,11 @@ body {
 #section-content {
 	margin: 0 auto;
 	width: $pageWidth;
-
 	h1 {
 		color: $lightGrey;
-		font: bold 250%/200% helvetica, arial, sans-serif;
+		font: bold 250% / 200% helvetica, arial, sans-serif;
 		margin-top: 100px;
 	}
-
 	p {
 		color: $mediumGrey;
 		font-size: 180%;
@@ -44,7 +42,6 @@ body {
 	position: absolute;
 	text-indent: -9999px;
 	top: 0;
-
 	&:hover {
 		@include sprite-background-position("forkme-hover");
 	}

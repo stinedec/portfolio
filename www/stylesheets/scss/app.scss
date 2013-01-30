@@ -8,16 +8,16 @@
 @import "base/webfonts";
 
 @media screen {
-  // Base Rules
-  @import "base/reset";
-  @import "base/global";
-  // Layouts
-  @import "layouts/example";
-  // Section Modules
-  @import "modules/example-view";
+	// Base Rules
+	@import "base/reset";
+	@import "base/global";
+	// Layouts
+	@import "layouts/example";
+	// Section Modules
+	@import "modules/example-view";
 }
 
 @media print {
-  // Print
-  @import "base/print";
+	// Print
+	@import "base/print";
 }

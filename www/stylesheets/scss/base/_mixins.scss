@@ -13,20 +13,32 @@ $legacy-support-for-ie8: true;
 	$mult-bgs: -compass-list-size($backgrounds) > 1;
 	$simple-background: if($mult-bgs or prefixed(-css2, $backgrounds), -css2(-compass-nth($backgrounds, first)), false);
 	@if not blank($simple-background) {
-	background: $simple-background; }
+		background: $simple-background;
+	}
 	@include background($background-1, $background-2, $background-3, $background-4);
 }
 
 // Creates a div to clear floats
 @mixin clear-div {
-	&:after { clear: both; content: " "; display: block; height: 0; }
+	&:after {
+		clear: both;
+		content: " ";
+		display: block;
+		height: 0;
+		border: 1px;
+	}
 }
 
 // Disable user selection on elements;
-@mixin no-user-select { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+@mixin no-user-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
 
 // dynamic sprite
 @import "sprite/*.png";
+
 $sprite: sprite-map("sprite/*.png", $spacing: 13);
 $sprite-background: sprite-url($sprite);
 
