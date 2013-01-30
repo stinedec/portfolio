@@ -15,57 +15,33 @@ module.exports = function(grunt) {
 
   var _ = grunt.utils._,
     fs = require('fs'),
-    exec  = require( 'child_process' ).exec,
+    exec = require('child_process').exec,
     commands = [],
     commandIndex = 0;
 
 
   grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
     var files = grunt.file.expandFiles(this.file.src),
-      tempExt = '_pretty-sass-temp.scss',
       done = this.async();
 
     _.each(files, function(filepath, i) {
-      var tempfile = filepath + tempExt;
-      var command = 'sass-convert';
+      var dirtySass = grunt.file.read(filepath),
+          command = 'echo \'' + dirtySass + '\' | sass-convert --from scss --to scss --stdin';
 
-      grunt.file.copy(filepath, tempfile);
-      command += ' ' + tempfile + ' ' + filepath;
+      grunt.log.writeln('prettifying: ' + filepath);
 
-      commands.push(command);
-    });
-
-    runCommands();
-
-    function runCommands () {
-      if (commandIndex < commands.length) {
-        grunt.log.writeln('tidying up ' + files[commandIndex]);
-        exec(commands[commandIndex], afterCommand(commandIndex));
-
-        commandIndex++;
-      } else {
-        exec(commands[commandIndex], function ( error, stdout, stderr ) {
-            grunt.log.writeln('done.');
-            done( true );
-        });
-      }
-    }
-
-    function afterCommand(index) {
-      return function ( error ) {
+      exec(command, function ( error, stdout, stderr ) {
         if ( error !== null ) {
-            grunt.log.error( error );
-            done( false );
+          grunt.log.error( error );
+          done( false );
         } else {
-          fs.unlink(files[index] + tempExt, function ( error ) {
-            if ( error !== null ) {
-              grunt.log.error( error );
-              done( false );
-            }
-          });
-          runCommands();
+          grunt.file.write(filepath, stdout);
+          if (i === files.length - 1) {
+            done( true );
+          }
         }
-      };
-    }
+      });
+
+    });
   });
 };
