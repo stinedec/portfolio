@@ -14,7 +14,6 @@ module.exports = function(grunt) {
     fs = require('fs'),
     exec = require('child_process').exec;
 
-
   grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
     var files = grunt.file.expandFiles(this.file.src),
       done = this.async();
