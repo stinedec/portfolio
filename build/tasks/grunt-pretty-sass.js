@@ -10,9 +10,6 @@ module.exports = function(grunt) {
 
   'use strict';
 
-  // TODO: ditch this when grunt v0.4 is released
-  grunt.util = grunt.util || grunt.utils;
-
   var _ = grunt.utils._,
     fs = require('fs'),
     exec = require('child_process').exec,
