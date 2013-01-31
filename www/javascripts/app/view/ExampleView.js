@@ -16,17 +16,19 @@ define(function (require) {
 		'events': {},
 
 		'initialize': function (options) {
+			var view = this;
 
 			_.bindAll(this);
 
-			this.render();
+			view.render();
 
 			log('Backbone : Global : ExampleView : Initialized');
 		},
 
 		'render': function () {
-
-			var subview = new App.views.SubView({
+			var view = this;
+			
+			view.subview = new App.views.SubView({
 				'el': '#section-content'
 			});
 

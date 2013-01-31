@@ -2,33 +2,40 @@
  * @module view/SubView
  */
 
-define(function (require) {
+define(function(require) {
 
 	'use strict';
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		Backbone = require('backbone'),
-		App = require('global');
+		App = require('global'),
+		Swig = require('swig');
 
 	return Backbone.View.extend({
 
 		'events': {},
 
-		'initialize': function (options) {
+		'initialize': function(options) {
+			var view = this;
 
 			_.bindAll(this);
 
-			this.render();
+			view.render();
 
 			log('Backbone : Global : SubView : Initialized');
 		},
 
-		'render': function () {
-			this.$el.append(_.template(App.templates.ExampleTemplate, {
+		'render': function() {
+			var view = this;
+
+			view.exampleTemplate = swig.compile(App.templates.ExampleTemplate, {
+				'filename': 'exampleTemplate'
+			});
+			this.$el.append(view.exampleTemplate({
 				'url': 'https://github.com/cpbtechnology/US-boilerplate-backbonejs'
 			}));
-		}
+	}
 
 	});
 

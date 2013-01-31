@@ -32,6 +32,7 @@
 			'jquery': 'lib/jquery-1.9.0.min',
 			'underscore': 'lib/underscore-min',
 			'backbone': 'lib/backbone-min',
+			'swig': 'lib/swig.min',
 
 			// Backbone Submodule Directories
 			'router': 'app/router',
@@ -47,8 +48,8 @@
 			'global': 'app/global',
 
 			// 3rd party
-			'facebook': '//connect.facebook.net/en_US/all',
-			'google-analytics': '//google-analytics.com/ga'
+			//'facebook': '//connect.facebook.net/en_US/all',
+			//'google-analytics': '//google-analytics.com/ga'
 
 		},
 
@@ -66,6 +67,10 @@
 
 			'facebook': {
 				'exports': 'FB'
+			},
+
+			'swig': {
+				'exports': 'swig'
 			}
 
 		}

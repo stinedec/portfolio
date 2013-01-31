@@ -9,6 +9,7 @@ define(function (require, exports, module) {
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		Backbone = require('backbone'),
+		Swig = require('swig'),
 		Utilities = require('helpers/utilities'),
 		App = require('app/index'),
 		settings = require('settings');
@@ -19,15 +20,10 @@ define(function (require, exports, module) {
 		 * Initialize Application. Responsible for instantiating Backbone router
 		 * and starting Backbone history.
 		 * @method App.initialize
-		 * @param config {Object} JS App configuration object, typically passed from the middle tier.
 		 */
-		'initialize': function (config) {
+		'initialize': function () {
 
 			var exampleView;
-
-			config = config || {};
-
-			Utilities.initialize();
 
 			this.config = new App.models.AppConfig(settings);
 			this.router = new App.routers.AppRouter();
