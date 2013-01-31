@@ -10,7 +10,8 @@
 	// Polyfill has() when not provided via Requirejs optimizer.
 	var has;
 
-	has = has || function () {
+	has = has ||
+	function () {
 		return true;
 	};
 
@@ -48,9 +49,8 @@
 			'global': 'app/global',
 
 			// 3rd party
-			//'facebook': '//connect.facebook.net/en_US/all',
-			//'google-analytics': '//google-analytics.com/ga'
-
+			'facebook': '//connect.facebook.net/en_US/all',
+			'google-analytics': '//google-analytics.com/ga'
 		},
 
 		// Sets the configuration for your third party scripts that are not AMD compatible

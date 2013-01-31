@@ -2,7 +2,7 @@
  * @module view/SubView
  */
 
-define(function(require) {
+define(function (require) {
 
 	'use strict';
 
@@ -16,7 +16,7 @@ define(function(require) {
 
 		'events': {},
 
-		'initialize': function(options) {
+		'initialize': function (options) {
 			var view = this;
 
 			_.bindAll(this);
@@ -26,16 +26,14 @@ define(function(require) {
 			log('Backbone : Global : SubView : Initialized');
 		},
 
-		'render': function() {
+		'render': function () {
 			var view = this;
 
-			view.exampleTemplate = swig.compile(App.templates.ExampleTemplate, {
-				'filename': 'exampleTemplate'
-			});
-			this.$el.append(view.exampleTemplate({
+			view.exampleTemplate = swig.compile(App.templates.ExampleTemplate);
+			view.$el.append(view.exampleTemplate({
 				'url': 'https://github.com/cpbtechnology/US-boilerplate-backbonejs'
 			}));
-	}
+		}
 
 	});
 

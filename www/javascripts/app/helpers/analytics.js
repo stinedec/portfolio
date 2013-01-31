@@ -10,8 +10,7 @@ define(function (require) {
 		_ = require('underscore'),
 		App = require('global'),
 		_$body = $(document.body),
-		_trackingMap,
-		self;
+		_trackingMap, self;
 
 	_trackingMap = {
 		'click': {
@@ -165,8 +164,7 @@ define(function (require) {
 				var event = (e.namespace) ? e.type + '.' + e.namespace : e.type,
 					link = e.currentTarget,
 					selector = altID || link.getAttribute('data-track') || link.id,
-					trackElem,
-					trackFn;
+					trackElem, trackFn;
 
 				if (map === undefined || map[event] === undefined || map[event][selector] === undefined) {
 					return;
