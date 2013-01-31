@@ -11,8 +11,8 @@ $lightGrey: lighten($black, 75%);
 $pageWidth: 960px;
 
 body {
-	background: $darkGrey;
 	min-width: $pageWidth;
+	background: $darkGrey;
 }
 
 #section-main {
@@ -21,12 +21,15 @@ body {
 }
 
 #section-content {
-	margin: 0 auto;
 	width: $pageWidth;
+	margin: 0 auto;
 	h1 {
-		color: $lightGrey;
 		font: bold 250% / 200% helvetica, arial, sans-serif;
+		&:hover {
+			margin: 0;
+		}
 		margin-top: 100px;
+		color: $lightGrey;
 	}
 	p {
 		color: $mediumGrey;
