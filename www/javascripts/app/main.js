@@ -13,11 +13,11 @@
 			Utilities.initialize();
 			App.initialize();
 
-			require(['helpers/analytics', 'google-analytics'], function (Analytics) {
-				Analytics.initialize(App.config.get('gaAccountId'), 'pageName');
+			require(['google-analytics'], function (GA) {
+
 			});
 
-			require(['helpers/analytics', 'facebook'], function (Analytics) {
+			require(['helpers/analytics', 'facebook'], function (Analytics, Facebook) {
 				FB.init({
 					'appId': App.config.get('fbAccountId'),
 					'xfbml': true
@@ -28,5 +28,4 @@
 		// end require['global']
 	});
 	// end require['config']
-
 }());
