@@ -33,7 +33,23 @@ body {
 	}
 	p {
 		color: $mediumGrey;
+		.test {
+			border: 1px solid red;
+			margin: 0 auto;
+			#nest {
+				padding: 0;
+				&:hover {
+					font-weight: bold;
+					color: blue;
+					-webkit-text-shadow: 0 0 0 #fff;
+				}
+				float: right;
+			}
+			@include opacity(0);
+			color: yellow;
+		}
 		font-size: 180%;
+		border: 2px solid red;
 	}
 }
 

@@ -46,7 +46,7 @@ module.exports = function(grunt) {
 		'watch': require('./build/config/watch.js')(config),
 
 		'pretty-sass': {
-			'files': [ config.stylesheets + '/scss/**/*.scss' ]
+			'files': [ config.stylesheets + '/scss/layouts/_example.scss' ]
 		}
 
 	});

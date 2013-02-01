@@ -47,72 +47,44 @@ module.exports = function(grunt) {
 				if (err) throw err;
 
 				var lines = data.toString().split("\n"),
-					selectors = [],
-					selectorIndex = 0,
-					selectorLine = 0,
+					output = [],
+					properties = [],
 					isSelector = false,
-					cyan = '\u001b[36m';
+					nestDepth = 0,
+					outputIndex = 0,
+					propertiesIndex = 0;
 
-				_.each(lines, function (line, i) {
-					var selectorStart = /[\{]/g.test(line),
-						selectorEnd = /[\}]/g.test(line);
+				_.each(lines, function (line) {
+					var selectorStart = /\{/g.test(line),
+						selectorEnd = /\}/g.test(line);
 
-					grunt.log.writeln('line ' + i + ': ' + line);
-
-					if (!isSelector && selectorStart) {
+					if (selectorStart) {
+						if (isSelector) {
+							nestDepth++;
+						}
+						output[outputIndex] = line;
 						isSelector = true;
-						grunt.log.writeln(cyan + 'selector ' + selectorIndex + ' created' + reset);
-						selectors[selectorIndex] = [];
-					} else if (isSelector && selectorStart) {
-						selectors[selectorIndex].sort();
-						selectorIndex++;
-						selectorLine = 0;
-						selectors[selectorIndex] = [];
-						grunt.log.writeln(cyan + 'nested selector ' + selectorIndex + ' created' + reset);
-					}
-
-					if (isSelector && !selectorStart && !selectorEnd) {
-						grunt.log.writeln(cyan + 'adding property ' + selectorLine + ' to selector ' + selectorIndex + reset);
-						selectors[selectorIndex][selectorLine] = line;
-						selectorLine++;
-					}
-
-					if (isSelector && selectorEnd) {
-						selectors[selectorIndex].sort();
+						outputIndex++;
+					} else if (selectorEnd) {
+						if (isSelector) {
+							nestDepth--;
+							propertiesIndex--;
+						}
+						output[outputIndex] = line;
 						isSelector = false;
-						selectorIndex++;
-						selectorLine = 0;
+						outputIndex++;
+					} else if (isSelector) {
+						grunt.log.writeln('property: ' + line);
+						properties[outputIndex] = line;
+						outputIndex++;
+					} else {
+						output[outputIndex] = line;
+						outputIndex++;
 					}
 				});
 
-				selectorIndex = 0;
-				selectorLine = 0;
-				isSelector = false;
-
-				_.each(lines, function (line, i) {
-					var selectorStart = /[\{]/g.test(line),
-						selectorEnd = /[\}]/g.test(line);
-
-					if (!isSelector && selectorStart) {
-						isSelector = true;
-					} else if (isSelector && selectorStart) {
-						selectorIndex++;
-						selectorLine = 0;
-					}
-
-					if (isSelector && !selectorStart && !selectorEnd) {
-						grunt.log.writeln(cyan + 'line ' + i + ' *: ' + selectors[selectorIndex][selectorLine] + reset);
-						selectorLine++;
-					} else {
-						grunt.log.writeln('line ' + i + ': ' + line);
-					}
-
-					if (isSelector && selectorEnd) {
-						isSelector = false;
-						selectorIndex++;
-						selectorLine = 0;
-					}
-					
+				_.each(properties, function (section) {
+					grunt.log.writeln(section);
 				});
 
 				if (filesComplete ===  filesLength - 1) {
