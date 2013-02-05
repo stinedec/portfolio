@@ -13,9 +13,7 @@
 			Utilities.initialize();
 			App.initialize();
 
-			require(['google-analytics'], function (GA) {
-
-			});
+			require(['google-analytics']);
 
 			require(['helpers/analytics', 'facebook'], function (Analytics, Facebook) {
 				FB.init({

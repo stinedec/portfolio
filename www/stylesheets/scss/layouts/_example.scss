@@ -15,12 +15,12 @@ body {
 	min-width: $pageWidth;
 }
 
-#section-main {
+#main {
 	overflow: auto;
 	position: relative;
 }
 
-#section-content {
+#content {
 	margin: 0 auto;
 	width: $pageWidth;
 	h1 {

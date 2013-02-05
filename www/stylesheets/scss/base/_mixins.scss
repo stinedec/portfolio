@@ -18,17 +18,6 @@ $legacy-support-for-ie8: true;
 	@include background($background-1, $background-2, $background-3, $background-4);
 }
 
-// Creates a div to clear floats
-@mixin clear-div {
-	&:after {
-		clear: both;
-		content: " ";
-		display: block;
-		height: 0;
-		border: 1px;
-	}
-}
-
 // Disable user selection on elements;
 @mixin no-user-select {
 	-webkit-user-select: none;

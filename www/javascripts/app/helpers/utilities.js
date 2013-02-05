@@ -13,28 +13,8 @@ define(function (require) {
 
 	self = {
 
-		initialize: function () {
+		'initialize': function () {
 			self.normalizeLogs();
-		},
-
-		/**
-		 * Test support for the canvas element
-		 * @method Utilities.supportsCanvas
-		 */
-		'supportsCanvas': function () {
-			var canvas = document.createElement('canvas');
-			if (canvas.getContext) {
-				return true;
-			}
-			return false;
-		},
-
-		/**
-		 * Check for support of INPUT placeholder attribute.
-		 * @method Utilities.supportsPlaceholder
-		 */
-		'supportsPlaceholder': function () {
-			return document.createElement('input').placeholder !== undefined;
 		},
 
 		/**
@@ -56,38 +36,6 @@ define(function (require) {
 					$input.val(placeholder).addClass('placeholder');
 				}
 			});
-		},
-
-		/**
-		 * Test for support of CSS3 property.
-		 * @method Utilities.supportsCss3
-		 * @param property {String} property to test
-		 */
-		'supportsCss3': function (property) {
-			var elem = document.body || document.documentElement,
-				cssStyle = elem.style,
-				vendors = ['Moz', 'Webkit', 'Khtml', 'O', 'Ms'],
-				len = vendors.length;
-
-			// No css support detected
-			if (cssStyle === undefined) {
-				return false;
-			}
-
-			// Tests for standard property
-			if (typeof cssStyle[property] === 'string') {
-				return true;
-			}
-
-			// Tests for vendor specific property
-			property = property.charAt(0).toUpperCase() + property.substr(1);
-			while (len--) {
-				if (typeof cssStyle[vendors[len] + property] === 'string') {
-					return true;
-				}
-			}
-
-			return false;
 		},
 
 		/**

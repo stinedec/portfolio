@@ -42,7 +42,9 @@ define(function (require, exports, module) {
 			App.cache.routers.appRouter = new App.routers.AppRouter();
 			Backbone.history.start();
 
-			App.cache.views.exampleView = new App.views.ExampleView();
+			App.cache.views.exampleView = new App.views.ExampleView({
+				'el': '#main'
+			});
 
 			log('App : Initialized');
 			return this;
