@@ -2,8 +2,6 @@
  * @module helpers/analytics
  */
 
-
-
 define(function (require) {
 
 	'use strict';

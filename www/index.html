@@ -20,10 +20,10 @@
 		<title></title>
 
 		<link rel="shortcut icon" href="images/favicon.png" />
-		
+
 		<!-- BEGIN:PROD
 		<link rel="stylesheet" href="stylesheets/generated/app.min.css" />
-		<script src="javascripts/lib/modernizr-build-min.js"></script>
+		<script src="javascripts/lib/modernizr-build.min.js"></script>
 		END:PROD -->
 
 		<!-- BEGIN:DEV -->
@@ -51,7 +51,7 @@
 		<script src="javascripts/lib/require.js" data-main="javascripts/generated/app.min"></script>
 		<script>
 			requirejs.config({
-				'urlArgs': '[?php echo CACHE_BUST; ?]'
+				//'urlArgs': '[?php echo CACHE_BUST; ?]'
 			});
 			define('settings', {
 				'gaAccountId': 'GA_ACCOUNT_ID_HERE',
