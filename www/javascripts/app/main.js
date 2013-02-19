@@ -8,9 +8,7 @@
 
 	require(['config'], function () {
 
-		require(['global', 'helpers/utilities'], function (App, Utilities) {
-
-			Utilities.initialize();
+		require(['global'], function (App) {
 			App.initialize();
 
 			require(['google-analytics']);

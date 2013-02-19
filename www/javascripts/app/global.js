@@ -8,8 +8,10 @@ define(function (require, exports, module) {
 
 	var $ = require('jquery'),
 		_ = require('underscore'),
+		Modernizr = require('modernizr'),
 		Backbone = require('backbone'),
 		Swig = require('swig'),
+		Enquirejs = require('enquire'),
 		Analytics = require('helpers/analytics'),
 		Utilities = require('helpers/utilities'),
 		App = require('app/index'),
@@ -32,11 +34,13 @@ define(function (require, exports, module) {
 		 * @method App.initialize
 		 */
 		'initialize': function () {
+			Utilities.initialize();
 			Analytics.initialize({
 				'gaAccountId': App.config.get('gaAccountId'),
 				'trackingMap': App.trackingMap
 			}).pageTrack('/index');
 
+			App.bindMediaQueries();
 			App.bindCustomEvents();
 
 			App.cache.routers.appRouter = new App.routers.AppRouter();
@@ -48,6 +52,20 @@ define(function (require, exports, module) {
 
 			log('App : Initialized');
 			return this;
+		},
+
+		/**
+		 * Use this function to bind tracking against any custom event
+		 * triggered against the global Event object.
+		 * @method App.bindMediaQueries
+		 */
+		'bindMediaQueries': function () {
+			Utilities.polyFillMatchMedia();
+			enquire.register('screen and (max-width:768px)', [{
+				'match': function () {
+					//if isiPad
+				}
+			}]).listen();
 		},
 
 		/**
