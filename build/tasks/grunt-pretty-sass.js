@@ -48,50 +48,66 @@ module.exports = function(grunt) {
 
 				var lines = data.toString().split("\n"),
 					output = [],
-					properties = [],
+					outputIndex = 0,
 					isSelector = false,
 					nestDepth = 0,
-					outputIndex = 0,
-					propertiesIndex = 0;
+					selectorIndex = 0,
+					selectors = [];
 
 				_.each(lines, function (line) {
 					var selectorStart = /\{/g.test(line),
 						selectorEnd = /\}/g.test(line);
 
 					if (selectorStart) {
-						if (isSelector) {
+						if (!isSelector) {
+							isSelector = true;
+						} else {
 							nestDepth++;
 						}
-						output[outputIndex] = line;
-						isSelector = true;
+					
+						selectorIndex = selectors.length;
+						selectors[selectorIndex] = [];
+
+						output[outputIndex] = line + ' :selectorStart';
+						outputIndex++;
+						output[outputIndex] = selectors[selectorIndex];
 						outputIndex++;
 					} else if (selectorEnd) {
-						if (isSelector) {
+						if (nestDepth > 0) {
 							nestDepth--;
-							propertiesIndex--;
+						} else {
+							isSelector = false;
 						}
-						output[outputIndex] = line;
-						isSelector = false;
+						selectorIndex--;
+						output[outputIndex] = line + ' :selectorEnd';
 						outputIndex++;
 					} else if (isSelector) {
-						grunt.log.writeln('property: ' + line);
-						properties[outputIndex] = line;
-						outputIndex++;
+						selectors[selectorIndex].push(line + ' :isSelector ' + selectorIndex);
 					} else {
-						output[outputIndex] = line;
+						output[outputIndex] = line + ' :output';
 						outputIndex++;
+					}
+
+				});
+				_.each(selectors, function(selector) {
+					if (_.isArray(selector)) {
+						selector.sort();
+					}
+				});
+				var flat = _.flatten(output);
+				var outputString = '';
+				_.each(flat, function (section) {
+					outputString += section + '\n';
+				});
+
+				fs.writeFile(filepath + '_alphabetized.scss', outputString, 'utf8', function() {
+					if (filesComplete ===  filesLength - 1) {
+						done( true );
+					} else {
+						filesComplete++;
 					}
 				});
 
-				_.each(properties, function (section) {
-					grunt.log.writeln(section);
-				});
-
-				if (filesComplete ===  filesLength - 1) {
-					done( true );
-				} else {
-					filesComplete++;
-				}
 			});
 		}
 

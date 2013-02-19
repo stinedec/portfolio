@@ -10,16 +10,6 @@ $mediumGrey: lighten($black, 50%);
 $lightGrey: lighten($black, 75%);
 $pageWidth: 960px;
 
-body {
-	min-width: $pageWidth;
-	background: $darkGrey;
-}
-
-#section-main {
-	overflow: auto;
-	position: relative;
-}
-
 #section-content {
 	width: $pageWidth;
 	margin: 0 auto;
@@ -29,7 +19,30 @@ body {
 			margin: 0;
 		}
 		margin-top: 100px;
+		.another {
+			margin: 0;
+			border: 0;
+			.more {
+				color: red;
+				border: 0;
+				.again {
+					padding: 5px;
+					color: red;
+				}
+			}
+			padding: 0;
+		}
+		.sup {
+			padding: 3px;
+			border: 0;
+			.hey {
+				font-weight: bold;
+				color: blue;
+			}
+			@include opacity(0);
+		}
 		color: $lightGrey;
+		border: 1px solid red;
 	}
 	p {
 		color: $mediumGrey;
