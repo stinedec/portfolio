@@ -54,6 +54,7 @@ module.exports = function(grunt) {
 	// Default task.
 	grunt.registerTask('default', 'compass:app cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
+	grunt.registerTask('pretty-js', 'beautify');
 
 	// load local tasks.
 	grunt.loadTasks('./build/tasks');
