@@ -10,59 +10,30 @@ $mediumGrey: lighten($black, 50%);
 $lightGrey: lighten($black, 75%);
 $pageWidth: 960px;
 
+body {
+	background: $darkGrey;
+	min-width: $pageWidth;
+}
+
+#section-main {
+	overflow: auto;
+	position: relative;
+}
+
 #section-content {
-	width: $pageWidth;
 	margin: 0 auto;
+	width: $pageWidth;
 	h1 {
+		color: $lightGrey;
 		font: bold 250% / 200% helvetica, arial, sans-serif;
+		margin-top: 100px;
 		&:hover {
 			margin: 0;
 		}
-		margin-top: 100px;
-		.another {
-			margin: 0;
-			border: 0;
-			.more {
-				color: red;
-				border: 0;
-				.again {
-					padding: 5px;
-					color: red;
-				}
-			}
-			padding: 0;
-		}
-		.sup {
-			padding: 3px;
-			border: 0;
-			.hey {
-				font-weight: bold;
-				color: blue;
-			}
-			@include opacity(0);
-		}
-		color: $lightGrey;
-		border: 1px solid red;
 	}
 	p {
 		color: $mediumGrey;
-		.test {
-			border: 1px solid red;
-			margin: 0 auto;
-			#nest {
-				padding: 0;
-				&:hover {
-					font-weight: bold;
-					color: blue;
-					-webkit-text-shadow: 0 0 0 #fff;
-				}
-				float: right;
-			}
-			@include opacity(0);
-			color: yellow;
-		}
 		font-size: 180%;
-		border: 2px solid red;
 	}
 }
 
@@ -70,11 +41,12 @@ $pageWidth: 960px;
 	@include sprite-background-image("forkme", $setHeight: true, $setWidth: true);
 	border: 0;
 	display: block;
-	right: 0;
 	position: absolute;
+	right: 0;
 	text-indent: -9999px;
 	top: 0;
 	&:hover {
 		@include sprite-background-position("forkme-hover");
 	}
 }
+

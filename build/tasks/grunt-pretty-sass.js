@@ -35,14 +35,12 @@ module.exports = function(grunt) {
 					grunt.log.error( filepath + ': ' + error );
 					done( false );
 				} else {
-
-				alphaebetize(filepath);
-
+					alphabetize(filepath);
 				}
 			});
 		});
 
-		function alphaebetize(filepath) {
+		function alphabetize(filepath) {
 			fs.readFile(filepath, function(err, data) {
 				if (err) throw err;
 
@@ -52,7 +50,10 @@ module.exports = function(grunt) {
 					isSelector = false,
 					nestDepth = 0,
 					selectorIndex = 0,
-					selectors = [];
+					selectors = [],
+					selectorsMap = [],
+					outputString = '',
+					flattened;
 
 				_.each(lines, function (line) {
 					var selectorStart = /\{/g.test(line),
@@ -67,8 +68,9 @@ module.exports = function(grunt) {
 					
 						selectorIndex = selectors.length;
 						selectors[selectorIndex] = [];
+						selectorsMap.push(selectorIndex);
 
-						output[outputIndex] = line + ' :selectorStart';
+						output[outputIndex] = line;
 						outputIndex++;
 						output[outputIndex] = selectors[selectorIndex];
 						outputIndex++;
@@ -78,13 +80,13 @@ module.exports = function(grunt) {
 						} else {
 							isSelector = false;
 						}
-						selectorIndex--;
-						output[outputIndex] = line + ' :selectorEnd';
+						selectorsMap.pop();
+						output[outputIndex] = line;
 						outputIndex++;
 					} else if (isSelector) {
-						selectors[selectorIndex].push(line + ' :isSelector ' + selectorIndex);
+						selectors[_.last(selectorsMap)].push(line);
 					} else {
-						output[outputIndex] = line + ' :output';
+						output[outputIndex] = line;
 						outputIndex++;
 					}
 
@@ -94,13 +96,14 @@ module.exports = function(grunt) {
 						selector.sort();
 					}
 				});
-				var flat = _.flatten(output);
-				var outputString = '';
-				_.each(flat, function (section) {
+				
+				flattened = _.flatten(output);
+
+				_.each(flattened, function (section) {
 					outputString += section + '\n';
 				});
 
-				fs.writeFile(filepath + '_alphabetized.scss', outputString, 'utf8', function() {
+				fs.writeFile(filepath, outputString, 'utf8', function() {
 					if (filesComplete ===  filesLength - 1) {
 						done( true );
 					} else {
