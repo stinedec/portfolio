@@ -30,9 +30,9 @@
 			'config': 'app/config',
 
 			// Core Libraries
-			'modernizr': 'lib/modernizr-build.min',
+			'modernizr': 'lib/modernizr-2.6.2.min',
 			//http://modernizr.com/docs
-			'jquery': 'lib/jquery-1.9.0.min',
+			'jquery': 'lib/jquery-1.9.1.min',
 			//http://api.jquery.com/
 			'underscore': 'lib/underscore-min',
 			//http://underscorejs.org/
@@ -40,9 +40,7 @@
 			//http://backbonejs.org/
 			'swig': 'lib/swig.min',
 			//http://paularmstrong.github.com/swig/docs/
-			'enquire': 'lib/enquire.min',
-			//http://wicky.nillia.ms/enquire.js/#basics
-			
+
 			// Backbone Submodule Directories
 			'router': 'app/router',
 			'model': 'app/model',
@@ -80,10 +78,6 @@
 			'swig': {
 				'deps': ['underscore'],
 				'exports': 'swig'
-			},
-
-			'enquire': {
-				'exports': 'enquire'
 			},
 
 			'facebook': {
