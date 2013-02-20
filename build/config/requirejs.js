@@ -21,7 +21,7 @@ module.exports = function(config) {
 					'settings': 'empty:'
 				},
 				'has': {
-					'debugMode': true
+					'debugMode': false
 				},
 				'out': config.jsbin + '/app.min.js'
 			}
