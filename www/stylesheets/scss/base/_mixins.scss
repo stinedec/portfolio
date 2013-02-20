@@ -12,16 +12,16 @@ $legacy-support-for-ie8: true;
 	$backgrounds: compact($background-1, $background-2, $background-3, $background-4);
 	$mult-bgs: -compass-list-size($backgrounds) > 1;
 	$simple-background: if($mult-bgs or prefixed(-css2, $backgrounds), -css2(-compass-nth($backgrounds, first)), false);
+	@include background($background-1, $background-2, $background-3, $background-4);
 	@if not blank($simple-background) {
 		background: $simple-background;
 	}
-	@include background($background-1, $background-2, $background-3, $background-4);
 }
 
 // Disable user selection on elements;
 @mixin no-user-select {
-	-webkit-user-select: none;
 	-moz-user-select: none;
+	-webkit-user-select: none;
 	user-select: none;
 }
 
@@ -46,3 +46,4 @@ $sprite-background: sprite-url($sprite);
 @mixin sprite-background-position($selector, $offset-x: 0, $offset-y: 0) {
 	background-position: sprite-position($sprite, $selector, $offset-x, $offset-y);
 }
+

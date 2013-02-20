@@ -9,11 +9,11 @@
 
 @media screen {
 	// Base Rules
-	@import "base/reset";
-	@import "base/global";
 	// Layouts
-	@import "layouts/example";
 	// Section Modules
+	@import "base/global";
+	@import "base/reset";
+	@import "layouts/example";
 	@import "modules/example-view";
 }
 
@@ -21,3 +21,4 @@
 	// Print
 	@import "base/print";
 }
+
