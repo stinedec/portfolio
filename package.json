@@ -2,13 +2,12 @@
 	"name": "GruntBuildApp",
 	"version": "0.0.1",
 	"dependencies": {
-		"grunt-beautify": ">= 0.1.0",
-		"grunt-crusher": ">= 0.1.0",
-		"grunt-jslint": ">= 0.1.0",
-		"grunt-compass": ">= 0.2.10",
+		"grunt-beautify": "0.1.0",
+		"grunt-crusher": "0.1.0",
+		"grunt-jslint": "0.1.0",
+		"grunt-compass": "0.3.8",
 		"grunt-css": "0.3.2",
-		"grunt-contrib-requirejs": ">= 0.1.0",
-		"grunt-contrib-yuidoc": ">= 0.3.2",
-		"underscore": ">= 0.1.0"
+		"grunt-contrib-requirejs": "0.1.0",
+		"grunt-contrib-yuidoc": "0.3.2"
 	}
 }

@@ -10,17 +10,7 @@ define(function (require) {
 		_ = require('underscore'),
 		App = require('global'),
 		_$body = $(document.body),
-		_trackingMap, self;
-
-	_trackingMap = {
-		'click': {
-			'id-of-some-object': {
-				'trackFunction': function (e) {
-					self.customEventTrack(['param1', 'param2', 'param3']);
-				}
-			}
-		}
-	};
+		self;
 
 	self = {
 
@@ -30,32 +20,17 @@ define(function (require) {
 		 * @param account {String} Account ID
 		 * @param pageName {String} Page Name
 		 */
-		'initialize': function (account, pageName) {
-			if (account === undefined) {
+		'initialize': function (options) {
+			if (options.gaAccountId === undefined) {
 				return;
 			}
 
 			window._gaq = window._gaq || [];
-			window._gaq.push(['_setAccount', account]);
+			window._gaq.push(['_setAccount', options.gaAccountId]);
 
-			self.pageTrack(pageName);
-			self.delegateEvents(_trackingMap);
-			self.bindCustomEvents();
-
-			log("Analytics : Initialized");
-		},
-
-		/**
-		 * Use this function to bind tracking against any custom event
-		 * triggered against the App object.
-		 * @method Analytics.bindCustomEvents
-		 */
-		'bindCustomEvents': function () {
-
-			App.bind('customEvent', function (pageName) {
-				self.pageTrack(pageName);
-			});
-
+			self.delegateEvents(options.trackingMap);
+			log('Analytics : Initialized');
+			return this;
 		},
 
 		/**
@@ -64,10 +39,11 @@ define(function (require) {
 		 * @param pageName {String} Name of page to be tracked
 		 */
 		'pageTrack': function (pageName) {
-			if (!pageName) {
+			if (pageName === undefined) {
 				return;
 			}
 			window._gaq.push(['_trackPageview', pageName]);
+			return this;
 		},
 
 		/**
@@ -77,6 +53,7 @@ define(function (require) {
 		 */
 		'customEventTrack': function (args) {
 			window._gaq.push(['_trackEvent', args[0], args[1], args[2]]);
+			return this;
 		},
 
 		/**
@@ -96,6 +73,7 @@ define(function (require) {
 				}
 				window._gaq.push(['_trackSocial', 'facebook', 'unlike', targetUrl]);
 			});
+			return this;
 		},
 
 		/**
@@ -138,6 +116,7 @@ define(function (require) {
 					window._gaq.push(['_trackSocial', 'twitter', 'tweet', targetUrl]);
 				}
 			});
+			return this;
 		},
 
 		/**
@@ -168,16 +147,11 @@ define(function (require) {
 
 				if (map === undefined || map[event] === undefined || map[event][selector] === undefined) {
 					return;
-				}
-
-				trackElem = map[event][selector];
-				if (trackElem) {
-					trackFn = trackElem.trackFunction;
-					if (typeof trackFn === 'function') {
-						trackFn.apply(window, [e]);
-					}
+				} else {
+					map[event][selector].apply(window, [e]);
 				}
 			});
+			return this;
 		}
 	};
 

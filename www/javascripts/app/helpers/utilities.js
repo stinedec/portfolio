@@ -13,28 +13,8 @@ define(function (require) {
 
 	self = {
 
-		initialize: function () {
+		'initialize': function () {
 			self.normalizeLogs();
-		},
-
-		/**
-		 * Test support for the canvas element
-		 * @method Utilities.supportsCanvas
-		 */
-		'supportsCanvas': function () {
-			var canvas = document.createElement('canvas');
-			if (canvas.getContext) {
-				return true;
-			}
-			return false;
-		},
-
-		/**
-		 * Check for support of INPUT placeholder attribute.
-		 * @method Utilities.supportsPlaceholder
-		 */
-		'supportsPlaceholder': function () {
-			return document.createElement('input').placeholder !== undefined;
 		},
 
 		/**
@@ -59,43 +39,45 @@ define(function (require) {
 		},
 
 		/**
-		 * Test for support of CSS3 property.
-		 * @method Utilities.supportsCss3
-		 * @param property {String} property to test
-		 */
-		'supportsCss3': function (property) {
-			var elem = document.body || document.documentElement,
-				cssStyle = elem.style,
-				vendors = ['Moz', 'Webkit', 'Khtml', 'O', 'Ms'],
-				len = vendors.length;
-
-			// No css support detected
-			if (cssStyle === undefined) {
-				return false;
-			}
-
-			// Tests for standard property
-			if (typeof cssStyle[property] === 'string') {
-				return true;
-			}
-
-			// Tests for vendor specific property
-			property = property.charAt(0).toUpperCase() + property.substr(1);
-			while (len--) {
-				if (typeof cssStyle[vendors[len] + property] === 'string') {
-					return true;
-				}
-			}
-
-			return false;
-		},
-
-		/**
 		 * Test to see if device is an iPad.
 		 * @method Utilities.isIpad
 		 */
 		'isIpad': function () {
 			return (navigator.userAgent.match(/iPad/i) === null) ? false : true;
+		},
+
+		'polyFillMatchMedia': function () {
+			window.matchMedia = window.matchMedia || (function (doc, undefined) {
+
+				"use strict";
+
+				var bool, docElem = doc.documentElement,
+					refNode = docElem.firstElementChild || docElem.firstChild,
+					// fakeBody required for <FF4 when executed in <head>
+					fakeBody = doc.createElement("body"),
+					div = doc.createElement("div");
+
+				div.id = "mq-test-1";
+				div.style.cssText = "position:absolute;top:-100em";
+				fakeBody.style.background = "none";
+				fakeBody.appendChild(div);
+
+				return function (q) {
+
+					div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+
+					docElem.insertBefore(fakeBody, refNode);
+					bool = div.offsetWidth === 42;
+					docElem.removeChild(fakeBody);
+
+					return {
+						matches: bool,
+						media: q
+					};
+
+				};
+
+			}(document));
 		},
 
 		/**

@@ -29,7 +29,7 @@ define(function (require) {
 			var view = this;
 
 			view.subview = new App.views.SubView({
-				'el': '#section-content'
+				'el': '#content'
 			});
 
 		}

@@ -18,17 +18,6 @@ $legacy-support-for-ie8: true;
 	}
 }
 
-// Creates a div to clear floats
-@mixin clear-div {
-	&:after {
-		border: 1px;
-		clear: both;
-		content: " ";
-		display: block;
-		height: 0;
-	}
-}
-
 // Disable user selection on elements;
 @mixin no-user-select {
 	-moz-user-select: none;

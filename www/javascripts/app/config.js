@@ -30,10 +30,16 @@
 			'config': 'app/config',
 
 			// Core Libraries
-			'jquery': 'lib/jquery-1.9.0.min',
+			'modernizr': 'lib/modernizr-2.6.2.min',
+			//http://modernizr.com/docs
+			'jquery': 'lib/jquery-1.9.1.min',
+			//http://api.jquery.com/
 			'underscore': 'lib/underscore-min',
+			//http://underscorejs.org/
 			'backbone': 'lib/backbone-min',
+			//http://backbonejs.org/
 			'swig': 'lib/swig.min',
+			//http://paularmstrong.github.com/swig/docs/
 
 			// Backbone Submodule Directories
 			'router': 'app/router',
@@ -56,6 +62,10 @@
 		// Sets the configuration for your third party scripts that are not AMD compatible
 		'shim': {
 
+			'modernizr': {
+				'exports': 'Modernizr'
+			},
+
 			'underscore': {
 				'exports': '_'
 			},
@@ -65,12 +75,13 @@
 				'exports': 'Backbone'
 			},
 
-			'facebook': {
-				'exports': 'FB'
+			'swig': {
+				'deps': ['underscore'],
+				'exports': 'swig'
 			},
 
-			'swig': {
-				'exports': 'swig'
+			'facebook': {
+				'exports': 'FB'
 			}
 
 		}

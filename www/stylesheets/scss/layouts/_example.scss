@@ -15,21 +15,18 @@ body {
 	min-width: $pageWidth;
 }
 
-#section-main {
+#main {
 	overflow: auto;
 	position: relative;
 }
 
-#section-content {
+#content {
 	margin: 0 auto;
 	width: $pageWidth;
 	h1 {
 		color: $lightGrey;
 		font: bold 250% / 200% helvetica, arial, sans-serif;
 		margin-top: 100px;
-		&:hover {
-			margin: 0;
-		}
 	}
 	p {
 		color: $mediumGrey;

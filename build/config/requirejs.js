@@ -16,13 +16,12 @@ module.exports = function(config) {
 				'mainConfigFile': config.javascripts + '/app/config.js',
 				// Exclusions from minconcat use empty:
 				'paths': {
-					'jquery': 'empty:',
-					'underscore': 'empty:',
-					'backbone': 'empty:',
+					'facebook': 'empty:',
+					'google-analytics': 'empty:',
 					'settings': 'empty:'
 				},
 				'has': {
-					'debugMode': true
+					'debugMode': false
 				},
 				'out': config.jsbin + '/app.min.js'
 			}

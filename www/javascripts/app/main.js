@@ -8,16 +8,12 @@
 
 	require(['config'], function () {
 
-		require(['global', 'helpers/utilities'], function (App, Utilities) {
-
-			Utilities.initialize();
+		require(['global'], function (App) {
 			App.initialize();
 
-			require(['helpers/analytics', 'google-analytics'], function (Analytics) {
-				Analytics.initialize(App.config.get('gaAccountId'), 'pageName');
-			});
+			require(['google-analytics']);
 
-			require(['helpers/analytics', 'facebook'], function (Analytics) {
+			require(['helpers/analytics', 'facebook'], function (Analytics, Facebook) {
 				FB.init({
 					'appId': App.config.get('fbAccountId'),
 					'xfbml': true
@@ -28,5 +24,4 @@
 		// end require['global']
 	});
 	// end require['config']
-
 }());
