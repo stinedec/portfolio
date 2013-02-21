@@ -1,14 +1,22 @@
 /**
- * @module Backbone
- * @submodule Backbone.Model
- * @class ItemModel
- * @constructor
+ * @module model/ExampleModel
  */
 
-var ItemModel = Backbone.Model.extend({
+define(function (require) {
 
-	'defaults': {},
+	'use strict';
 
-	'initialize': function() {}
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Backbone = require('backbone'),
+		App = require('global');
+
+	return Backbone.Model.extend({
+
+		'defaults': {},
+
+		'initialize': function () {}
+
+	});
 
 });

@@ -57,7 +57,3 @@ Just run:
 Just run:
 
 **grunt beautify**
-
-#### Image Optimization
-
-See this project for configuration options: <https://github.com/gcpantazis/grunt-crusher>

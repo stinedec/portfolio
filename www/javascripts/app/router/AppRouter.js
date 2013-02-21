@@ -1,22 +1,28 @@
 /**
- * @module Backbone
- * @submodule Backbone.Router
- * @class AppRouter
- * @constructor
+ * @module router/AppRouter
  */
 
-var AppRouter = Backbone.Router.extend({
+define(function (require) {
 
-	initialize: function() {
+	'use strict';
 
-		log('Backbone : AppRouter : Initialized');
-	},
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Backbone = require('backbone'),
+		App = require('global');
 
-	'routes': {
-		'': 'index'
-	},
+	return Backbone.Router.extend({
 
-	'index': function() {
-	}
+		initialize: function () {
+			log('Backbone : Global : AppRouter : Initialized');
+		},
+
+		'routes': {
+			'': 'index'
+		},
+
+		'index': function () {}
+
+	});
 
 });

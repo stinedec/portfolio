@@ -1,121 +1,69 @@
+/**
+ * @module Build
+ * @class Build.Config
+ * @static
+ */
+
 module.exports = function(grunt) {
 
-	var ROOT = 'www';
-	var CSS = ROOT + '/stylesheets';
-	var JS = ROOT + '/javascripts';
-	var JSBIN = JS + '/generated';
-	var CSSBIN = CSS + '/generated';
+	var config = {};
+
+	config.root = 'www';
+	config.stylesheets = config.root + '/stylesheets';
+	config.javascripts = config.root + '/javascripts';
+	config.jsbin = config.javascripts + '/generated';
+	config.cssbin = config.stylesheets + '/generated';
+	config.images = config.root + '/images';
+	config.docsbin = 'docs';
 
 	// Project configuration.
 	grunt.initConfig({
 
-		// JS linting
-		lint: {
-			src: [
-				JS + '/app/**/*.js'
-			]
-		},
-
-		// JS beautifier options
-		beautifier: {
-			options: {
-				indentSize: 1,
-				indentChar: '\t',
-				spaceAfterAnonFunction: false
+		'beautifier': {
+			'options': {
+				'indentSize': 1,
+				'indentChar': '\t',
+				'spaceAfterAnonFunction': true
 			}
 		},
 
-		// JS beautifier
-		beautify: {
-			files: '<config:lint.src>'
+		'beautify': {
+			'files': [ config.javascripts + '/app/**/*.js' ]
 		},
 
-		// CSS minconcat
-		cssmin: {
-			app: {
-				src: [
-					CSS + '/reset.css',
-					CSS + '/app/app.css',
-					CSS + '/app/print.css'
-				],
-				dest: CSSBIN + '/app.min.css'
-			}
-		},
+		'compass': require('./build/config/compass.js')(config),
 
-		// JS minconcat
-		min: {
-			app: {
-				src: [
-					'<config:lint.src>'
-				],
-				dest: JSBIN + '/app.min.js'
-			}
-		},
+		'cssmin': require('./build/config/cssmin.js')(config),
 
-		// Copy files for QUnit testing
-		copy: {
-			qunit: {
-				options: {
-					basePath: JS
-				},
-				files: {
-					'test/app': [
-						JS + '/generated/app.min.js',
-						JS + '/lib/jquery-1.7.2.min.js',
-						JS + '/lib/backbone.min.js',
-						JS + '/lib/underscore.min.js'
-					]
-				}
-			}
-		},
+		'qunit': require('./build/config/qunit.js')(config),
 
-		// Run QUnit test via PhantomJS
-		qunit: {
-			all: ['test/**/*.html']
-		},
+		'yuidoc': require('./build/config/yuidoc.js')(config),
 
-		// Generate YUIDocs
-		yuidoc: {
-			compile: {
-				options: {
-					paths: JS + '/app/',
-					outdir: 'docs',
-					project: {
-						logo: '../templates/logo.png'
-					}
-				}
-			}
-		},
+		'requirejs': require('./build/config/requirejs.js')(config),
 
-		jslint: {
-			files: ['source/javascripts/**'],
-			exclude: ['**/ignore-*.js'],
-			directives: { // example directives
-				browser: true,
-				unparam: true,
-				todo: true,
-				predef: [ // array of pre-defined globals
-				'jQuery']
-			},
-			options: {
-				junit: 'docs/jslint/junit.xml',
-				// write the output to a JUnit XML
-				log: 'docs/jslint/lint.log',
-				jslintXml: 'docs/jslint/jslint_xml.xml',
-				errorsOnly: true // only display errors
-			}
-		}
+		'jslint': require('./build/config/jslint.js')(config),
+
+		'watch': require('./build/config/watch.js')(config),
+
+		'pretty-sass': require('./build/config/pretty-sass.js')(config)
+
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'cssmin min');
-	grunt.registerTask('jstest', 'min copy:qunit qunit');
+	grunt.registerTask('default', 'compass:app cssmin requirejs');
 	grunt.registerTask('docs', 'yuidoc');
+	grunt.registerTask('pretty-js', 'beautify');
+
+	// load local tasks.
+	grunt.loadTasks('./build/tasks');
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-beautify');
-	grunt.loadNpmTasks('grunt-crusher');
+	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-css');
+	grunt.loadNpmTasks('grunt-crusher');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-jslint');
 
 };

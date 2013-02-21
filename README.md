@@ -1,4 +1,14 @@
-backbone-boilerplate
-====================
+Welcome to the CP+B Web Standards Boilerplate
+=============================================
+Made with 100% awesome. Not from concentrate.
 
-CP+B Frontend boilerplate using Backbone
+Dependencies:
+*Require*
+*jQuery*
+*Underscore*
+*Backbone*
+*Swig*
+*Modernizer*
+
+Build:
+/build/README.md

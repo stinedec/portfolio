@@ -1,5 +1,5 @@
 /**
- * @module view/ExampleView
+ * @module view/SubView
  */
 
 define(function (require) {
@@ -9,7 +9,8 @@ define(function (require) {
 	var $ = require('jquery'),
 		_ = require('underscore'),
 		Backbone = require('backbone'),
-		App = require('global');
+		App = require('global'),
+		Swig = require('swig');
 
 	return Backbone.View.extend({
 
@@ -22,16 +23,16 @@ define(function (require) {
 
 			view.render();
 
-			log('Backbone : Global : ExampleView : Initialized');
+			log('Backbone : Global : SubView : Initialized');
 		},
 
 		'render': function () {
 			var view = this;
 
-			view.subview = new App.views.SubView({
-				'el': '#content'
-			});
-
+			view.exampleTemplate = swig.compile(App.templates.ExampleTemplate);
+			view.$el.append(view.exampleTemplate({
+				'url': 'https://github.com/cpbtechnology/US-boilerplate-backbonejs'
+			}));
 		}
 
 	});
