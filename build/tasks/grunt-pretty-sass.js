@@ -15,11 +15,14 @@ module.exports = function(grunt) {
 		exec = require('child_process').exec,
 		filesLength = 0,
 		filesComplete = 0,
+		purple = '\u001b[35m',
 		cyan = '\u001b[36m',
 		reset = '\u001b[0m';
 
 	grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
-		var files = grunt.file.expandFiles(this.file.src),
+		var options = grunt.config('pretty-sass.' + this.target + '.options') || {},
+			filesSrc = grunt.config('pretty-sass.' + this.target + '.files'),
+			files = grunt.file.expandFiles(filesSrc),
 			done = this.async();
 
 		filesLength = files.length;
@@ -35,12 +38,15 @@ module.exports = function(grunt) {
 					grunt.log.error( filepath + ': ' + error );
 					done( false );
 				} else {
-					alphabetize(filepath);
+					if (options.alphabetize) {
+						alphabetize(filepath);
+					}
 				}
 			});
 		});
 
 		function alphabetize(filepath) {
+			grunt.log.writeln(purple + 'alphabetizing: ' + reset + filepath);
 			fs.readFile(filepath, function(err, data) {
 				if (err) throw err;
 
