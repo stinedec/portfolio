@@ -12,3 +12,6 @@ Dependencies:
 
 Build:
 /build/README.md
+
+## License
+[GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html)
