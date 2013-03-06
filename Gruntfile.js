@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 
 		'requirejs': require('./build/config/requirejs.js')(config),
 
-		'jslint': require('./build/config/jslint.js')(config),
+		'jshint': require('./build/config/jshint.js')(config),
 
 		'watch': require('./build/config/watch.js')(config),
 
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'compass:app cssmin requirejs');
+	grunt.registerTask('default', ['compass:app', 'cssmin', 'requirejs']);
 	grunt.registerTask('docs', 'yuidoc');
 	grunt.registerTask('pretty-js', 'beautify');
 
@@ -61,9 +61,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-beautify');
 	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-css');
-	grunt.loadNpmTasks('grunt-crusher');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
-	grunt.loadNpmTasks('grunt-jslint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-qunit');
 
 };

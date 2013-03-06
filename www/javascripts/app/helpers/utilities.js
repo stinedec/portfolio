@@ -49,8 +49,6 @@ define(function (require) {
 		'polyFillMatchMedia': function () {
 			window.matchMedia = window.matchMedia || (function (doc, undefined) {
 
-				"use strict";
-
 				var bool, docElem = doc.documentElement,
 					refNode = docElem.firstElementChild || docElem.firstChild,
 					// fakeBody required for <FF4 when executed in <head>
@@ -117,8 +115,8 @@ define(function (require) {
 		'normalizeLogs': function () {
 			window.log = function () {
 /*@cc_on
-			  return;
-			  @*/
+					return;
+				@*/
 				if (window.isDebugMode) {
 					log.history = log.history || []; // store logs to an array for reference
 					log.history.push(arguments);
@@ -137,8 +135,8 @@ define(function (require) {
 			};
 
 /*@cc_on
-			  return;
-			  @*/
+				return;
+			@*/
 			if (!window.isDebugMode) {
 				$(document).keyup(function (e) {
 

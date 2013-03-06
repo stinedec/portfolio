@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
 	'use strict';
 
-	var _ = grunt.utils._,
+	var _ = require('underscore'),
 		fs = require('fs'),
 		exec = require('child_process').exec,
 		filesLength = 0,
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 	grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
 		var options = grunt.config('pretty-sass.' + this.target + '.options') || {},
 			filesSrc = grunt.config('pretty-sass.' + this.target + '.files'),
-			files = grunt.file.expandFiles(filesSrc),
+			files = grunt.file.expand(filesSrc),
 			done = this.async();
 
 		filesLength = files.length;
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 						} else {
 							nestDepth++;
 						}
-					
+
 						selectorIndex = selectors.length;
 						selectors[selectorIndex] = [];
 						selectorsMap.push(selectorIndex);
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 						selector.sort();
 					}
 				});
-				
+
 				flattened = _.flatten(output);
 
 				_.each(flattened, function (section) {

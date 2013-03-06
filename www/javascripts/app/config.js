@@ -40,7 +40,6 @@
 			//http://backbonejs.org/
 			'swig': 'lib/swig.min',
 			//http://paularmstrong.github.com/swig/docs/
-
 			// Backbone Submodule Directories
 			'router': 'app/router',
 			'model': 'app/model',
