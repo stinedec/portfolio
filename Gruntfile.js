@@ -44,11 +44,9 @@ module.exports = function(grunt) {
 
 		'jshint': require('./build/config/jshint.js')(config),
 
-		'watch': require('./build/config/watch.js')(config)
+		'watch': require('./build/config/watch.js')(config),
 
-		// No support for 0.4.0 yet.
-
-		// 'pretty-sass': require('./build/config/pretty-sass.js')(config)
+		'pretty-sass': require('./build/config/pretty-sass.js')(config)
 
 	});
 

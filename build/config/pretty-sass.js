@@ -10,7 +10,7 @@ module.exports = function(config) {
 	return {
 
 		'app': {
-			'files': [ config.stylesheets + '/scss/**/*.scss' ],
+			'files': config.stylesheets + '/scss/**/*.scss',
 			'options': {
 				'alphabetize': true
 			}

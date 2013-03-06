@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 	grunt.registerMultiTask('pretty-sass', 'Format SASS source files', function() {
 		var options = grunt.config('pretty-sass.' + this.target + '.options') || {},
 			filesSrc = grunt.config('pretty-sass.' + this.target + '.files'),
-			files = grunt.file.expandFiles(filesSrc),
+			files = grunt.file.expand(filesSrc),
 			done = this.async();
 
 		filesLength = files.length;
