@@ -43,14 +43,14 @@ module.exports = function(grunt) {
 
 		'jslint': require('./build/config/jslint.js')(config),
 
-		'watch': require('./build/config/watch.js')(config),
+		'watch': require('./build/config/watch.js')(config)
 
-		'pretty-sass': require('./build/config/pretty-sass.js')(config)
+		// 'pretty-sass': require('./build/config/pretty-sass.js')(config)
 
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'compass:app cssmin requirejs');
+	grunt.registerTask('default', ['compass:app', 'cssmin', 'requirejs']);
 	grunt.registerTask('docs', 'yuidoc');
 	grunt.registerTask('pretty-js', 'beautify');
 
