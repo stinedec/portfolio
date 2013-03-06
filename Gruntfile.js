@@ -19,18 +19,17 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 
-		// No support for 0.4.0 yet.
+		'beautifier': {
+			'options': {
+				'indentSize': 1,
+				'indentChar': '\t',
+				'spaceAfterAnonFunction': true
+			}
+		},
 
-		// 'beautifier': {
-		// 	'options': {
-		// 		'indentSize': 1,
-		// 		'indentChar': '\t',
-		// 		'spaceAfterAnonFunction': true
-		// 	}
-		// },
-		// 'beautify': {
-		// 	'files': [ config.javascripts + '/app/**/*.js' ]
-		// },
+		'beautify': {
+			'files': [ config.javascripts + '/app/**/*.js' ]
+		},
 
 		'compass': require('./build/config/compass.js')(config),
 
@@ -59,7 +58,7 @@ module.exports = function(grunt) {
 	grunt.loadTasks('./build/tasks');
 
 	// load grunt plugins
-	// grunt.loadNpmTasks('grunt-beautify');
+	grunt.loadNpmTasks('grunt-beautify');
 	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');

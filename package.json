@@ -4,7 +4,7 @@
 	"dependencies": {
 		"underscore": "1.4.4",
 		"grunt": "~0.4",
-		"grunt-beautify": "0.1.0",
+		"grunt-beautify": "https://nodeload.github.com/terryweiss/grunt-beautify/legacy.tar.gz/cabb6260342b407df15522df62e932389502d21b",
 		"grunt-compass": "0.3.8",
 		"grunt-css": "~0.5.4",
 		"grunt-contrib-requirejs": "0.1.0",

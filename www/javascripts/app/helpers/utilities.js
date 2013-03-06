@@ -114,7 +114,7 @@ define(function (require) {
 		 */
 		'normalizeLogs': function () {
 			window.log = function () {
-				/*@cc_on
+/*@cc_on
 					return;
 				@*/
 				if (window.isDebugMode) {
@@ -134,7 +134,7 @@ define(function (require) {
 				}
 			};
 
-			/*@cc_on
+/*@cc_on
 				return;
 			@*/
 			if (!window.isDebugMode) {
