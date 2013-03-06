@@ -19,17 +19,18 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 
-		'beautifier': {
-			'options': {
-				'indentSize': 1,
-				'indentChar': '\t',
-				'spaceAfterAnonFunction': true
-			}
-		},
+		// No support for 0.4.0 yet.
 
-		'beautify': {
-			'files': [ config.javascripts + '/app/**/*.js' ]
-		},
+		// 'beautifier': {
+		// 	'options': {
+		// 		'indentSize': 1,
+		// 		'indentChar': '\t',
+		// 		'spaceAfterAnonFunction': true
+		// 	}
+		// },
+		// 'beautify': {
+		// 	'files': [ config.javascripts + '/app/**/*.js' ]
+		// },
 
 		'compass': require('./build/config/compass.js')(config),
 
@@ -41,9 +42,11 @@ module.exports = function(grunt) {
 
 		'requirejs': require('./build/config/requirejs.js')(config),
 
-		'jslint': require('./build/config/jslint.js')(config),
+		'jshint': require('./build/config/jshint.js')(config),
 
 		'watch': require('./build/config/watch.js')(config)
+
+		// No support for 0.4.0 yet.
 
 		// 'pretty-sass': require('./build/config/pretty-sass.js')(config)
 
@@ -58,12 +61,14 @@ module.exports = function(grunt) {
 	grunt.loadTasks('./build/tasks');
 
 	// load grunt plugins
-	grunt.loadNpmTasks('grunt-beautify');
+	// grunt.loadNpmTasks('grunt-beautify');
 	grunt.loadNpmTasks('grunt-compass');
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-crusher');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
-	grunt.loadNpmTasks('grunt-jslint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-qunit');
 
 };

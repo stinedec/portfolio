@@ -15,6 +15,7 @@ module.exports = function(config) {
 			],
 			'tasks': ['compass:watch']
 		},
+
 		'debug': {
 			'files': [
 				config.stylesheets + '/scss/**/*.scss',
