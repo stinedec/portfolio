@@ -10,33 +10,39 @@ module.exports = function(config) {
 	return {
 
 		'app': {
-			'src': config.stylesheets + '/scss',
-			'dest': config.stylesheets + '/generated',
-			'images': config.images,
-			'outputstyle': 'expanded',
-			'forcecompile': true,
-			'linecomments': false,
-			'relativeassets': true
+			'options': {
+				'sassDir': config.stylesheets + '/scss',
+				'cssDir': config.stylesheets + '/generated',
+				'imagesDir': config.images,
+				'outputStyle': 'expanded',
+				'force': true,
+				'noLineComments': true,
+				'relativeAssets': true
+			}
 		},
 
 		'watch': {
-			'src': config.stylesheets + '/scss',
-			'dest': config.stylesheets + '/generated',
-			'images': config.images,
-			'outputstyle': 'expanded',
-			'forcecompile': false,
-			'linecomments': false,
-			'relativeassets': true
+			'options': {
+				'sassDir': config.stylesheets + '/scss',
+				'cssDir': config.stylesheets + '/generated',
+				'imagesDir': config.images,
+				'outputStyle': 'expanded',
+				'force': false,
+				'noLineComments': true,
+				'relativeAssets': true
+			}
 		},
 
 		'debug': {
-			'src': config.stylesheets + '/scss',
-			'dest': config.stylesheets + '/generated',
-			'images': config.images,
-			'outputstyle': 'expanded',
-			'linecomments': false,
-			'relativeassets': true,
-			'debugsass': true
+			'options': {
+				'sassDir': config.stylesheets + '/scss',
+				'cssDir': config.stylesheets + '/generated',
+				'imagesDir': config.images,
+				'outputStyle': 'expanded',
+				'noLineComments': true,
+				'relativeAssets': true,
+				'debugInfo': true
+			}
 		}
 	};
 
