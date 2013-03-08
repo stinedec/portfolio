@@ -9,40 +9,28 @@ module.exports = function(config) {
 
 	return {
 
-		'app': {
-			'options': {
-				'sassDir': config.stylesheets + '/scss',
-				'cssDir': config.stylesheets + '/generated',
-				'imagesDir': config.images,
-				'outputStyle': 'expanded',
-				'force': true,
-				'noLineComments': true,
-				'relativeAssets': true
-			}
-		},
+		'app': {},
 
 		'watch': {
 			'options': {
-				'sassDir': config.stylesheets + '/scss',
-				'cssDir': config.stylesheets + '/generated',
-				'imagesDir': config.images,
-				'outputStyle': 'expanded',
-				'force': false,
-				'noLineComments': true,
-				'relativeAssets': true
+				'force': false
 			}
 		},
 
 		'debug': {
 			'options': {
-				'sassDir': config.stylesheets + '/scss',
-				'cssDir': config.stylesheets + '/generated',
-				'imagesDir': config.images,
-				'outputStyle': 'expanded',
-				'noLineComments': true,
-				'relativeAssets': true,
 				'debugInfo': true
 			}
+		},
+
+		'options': {
+			'sassDir': config.stylesheets + '/scss',
+			'cssDir': config.stylesheets + '/generated',
+			'imagesDir': config.images,
+			'force': true,
+			'noLineComments': true,
+			'outputStyle': 'expanded',
+			'relativeAssets': true
 		}
 	};
 
