@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-beautify');
-	grunt.loadNpmTasks('grunt-css');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
