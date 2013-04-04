@@ -2,17 +2,11 @@
  * @module helpers/analytics
  */
 
-define(function (require) {
+define(['jquery', 'underscore'], function (require) {
 
 	'use strict';
 
-	var $ = require('jquery'),
-		_ = require('underscore'),
-		App = require('global'),
-		_$body = $(document.body),
-		self;
-
-	self = {
+	var Analytics = {
 
 		/**
 		 * Initializes analytics with the specified GA account.
@@ -21,6 +15,7 @@ define(function (require) {
 		 * @param pageName {String} Page Name
 		 */
 		'initialize': function (options) {
+
 			if (options.gaAccountId === undefined) {
 				return;
 			}
@@ -28,7 +23,7 @@ define(function (require) {
 			window._gaq = window._gaq || [];
 			window._gaq.push(['_setAccount', options.gaAccountId]);
 
-			self.delegateEvents(options.trackingMap);
+			Analytics.delegateEvents(options.trackingMap);
 			log('Analytics : Initialized');
 			return this;
 		},
@@ -120,7 +115,7 @@ define(function (require) {
 		},
 
 		/**
-		 * Creates a delegated event listener on the &lt;body&gt;
+		 * Creates a delegated event listener on the <body>;
 		 * and can listen to any type of event on any type of element.
 		 * The event handler is responsible for determining if the event
 		 * and element exist in a data dictionary (_trackingMap) and
@@ -139,7 +134,7 @@ define(function (require) {
 				}
 			}
 
-			_$body.on(events.join(' ').toString(), 'div, object, span, p, a, form, input, li, img', function (e, altID) {
+			$('body').on(events.join(' ').toString(), 'div, object, span, p, a, form, input, li, img', function (e, altID) {
 				var event = (e.namespace) ? e.type + '.' + e.namespace : e.type,
 					link = e.currentTarget,
 					selector = altID || link.getAttribute('data-track') || link.id,
@@ -155,6 +150,5 @@ define(function (require) {
 		}
 	};
 
-	return self;
-
+	return Analytics;
 });

@@ -2,19 +2,17 @@
  * @module helpers/utilities
  */
 
-define(function (require) {
+define(['jquery','underscore'], function (require) {
 
 	'use strict';
 
-	var $ = require('jquery'),
-		_ = require('underscore'),
-		App = require('global'),
-		self;
+	var App;
 
-	self = {
+	var Utilities = {
 
 		'initialize': function () {
-			self.normalizeLogs();
+			Utilities.normalizeLogs();
+			App = require('app'); // use of require in this way fixes a circular dependancy issue
 		},
 
 		/**
@@ -124,7 +122,7 @@ define(function (require) {
 						window.console.log(Array.prototype.slice.call(arguments));
 					}
 					if (App !== undefined) {
-						if (typeof App.trigger === 'function') {
+						if (typeof App.trigger === 'function') { // TODO: refactor to remove use of typeof
 							App.trigger('log', arguments);
 						}
 					}
@@ -157,6 +155,5 @@ define(function (require) {
 
 	};
 
-	return self;
-
+	return Utilities;
 });

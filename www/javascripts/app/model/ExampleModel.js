@@ -2,14 +2,9 @@
  * @module model/ExampleModel
  */
 
-define(function (require) {
+define(['backbone'], function (Backbone) {
 
 	'use strict';
-
-	var $ = require('jquery'),
-		_ = require('underscore'),
-		Backbone = require('backbone'),
-		App = require('global');
 
 	return Backbone.Model.extend({
 

@@ -2,14 +2,9 @@
  * @module model/AppConfig
  */
 
-define(function (require) {
+define(['underscore', 'backbone'], function (_, Backbone) {
 
 	'use strict';
-
-	var $ = require('jquery'),
-		_ = require('underscore'),
-		Backbone = require('backbone'),
-		App = require('global');
 
 	return Backbone.Model.extend({
 
@@ -38,5 +33,4 @@ define(function (require) {
 			}
 		}
 	});
-
 });
