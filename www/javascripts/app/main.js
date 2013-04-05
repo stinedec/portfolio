@@ -27,8 +27,6 @@
 
 		'paths': {
 
-			'app':'app/app',
-
 			// Core Libraries
 			'modernizr': 'lib/modernizr-2.6.2.min', //http://modernizr.com/docs
 			'jquery': 'lib/jquery-1.9.1.min',		//http://api.jquery.com/
@@ -79,7 +77,7 @@
 		}
 	}); // end require.config
 
-	require(['app'], function (App) {
+	require(['app/app'], function (App) {
 		App.initialize();
 
 		require(['google-analytics','helpers/analytics', 'facebook'], function (ga, Analytics, Facebook) {
