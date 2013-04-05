@@ -2,7 +2,7 @@
   "name": "GruntBuildApp",
   "version": "0.0.1",
   "dependencies": {
-    "underscore": "1.4.4",
+    "lodash": "1.x",
     "grunt": "0.4.0",
     "grunt-beautify": "https://nodeload.github.com/terryweiss/grunt-beautify/legacy.tar.gz/cabb6260342b407df15522df62e932389502d21b",
     "grunt-contrib-cssmin": "0.4.2",
