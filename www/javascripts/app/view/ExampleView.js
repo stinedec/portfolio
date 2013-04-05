@@ -8,9 +8,9 @@ define(['jquery','underscore','backbone','view/SubView'], function ($, _, Backbo
 
 	return Backbone.View.extend({
 
-		'events': {},
+		"events": {},
 
-		'initialize': function (options) {
+		"initialize": function (options) {
 			var view = this;
 
 			_.bindAll(this);
@@ -20,11 +20,11 @@ define(['jquery','underscore','backbone','view/SubView'], function ($, _, Backbo
 			log('Backbone : Global : ExampleView : Initialized');
 		},
 
-		'render': function () {
+		"render": function () {
 			var view = this;
 
 			view.subview = new SubView({
-				'el': '#content'
+				"el": "#content"
 			});
 		}
 	});

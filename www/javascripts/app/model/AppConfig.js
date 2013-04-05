@@ -8,13 +8,13 @@ define(['underscore', 'backbone'], function (_, Backbone) {
 
 	return Backbone.Model.extend({
 
-		'defaults': {},
+		"defaults": {},
 
-		'initialize': function (options) {
+		"initialize": function (options) {
 			_.extend(this.defaults, options);
 		},
 
-		'propertyAsBool': function (prop) {
+		"propertyAsBool": function (prop) {
 
 			if (!this.get(prop)) {
 				return;

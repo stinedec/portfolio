@@ -8,7 +8,7 @@ define(['backbone', 'model/ExampleModel'], function (Backbone) {
 
 	return Backbone.Collection.extend({
 
-		'initialize': function () {
+		"initialize": function () {
 
 			this.model = ExampleModel;
 

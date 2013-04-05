@@ -22,24 +22,24 @@ define([
 
 	var App = {
 
-		'config': new AppConfig(settings),
+		"config": new AppConfig(settings),
 
-		'cache': {
-			'routers': {},
-			'models': {},
-			'collections': {},
-			'views': {}
+		"cache": {
+			"routers": {},
+			"models": {},
+			"collections": {},
+			"views": {}
 		},
 
 		/**
 		 * Initialize Application. Responsible for instantiating Backbone router and starting Backbone history.
 		 * @method App.initialize
 		 */
-		'initialize': function () {
+		"initialize": function () {
 			Utilities.initialize();
 			Analytics.initialize({
-				'gaAccountId': App.config.get('gaAccountId'),
-				'trackingMap': App.trackingMap
+				"gaAccountId": App.config.get('gaAccountId'),
+				"trackingMap": App.trackingMap
 			}).pageTrack('/index');
 
 			App.bindCustomEvents();
@@ -48,7 +48,7 @@ define([
 			Backbone.history.start();
 
 			App.cache.views.exampleView = new ExampleView({
-				'el': '#main'
+				"el": "#main"
 			});
 
 			log('App : Initialized');
@@ -60,7 +60,7 @@ define([
 		 * Use this function to bind tracking against any custom event triggered against the app.events dispatch.
 		 * @method App.bindCustomEvents
 		 */
-		'bindCustomEvents': function () {
+		"bindCustomEvents": function () {
 			
 
 			Events.bind('trackPage', function (pageName) {
@@ -71,9 +71,9 @@ define([
 			return App;
 		},
 
-		'trackingMap': {
-			'click': {
-				'section-main': function (e) {
+		"trackingMap": {
+			"click": {
+				"section-main": function (e) {
 					Analytics.customEventTrack(['param1', 'param2', 'param3']);
 				}
 			}

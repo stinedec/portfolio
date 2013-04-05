@@ -21,57 +21,57 @@
 	require.config({
 
 		// Disable timeout for scripts.
-		'waitSeconds': 0,
+		"waitSeconds": 0,
 
-		'baseUrl': 'javascripts',
+		"baseUrl": "javascripts",
 
-		'paths': {
+		"paths": {
 
 			// Core Libraries
-			'modernizr': 'lib/modernizr-2.6.2.min', //http://modernizr.com/docs
-			'jquery': 'lib/jquery-1.9.1.min',		//http://api.jquery.com/
-			'underscore': 'lib/underscore-min',		//http://underscorejs.org/
-			'backbone': 'lib/backbone-min',			//http://backbonejs.org/
-			'swig': 'lib/swig.min',					//http://paularmstrong.github.com/swig/docs/
+			"modernizr": "lib/modernizr-2.6.2.min", //http://modernizr.com/docs
+			"jquery": "lib/jquery-1.9.1.min",		//http://api.jquery.com/
+			"underscore": "lib/underscore-min",		//http://underscorejs.org/
+			"backbone": "lib/backbone-min",			//http://backbonejs.org/
+			"swig": "lib/swig.min",					//http://paularmstrong.github.com/swig/docs/
 			
 			// Backbone Submodule Directories
-			'router': 'app/router',
-			'model': 'app/model',
-			'collection': 'app/collection',
-			'view': 'app/view',
-			'template': 'app/template',
+			"router": "app/router",
+			"model": "app/model",
+			"collection": "app/collection",
+			"view": "app/view",
+			"template": "app/template",
 
 			// Helper Modules
-			'helpers': 'app/helpers',
+			"helpers": "app/helpers",
 
 			// 3rd party
-			'facebook': '//connect.facebook.net/en_US/all',
-			'google-analytics': '//google-analytics.com/ga'
+			"facebook": "//connect.facebook.net/en_US/all",
+			"google-analytics": "//google-analytics.com/ga"
 		},
 
 		// Sets the configuration for your third party scripts that are not AMD compatible
-		'shim': {
+		"shim": {
 
-			'modernizr': {
-				'exports': 'Modernizr'
+			"modernizr": {
+				"exports": "Modernizr"
 			},
 
-			'underscore': {
-				'exports': '_'
+			"underscore": {
+				"exports": "_"
 			},
 
-			'backbone': {
-				'deps': ['underscore', 'jquery'],
-				'exports': 'Backbone'
+			"backbone": {
+				"deps": ["underscore", "jquery"],
+				"exports": "Backbone"
 			},
 
-			'swig': {
-				'deps': ['underscore'],
-				'exports': 'swig'
+			"swig": {
+				"deps": ["underscore"],
+				"exports": "swig"
 			},
 
-			'facebook': {
-				'exports': 'FB'
+			"facebook": {
+				"exports": "FB"
 			}
 
 		}
@@ -82,8 +82,8 @@
 
 		require(['google-analytics','helpers/analytics', 'facebook'], function (ga, Analytics, Facebook) {
 			FB.init({
-				'appId': App.config.get('fbAccountId'),
-				'xfbml': true
+				"appId": App.config.get('fbAccountId'),
+				"xfbml": true
 			});
 			Analytics.socialTrackFacebook();
 		});

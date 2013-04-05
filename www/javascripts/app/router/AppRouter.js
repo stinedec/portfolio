@@ -8,14 +8,14 @@ define(['backbone'], function (Backbone) {
 
 	return Backbone.Router.extend({
 
-		initialize: function () {
+		"initialize": function () {
 			log('Backbone : Global : AppRouter : Initialized');
 		},
 
-		'routes': {
-			'': 'index'
+		"routes": {
+			"": "index"
 		},
 
-		'index': function () {}
+		"index": function () {}
 	});
 });

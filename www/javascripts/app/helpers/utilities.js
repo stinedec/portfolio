@@ -10,7 +10,7 @@ define(['jquery','helpers/events'], function ($, Events) {
 
 	var Utilities = {
 
-		'initialize': function () {
+		"initialize": function () {
 			Utilities.normalizeLogs();
 		},
 
@@ -20,7 +20,7 @@ define(['jquery','helpers/events'], function ($, Events) {
 		 * @param input {String} ID of INPUT tag
 		 * @param placeholderTxt {String}
 		 */
-		'setInputPlaceholder': function (input, placeholderTxt) {
+		"setInputPlaceholder": function (input, placeholderTxt) {
 			var $input = $('#' + input),
 				placeholder = placeholderTxt;
 
@@ -39,11 +39,11 @@ define(['jquery','helpers/events'], function ($, Events) {
 		 * Test to see if device is an iPad.
 		 * @method Utilities.isIpad
 		 */
-		'isIpad': function () {
+		"isIpad": function () {
 			return (navigator.userAgent.match(/iPad/i) === null) ? false : true;
 		},
 
-		'polyFillMatchMedia': function () {
+		"polyFillMatchMedia": function () {
 			window.matchMedia = window.matchMedia || (function (doc, undefined) {
 
 				var bool, docElem = doc.documentElement,
@@ -80,11 +80,11 @@ define(['jquery','helpers/events'], function ($, Events) {
 		 * @method Utilities.preventXSS
 		 * @param value {String} Property to clean.
 		 */
-		'preventXSS': function (value) {
+		"preventXSS": function (value) {
 			return value.toString().replace(/<|>/g, '');
 		},
 
-		'setupCustomSelect': function () {
+		"setupCustomSelect": function () {
 			$('.input-select.custom').each(function () {
 
 				var $this = $(this),
