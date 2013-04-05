@@ -2,7 +2,7 @@
  * @module helpers/utilities
  */
 
-define(['jquery','underscore'], function (require) {
+define(['jquery','helpers/events'], function ($, Events) {
 
 	'use strict';
 
@@ -12,7 +12,6 @@ define(['jquery','underscore'], function (require) {
 
 		'initialize': function () {
 			Utilities.normalizeLogs();
-			App = require('app'); // use of require in this way fixes a circular dependancy issue
 		},
 
 		/**
@@ -121,11 +120,8 @@ define(['jquery','underscore'], function (require) {
 					if (window.console) {
 						window.console.log(Array.prototype.slice.call(arguments));
 					}
-					if (App !== undefined) {
-						if (typeof App.trigger === 'function') { // TODO: refactor to remove use of typeof
-							App.trigger('log', arguments);
-						}
-					}
+
+					Events.trigger('log', arguments);
 				} else {
 					log.history = log.history || []; // store logs to an array for reference
 					log.history.push(arguments);

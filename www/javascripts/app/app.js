@@ -8,6 +8,7 @@ define([
 		'modernizr',
 		'backbone',
 		'swig',
+		'helpers/events',
 		'helpers/analytics',
 		'helpers/utilities',
 		'settings',
@@ -15,7 +16,7 @@ define([
 		'router/AppRouter',
 		'view/ExampleView'
 	], // end dependencies
-	function ($, _, Modernizr, Backbone, Swig, Analytics, Utilities, settings, AppConfig, AppRouter, ExampleView) {
+	function ($, _, Modernizr, Backbone, Swig, Events, Analytics, Utilities, settings, AppConfig, AppRouter, ExampleView) {
 
 	'use strict';
 
@@ -29,8 +30,6 @@ define([
 			'collections': {},
 			'views': {}
 		},
-
-		'events': _.clone(Backbone.Events),// holds Backbone.Events instance for message passing between components
 
 		/**
 		 * Initialize Application. Responsible for instantiating Backbone router and starting Backbone history.
@@ -64,7 +63,7 @@ define([
 		'bindCustomEvents': function () {
 			
 
-			App.events.bind('trackPage', function (pageName) {
+			Events.bind('trackPage', function (pageName) {
 				Analytics.pageTrack(pageName);
 			});
 
