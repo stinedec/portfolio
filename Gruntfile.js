@@ -31,9 +31,7 @@ module.exports = function(grunt) {
 			'files': [ config.javascripts + '/app/**/*.js' ]
 		},
 
-		'compass': require('./build/config/compass.js')(config),
-
-		'cssmin': require('./build/config/cssmin.js')(config),
+		'stylus': require('./build/config/stylus.js')(config),
 
 		'qunit': require('./build/config/qunit.js')(config),
 
@@ -43,14 +41,13 @@ module.exports = function(grunt) {
 
 		'jshint': require('./build/config/jshint.js')(config),
 
-		'watch': require('./build/config/watch.js')(config),
-
-		'pretty-sass': require('./build/config/pretty-sass.js')(config)
+		'watch': require('./build/config/watch.js')(config)
 
 	});
 
 	// Default task.
-	grunt.registerTask('default', ['compass:app', 'cssmin', 'requirejs']);
+	grunt.registerTask('default', ['stylus:prod', 'requirejs']);
+	grunt.registerTask('dev', ['stylus:dev']);
 	grunt.registerTask('docs', 'yuidoc');
 	grunt.registerTask('pretty-js', 'beautify');
 
@@ -59,8 +56,7 @@ module.exports = function(grunt) {
 
 	// load grunt plugins
 	grunt.loadNpmTasks('grunt-beautify');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-contrib-watch');
