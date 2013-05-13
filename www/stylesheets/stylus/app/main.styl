@@ -9,14 +9,15 @@ $gridWidth = 940px
 $gridColumns = 12
 $gridGutter = 20px
 
-global-reset()
+global-reset() // global-reset is provided by nib https://github.com/visionmedia/nib which is included with grunt-contrib-stylus
+
+@import "../grid.styl"
 
 body
 html
 	background $darkGrey
 
-
-#content 
+#content
 	gridContainer()
 	padding-top 200px
 	h1 

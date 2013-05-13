@@ -47,7 +47,8 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('default', ['stylus:prod', 'requirejs']);
-	grunt.registerTask('dev', ['stylus:dev']);
+	grunt.registerTask('css', ['stylus:dev']);
+	grunt.registerTask('cssmin', ['stylus:prod']);
 	grunt.registerTask('docs', 'yuidoc');
 	grunt.registerTask('pretty-js', 'beautify');
 
