@@ -29,11 +29,11 @@ Install the grunt dependencies by running the following from the project root di
 
 ## Stylus
 
-Grunt has already been configured to compile the app.styl and print.styl files. To compile non-minified CSS simply run:
+Grunt has already been configured to compile stylus files. To compile **non-minified** CSS simply run:
 
 ```grunt css```
 
-To compile production ready, minified CSS, run
+To compile **production ready**, minified CSS, run
 
 ```grunt cssmin```
 
@@ -54,6 +54,16 @@ The stylus grunt configuration will automatically discover all folders and files
 Therefore, if you want a separate .css file for IE, just create an *ie* folder containing at least one *.styl* file.
 
 To segment sections of the primary *app.css* file in a team setting, simply add more files to *www/stylesheets/stylus/app* as needed.
+
+### Stylus Doesn't Sprite
+
+Sprites are just a pain. Especially when trying to manage them manually. Compass did a nice job of auto creation but then compiling took forever!
+
+Instead of spriting, Stylus with the addition of the "nib" extension does something even better: **data inlining**. This means that the image data is saved as a data URI *directly in the CSS*! The advantages are that the CSS can be minified and gzipped, and the absence of a sprite means the absence of an additional HTTP request to get a sprite. All the image data is already there!
+
+Yes this works down to IE8. In the case that you need to support <IE8 look into [grunt-oversprite](https://npmjs.org/package/grunt-oversprite)
+
+To use this feature, simply save each background image as a separate image and apply as normal using a url() directive. In a production build, Stlyus will automatically convert the path to a data uri.
 
 ### JS Unit Testing
 
