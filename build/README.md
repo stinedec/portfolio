@@ -57,13 +57,13 @@ To segment sections of the primary *app.css* file in a team setting, simply add 
 
 ### Stylus Doesn't Sprite
 
-Sprites are just a pain. Especially when trying to manage them manually. Compass did a nice job of auto creation but then compiling took forever!
+Sprites are a pain, especially when trying to manage them manually. Compass did a nice job of auto creation but then compiling took forever!
 
-Instead of spriting, Stylus with the addition of the "nib" extension does something even better: **data inlining**. This means that the image data is saved as a data URI *directly in the CSS*! The advantages are that the CSS can be minified and gzipped, and the absence of a sprite means the absence of an additional HTTP request to get a sprite. All the image data is already there!
+Instead of spriting, Stylus with the addition of the "nib" extension, does something even better: **data inlining**. This means that the image data is saved as a [data URI](http://en.wikipedia.org/wiki/Data_URI_scheme) *directly in the CSS*! The advantages are that the CSS can be minified and gzipped, and the absence of a sprite means the absence of an additional HTTP request. All the image data is already there!
 
 Yes this works down to IE8. In the case that you need to support <IE8 look into [grunt-oversprite](https://npmjs.org/package/grunt-oversprite)
 
-To use this feature, simply save each background image as a separate image and apply as normal using a url() directive. In a production build, Stlyus will automatically convert the path to a data uri.
+To use this feature, simply save each background image as a separate file and apply as normal using a url() directive, using a root-relative path: ```/images/texture.png```. In a production build, Stlyus will automatically convert the path to a data URI.
 
 ### JS Unit Testing
 

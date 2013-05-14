@@ -14,6 +14,7 @@ module.exports = function(config) {
 			"options": {
 				"compress":true,
 				"urlfunc": 'url', 		 //	Data inlining via data URIs
+				"paths": [config.root],
 				"import": ['nib'] // advanced mixins and other useful things https://github.com/visionmedia/nib
 			},
 			"files": {}
