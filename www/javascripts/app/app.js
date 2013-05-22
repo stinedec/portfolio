@@ -47,9 +47,7 @@ define([
 			App.cache.routers.appRouter = new AppRouter();
 			Backbone.history.start();
 
-			App.cache.views.exampleView = new ExampleView({
-				"el": "#main"
-			});
+			App.cache.views.exampleView = new ExampleView();
 
 			log('App : Initialized');
 			

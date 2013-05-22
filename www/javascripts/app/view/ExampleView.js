@@ -10,6 +10,8 @@ define(['jquery','underscore','backbone','view/SubView'], function ($, _, Backbo
 
 		"events": {},
 
+		"el": "#main",
+
 		"initialize": function (options) {
 			var view = this;
 
