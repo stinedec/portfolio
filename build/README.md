@@ -13,17 +13,9 @@ Download and install node by grabbing an installer from the project site: <http:
 
 ```brew install node```
 
-## Grunt:
+## Dependencies:
 
-Grunt and the Grunt command line tool should be installed globally: 
-
-```sudo npm install -g grunt grunt-cli```
-
-### Grunt Dependencies:
-
-Each grunt project has a set of dependencies specified in `package.json`.
-
-Install the grunt dependencies by running the following from the project root directory:
+Install the grunt dependencies by running the following from the project root directory (the directory that holds *package.json* and *gruntfile.js*):
 
 ```npm install```
 
@@ -39,11 +31,11 @@ Nib is a library of mixins written in Stylus, by the same author. It provides a 
 
 Grunt has already been configured to compile stylus files. To compile **non-minified** CSS simply run:
 
-```grunt css```
+```./node_modules/grunt-cli/bin/grunt css```
 
 To compile **production ready**, minified CSS, run
 
-```grunt cssmin```
+```./node_modules/grunt-cli/bin/grunt cssmin```
 
 ### Stylus Organization
 
@@ -197,7 +189,7 @@ More info [here](http://code.google.com/p/phantomjs/wiki/Installation).
 
 Once you have PhantomJS installed, just run:
 
-```grunt jstest```
+```./node_modules/grunt-cli/bin/grunt jstest```
 
 This command will also build a detailed report at 'test/test.html'
 
@@ -205,10 +197,10 @@ This command will also build a detailed report at 'test/test.html'
 
 Just run:
 
-```grunt docs```
+```./node_modules/grunt-cli/bin/grunt docs```
 
 #### Beautify JS
 
 Just run:
 
-```grunt beautify```
+```./node_modules/grunt-cli/bin/grunt beautify```
