@@ -11,9 +11,9 @@ module.exports = function(config) {
 
 		'app': {
 			'files': [
-				config.stylesheets + '/scss/**/*.scss'
+				config.stylesheets + '/stylus/**/*.styl'
 			],
-			'tasks': ['compass:watch']
+			'tasks': ['stylus:dev']
 		},
 
 		'debug': {

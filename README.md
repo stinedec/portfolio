@@ -1,14 +1,14 @@
-Welcome to the CP+B Web Standards Boilerplate
-=============================================
+# Welcome to the CP+B Web Standards Boilerplate
+
 Made with 100% awesome. Not from concentrate.
 
 Dependencies:
-*Require*
-*jQuery*
-*Underscore*
-*Backbone*
-*Swig*
-*Modernizer*
+1. Require
+2. jQuery
+3. Lodash
+4. Backbone
+5. Swig
+6. Modernizer
 
 Build:
 /build/README.md
