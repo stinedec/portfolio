@@ -118,7 +118,7 @@ define(['jquery','helpers/events'], function ($, Events) {
 					log.history = log.history || []; // store logs to an array for reference
 					log.history.push(arguments);
 					if (window.console) {
-						window.console.log(Array.prototype.slice.call(arguments));
+						window.console.log.apply(console, Array.prototype.slice.call(arguments));
 					}
 
 					Events.trigger('log', arguments);
