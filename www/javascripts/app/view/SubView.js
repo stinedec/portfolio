@@ -17,7 +17,7 @@ define(['underscore', 'backbone', 'swig', 'plugins/text!template/ExampleTemplate
 
 			view.render();
 
-			log('Backbone : Global : SubView : Initialized');
+			console.log('Backbone : Global : SubView : Initialized');
 		},
 
 		"render": function () {

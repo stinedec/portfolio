@@ -9,7 +9,7 @@ define(['backbone'], function (Backbone) {
 	return Backbone.Router.extend({
 
 		"initialize": function () {
-			log('Backbone : Global : AppRouter : Initialized');
+			console.log('Backbone : Global : AppRouter : Initialized');
 		},
 
 		"routes": {

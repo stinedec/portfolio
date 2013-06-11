@@ -19,7 +19,7 @@ define(['jquery','underscore','backbone','view/SubView'], function ($, _, Backbo
 
 			view.render();
 
-			log('Backbone : Global : ExampleView : Initialized');
+			console.log('Backbone : Global : ExampleView : Initialized');
 		},
 
 		"render": function () {
