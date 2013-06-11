@@ -6,12 +6,9 @@ define(['jquery','helpers/events'], function ($, Events) {
 
 	'use strict';
 
-	var App;
-
 	var Utilities = {
 
 		"initialize": function () {
-			Utilities.normalizeLogs();
 		},
 
 		/**
@@ -102,51 +99,6 @@ define(['jquery','helpers/events'], function ($, Events) {
 					$this.removeClass('active');
 				});
 			});
-		},
-
-		/**
-		 * Normalizes the console.log method.
-		 * http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
-		 * @method Utilities.normalizeLogs
-		 */
-		'normalizeLogs': function () {
-			window.log = function () {
-/*@cc_on
-					return;
-				@*/
-				if (window.isDebugMode) {
-					log.history = log.history || []; // store logs to an array for reference
-					log.history.push(arguments);
-					if (window.console) {
-						window.console.log.apply(console, Array.prototype.slice.call(arguments));
-					}
-
-					Events.trigger('log', arguments);
-				} else {
-					log.history = log.history || []; // store logs to an array for reference
-					log.history.push(arguments);
-				}
-			};
-
-/*@cc_on
-				return;
-			@*/
-			if (!window.isDebugMode) {
-				$(document).keyup(function (e) {
-
-					var i, len;
-
-					if (e.keyCode === 192 || e.keyCode === 19) {
-						if (window.console) {
-							log.history = log.history || []; // store logs to an array for reference
-							for (i = 0, len = log.history.length; i < len; i++) {
-								window.console.log(Array.prototype.slice.call(log.history[i]));
-							}
-						}
-					}
-					log.history = [];
-				});
-			}
 		}
 
 	};
