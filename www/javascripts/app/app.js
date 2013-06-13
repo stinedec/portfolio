@@ -11,12 +11,11 @@ define(['settings',
 		'helpers/console',
 		'helpers/events',
 		'helpers/analytics',
-		'helpers/utilities',
 		'model/AppConfig',
 		'router/AppRouter',
 		'view/ExampleView'
 	], // end dependencies
-	function (settings, $, _, Modernizr, Backbone, Swig, console, Events, Analytics, Utilities, AppConfig, AppRouter, ExampleView) {
+	function (settings, $, _, Modernizr, Backbone, Swig, console, Events, Analytics, AppConfig, AppRouter, ExampleView) {
 
 	'use strict';
 
@@ -36,7 +35,6 @@ define(['settings',
 		 * @method App.initialize
 		 */
 		"initialize": function () {
-			Utilities.initialize();
 			Analytics.initialize({
 				"gaAccountId": App.config.get('gaAccountId'),
 				"trackingMap": App.trackingMap
