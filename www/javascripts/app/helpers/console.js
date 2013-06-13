@@ -35,6 +35,10 @@ define(['settings','underscore'], function (settings, _) {
 		}
 	});
 
+	if (settings.debug===true) {
+		console.warn('DEBUG IS ON');
+	}
+
 	return console;
 });
 
