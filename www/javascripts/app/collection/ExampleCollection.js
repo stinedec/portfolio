@@ -12,7 +12,7 @@ define(['backbone', 'model/ExampleModel'], function (Backbone) {
 
 			this.model = ExampleModel;
 
-			log('Backbone : ExampleCollection : Initialized');
+			console.log('Backbone : ExampleCollection : Initialized');
 
 		}
 

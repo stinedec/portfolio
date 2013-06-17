@@ -24,7 +24,7 @@ define(['jquery', 'underscore'], function (require) {
 			window._gaq.push(['_setAccount', options.gaAccountId]);
 
 			Analytics.delegateEvents(options.trackingMap);
-			log('Analytics : Initialized');
+			console.log('Analytics : Initialized');
 			return this;
 		},
 

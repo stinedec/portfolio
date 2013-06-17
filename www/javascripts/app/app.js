@@ -2,21 +2,20 @@
  * @module app
  */
 
-define([
+define(['settings',
 		'jquery',
 		'underscore',
 		'modernizr',
 		'backbone',
 		'swig',
+		'helpers/console',
 		'helpers/events',
 		'helpers/analytics',
-		'helpers/utilities',
-		'settings',
 		'model/AppConfig',
 		'router/AppRouter',
 		'view/ExampleView'
 	], // end dependencies
-	function ($, _, Modernizr, Backbone, Swig, Events, Analytics, Utilities, settings, AppConfig, AppRouter, ExampleView) {
+	function (settings, $, _, Modernizr, Backbone, Swig, console, Events, Analytics, AppConfig, AppRouter, ExampleView) {
 
 	'use strict';
 
@@ -36,7 +35,6 @@ define([
 		 * @method App.initialize
 		 */
 		"initialize": function () {
-			Utilities.initialize();
 			Analytics.initialize({
 				"gaAccountId": App.config.get('gaAccountId'),
 				"trackingMap": App.trackingMap
@@ -49,7 +47,7 @@ define([
 
 			App.cache.views.exampleView = new ExampleView();
 
-			log('App : Initialized');
+			console.log('App : Initialized');
 			
 			return App; // do not use "this" in a static context
 		},
@@ -65,7 +63,7 @@ define([
 				Analytics.pageTrack(pageName);
 			});
 
-			log('App : Custom Events Binding Complete');
+			console.log('App : Custom Events Binding Complete');
 			return App;
 		},
 
