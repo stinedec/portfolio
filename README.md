@@ -8,7 +8,7 @@ The CP+B Boilderplate is built using the latest in web standards and industry pr
 Our boilerplate is designed as more of a library than a framework. Use what you need and leave out what you don't. This is easy with RequireJS, as only those modules listed as dependencies will be used and included in the final minified build.
 
 ## It&rsquo;s Helpful, Not In the Way
-Useful and common things are included by default. Take the console for example: it's been normalized to work with both modern and legacy browsers, and can easily be turned off for production. There is also a built-in analytics helper that provides an easy way to track page views and custom events, but none of these modules are absolutely necessary; don&rsquo;t need them? Don&rsquo;t require() them :)
+Useful and common things are included by default. Take the console for example: it's been normalized to work with both modern and legacy browsers, and can easily be turned off for production. There is also a built-in analytics helper that provides an easy way to track page views and custom events, but none of these modules are absolutely necessary; don&rsquo;t need them? Don&rsquo;t require() them. &#9786;
 
 # Documentation
 
