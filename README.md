@@ -95,7 +95,7 @@ Instead of spriting, Stylus with the addition of the "nib" extension, does somet
 
 To use this feature, simply save each background image as a separate file and apply as normal using a url() directive, using a root-relative path: `/images/texture.png`. In a production build, Stlyus will automatically convert the path to a data URI.
 
-This is supported in all modern browsers, even down to IE8. In the case that you need to support <IE8 look into [grunt-oversprite](https://npmjs.org/package/grunt-oversprite)
+This is supported in all modern browsers, even down to IE8. In the case that you need to support < IE8 look into [grunt-oversprite](https://npmjs.org/package/grunt-oversprite)
 
 ### Grid
 
