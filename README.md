@@ -10,6 +10,13 @@ Our boilerplate is designed as more of a library than a framework. Use what you 
 ## It&rsquo;s Helpful, Not In the Way
 Useful and common things are included by default. Take the console for example: it's been normalized to work with both modern and legacy browsers, and can easily be turned off for production. There is also a built-in analytics helper that provides an easy way to track page views and custom events, but none of these modules are absolutely necessary; don&rsquo;t need them? Don&rsquo;t require() them. &#9786;
 
+***
+
+# License
+[GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html)
+
+***
+
 # Documentation
 
 ## Javascript
@@ -30,26 +37,7 @@ What Backbone calls a "view" is really a *controller*; it&rsquo;s responsible fo
 #### Collections Hold Models
 **Collections** within Backbone are really meant to act upon many models. Let's say you have 10 users, and you create 10 **instances of the UserModel**, a UserCollection could be instantiated to handle any business logic related to data transformation on multiple models.
 
-## Building
-
-This build script uses Grunt (<https://github.com/cowboy/grunt>), a task-based command line build tool for JavaScript projects.
-
-##  What you need beforehand:
-
-You'll need the following libraries. Project verified with the versions in parentheses.
-
-1. Node (0.8.22)
-2. NPM (1.2.14)
-
-Download and install node by grabbing an installer from the project site: <http://nodejs.org>. NPM comes along with it. You can also install Node via Homebrew:
-
-`brew install node`
-
-## Dependencies:
-
-Install the grunt dependencies by running the following from the project root directory (the directory that holds *package.json* and *gruntfile.js*):
-
-`npm install`
+***
 
 ## Stylus
 
@@ -205,32 +193,32 @@ Shifts the element to the specified direction a distance equal to the width of t
       position: relative;
     }
 
+***
 
-## JS Unit Testing
+## Building
 
-We use Grunt's built-in QUnit task for this, which utilizes a headless webkit instance (PhantomJS). You'll need to have PhantomJS installed - the easiest way to do this is with Homebrew:
+This build script uses [Grunt](<https://github.com/cowboy/grunt>), a task-based command line build tool for JavaScript projects.
 
-`brew install phantomjs`
+###  What you need beforehand:
 
-More info [here](http://code.google.com/p/phantomjs/wiki/Installation).
+You'll need the following libraries. Project verified with the versions in parentheses.
 
-Once you have PhantomJS installed, just run:
+1. Node (0.8.22)
+2. NPM (1.2.14)
 
-`./node_modules/grunt-cli/bin/grunt jstest`
+Download and install node by grabbing an installer from the project site: <http://nodejs.org>. NPM comes along with it. You can also install Node via Homebrew:
 
-This command will also build a detailed report at 'test/test.html'
+`brew install node`
 
-#### Building JS Documentation
+### Dependencies:
 
-Just run:
+Install the grunt dependencies by running the following from the project root directory (the directory that holds *package.json* and *gruntfile.js*):
 
-`./node_modules/grunt-cli/bin/grunt docs`
+`npm install`
 
-#### Beautify JS
+### NPM Versioning
 
-Just run:
-
-`./node_modules/grunt-cli/bin/grunt beautify`
+We are using [tilde versioning](https://npmjs.org/doc/json.html#Tilde-Version-Ranges) for the modules. You can use [NPM Shrinkwrap](https://npmjs.org/doc/shrinkwrap.html) to lock in the specific versions.
 
 ## License
 [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html)
