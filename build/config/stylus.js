@@ -33,6 +33,7 @@ module.exports = function(config) {
 			stylus.prod.files[config.cssbin+'/'+dir+'.css'] = [];
 		
 			var files = fs.readdirSync(config.stylesheets+'/stylus/'+dir);
+			files.sort();
 			files.forEach(function (file) {
 				if (fs.statSync(config.stylesheets+'/stylus/'+dir+'/'+file).isFile()) {
 					stylus.prod.files[config.cssbin+'/'+dir+'.css'].push(config.stylesheets+'/stylus/'+dir+'/'+file);
