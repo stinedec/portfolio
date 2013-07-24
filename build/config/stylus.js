@@ -35,7 +35,7 @@ module.exports = function(config) {
 			var files = fs.readdirSync(config.stylesheets+'/stylus/'+dir);
 			files.sort();
 			files.forEach(function (file) {
-				if (fs.statSync(config.stylesheets+'/stylus/'+dir+'/'+file).isFile()) {
+				if (fs.statSync(config.stylesheets+'/stylus/'+dir+'/'+file).isFile() && file.substr(-4)=='styl') {
 					stylus.prod.files[config.cssbin+'/'+dir+'.css'].push(config.stylesheets+'/stylus/'+dir+'/'+file);
 				}
 			});
