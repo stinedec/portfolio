@@ -9,15 +9,6 @@ module.exports = function(config) {
 
 	return {
 
-    'all': {
-      'files': [
-        config.root + '/index.html',
-      ],
-      'options': {
-        livereload: true
-      }
-    },
-
 		'app': {
 			'files': [
 				config.stylesheets + '/stylus/**/*.styl'
