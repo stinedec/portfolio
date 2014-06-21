@@ -6,7 +6,7 @@ Project Name
 
 * Update project name in /README.md
 * Update project name in /package.json
-* Remove this section once completed
+* Remove this section of the README when completed
 
 
 ## Quick Start
