@@ -11,7 +11,8 @@ Project Name
 
 ## Quick Start
 
-* `npm install && grunt watch`
+* run `npm install && grunt`
+* run `grunt watch` while developing
 
 
 ## Development Notes
