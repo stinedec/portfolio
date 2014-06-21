@@ -1,0 +1,10 @@
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+.DS_Store
+
+.sass-cache
+node_modules/
+
+# vim temp files
+*.swp
+*.swo
