@@ -25,7 +25,7 @@ define('apps/master/app', function(require) {
    * Gets the application running
    */
   App.start = function() {
-    $('h1').after('<p>App Started</p>');
+    $('main').append('<p>App Started</p>');
     console.log('App Started');
   };
 
