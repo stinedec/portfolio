@@ -45,10 +45,13 @@ module.exports = function(grunt) {
    * Default task
    */
   grunt.registerTask('default', [
+    // CSS
     'compass',         // run compass to process scss
     'concat',          // concatenate processed css
     'cssmin',          // minify concatenated css
     'clean:concatcss', // delete the concatenated css directory/file
+
+    // JS
     'jshint',          // run jshint to lint js
     'requirejs:build'  // run require to build and minify js
   ]);
