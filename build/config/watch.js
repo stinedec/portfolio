@@ -19,7 +19,7 @@ module.exports = function(config) {
         config.css +'/app/**/*.scss',
 
         // Images
-        config.images +'**/*.{png,jpg,gif}'
+        config.images +'/**/*.{png,jpg,gif}'
       ],
 
       tasks: ['default']
