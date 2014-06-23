@@ -6,7 +6,8 @@ module.exports = function(config) {
   return {
 
     options: {
-      report: 'min',
+      report: 'min' // Report min by default
+      //report: 'gzip' // Optionally report min and gzip'd
     },
 
     css: {
