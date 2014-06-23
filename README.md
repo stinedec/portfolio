@@ -2,16 +2,16 @@ Project Name
 ===================
 
 
-## Setup and Remove
+## Initial Project Setup
 
-* Update project name in /README.md
-* Update project name in /package.json
-* Remove this section of the README when completed
+[] Update project name in /README.md
+[] Update project name in /package.json
+[] *Remove this section of the README when completed*
 
 
 ## Quick Start
 
-* run `npm install && grunt`
+* run `npm install && grunt build`
 * run `grunt watch` while developing
 
 
@@ -20,12 +20,21 @@ Project Name
 A few quick reminders as your developing.
 
 * When deleting .scss files make sure to run `grunt cleanup` or remove the /css/generated/ version of the deleted file
-* Boilerplate contains the Underscore build of Lodash when required, so all [Lodash methods](http://lodash.com/docs) are available.
+* Boilerplate contains the Underscore build of Lodash, so all [Lodash methods](http://lodash.com/docs) are available when required.
 * [Accessibility checklist](http://a11yproject.com/checklist.html).
 
 ### Modernizr
 
-Modernizr includes a very basic custom build, please update the file as tests are needed instead of loading the whole development version. This will limit the tests to only those actually needed for the project. Lets prevent running every Modernizr test on every page load of sites we develop.
+Boilerplate includes a very basic custom build of [Modernizr](http://modernizr.com/download/#-shiv-cssclasses) that includes the HTML5 shiv and adds the CSS classes. Please update the file as tests are needed instead of loading the whole development version.
+
+This will limit the tests to only those actually needed for the project. As a benefit to this approach we prevent running every Modernizr test on every page load of the site.
+
+### Grunt Tasks
+
+* `grunt` or `grunt default` : builds only newer files with [grunt-newer](https://www.npmjs.org/package/grunt-newer)
+* `grunt watch` : runs the default task above, run this task while developing
+* `grunt build` : similar to the default task without limiting newer files
+* `grunt cleanup` : removes all generated files, then runs the build task above
 
 
 ***
