@@ -5,8 +5,8 @@ module.exports = function(config) {
 
   return {
 
-    build: {
-      src: [config.cssmin, config.cssgen, config.jsmin]
+    generated: {
+      src: [config.cssmin, config.cssgen, config.css +'/concat', config.jsmin]
     },
 
     concatcss: {

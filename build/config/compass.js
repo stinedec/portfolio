@@ -5,7 +5,7 @@ module.exports = function(config) {
 
   return {
 
-    dist: {
+    all: {
       options: {
         relativeAssets: true,
         sassDir: config.css +'/app',

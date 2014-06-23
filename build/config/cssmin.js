@@ -9,7 +9,7 @@ module.exports = function(config) {
       report: 'min',
     },
 
-    minify: {
+    css: {
       expand: true,
       cwd: config.css +'/concat/',
       src: ['**/*.css'],

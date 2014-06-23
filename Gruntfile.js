@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   config.css    = config.root + '/css';
   config.cssgen = config.css  + '/generated';
   config.cssmin = config.css  + '/min';
-  config.images = config.root + '/images';
+  config.images = config.root + '/img';
 
 
   // Project configuration.
@@ -30,15 +30,12 @@ module.exports = function(grunt) {
     requirejs: require('./build/config/requirejs.js')(config)
   });
 
+
   // Load grunt plugins
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  require('load-grunt-tasks')(grunt);
+
+  // measures the time each task takes
+  require('time-grunt')(grunt);
 
 
   /**
@@ -46,30 +43,47 @@ module.exports = function(grunt) {
    */
   grunt.registerTask('default', [
     // CSS
-    'compass',         // run compass to process scss
-    'concat',          // concatenate processed css
-    'cssmin',          // minify concatenated css
-    'clean:concatcss', // delete the concatenated css directory/file
+    'newer:compass:all',// run compass to process scss
+    'concat:css',       // concatenate processed css
+    'cssmin:css',       // minify concatenated css
+    'clean:concatcss',  // delete the concatenated css directory/file
 
     // JS
-    'jshint',          // run jshint to lint js
-    'requirejs:build'  // run require to build and minify js
+    'newer:jshint:all', // run jshint to lint js
+    'requirejs:build',  // run require to build and minify js
+
+    // Images
+    'newer:imagemin:images' // minify images
   ]);
 
 
   /**
-   * Minify tasks
+   * Build task
    *
-   * Run the default task then losslessly minify images
+   * A full Grunt build of the project.
+   * Same task as default without the 'newer' prefix so all files are processed
    */
-  grunt.registerTask('minify', ['default', 'imagemin']);
+  grunt.registerTask('build', [
+    // CSS
+    'compass:all',     // run compass to process scss
+    'concat:css',      // concatenate processed css
+    'cssmin:css',      // minify concatenated css
+    'clean:concatcss', // delete the concatenated css directory/file
+
+    // JS
+    'jshint:all',      // run jshint to lint js
+    'requirejs:build', // run require to build and minify js
+
+    // Images
+    'imagemin:images'  // minify images
+  ]);
 
 
   /**
    * Cleanup tasks
    *
-   * Remove the processed Sass CSS files and require minified js then run the default task
+   * Remove the processed Sass CSS files and require minified js then run the build task
    */
-  grunt.registerTask('cleanup', ['clean', 'default']);
+  grunt.registerTask('cleanup', ['clean:generated', 'build']);
 
 };

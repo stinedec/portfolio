@@ -5,13 +5,15 @@ module.exports = function(config) {
 
   return {
 
-    src: [
-      'Gruntfile.js',         // Grunt config files
-      'build/config/**/*.js', // Grunt config files
-      config.js + '/**/*.js',
-      '!'+ config.js + '/**/*min.js',
-      '!'+ config.js + '/libs/**/*.js'
-    ],
+    all: {
+      src: [
+        'Gruntfile.js',         // Grunt config files
+        'build/config/**/*.js', // Grunt config files
+        config.js + '/**/*.js',
+        '!'+ config.js + '/**/*min.js',
+        '!'+ config.js + '/libs/**/*.js'
+      ]
+    },
 
     options: {
       node: true,

@@ -5,14 +5,25 @@ module.exports = function(config) {
 
   return {
 
-    files: [
-      'build/config/**/*.js', // Grunt config files
-      config.css+'/app/**/*.scss',
-      config.js +'/**/*.js',
-      '!'+ config.js +'/**/*min.js'
-    ],
+    all: {
+      files: [
+        // Grunt config
+        'Gruntfile.js',
+        'build/config/**/*.js',
 
-    tasks: ['default']
+        // JS
+        config.js +'/**/*.js',
+        '!'+ config.js +'/**/*min.js',
+
+        // CSS
+        config.css +'/app/**/*.scss',
+
+        // Images
+        config.images +'**/*.{png,jpg,gif}'
+      ],
+
+      tasks: ['default']
+    }
 
   };
 };
