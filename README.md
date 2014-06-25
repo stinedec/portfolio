@@ -22,6 +22,7 @@ A few quick reminders as your developing.
 * When deleting .scss files make sure to run `grunt cleanup` or remove the /css/generated/ version of the deleted file
 * Boilerplate contains the Underscore build of Lodash, so all [Lodash methods](http://lodash.com/docs) are available when required.
 * [Accessibility checklist](http://a11yproject.com/checklist.html).
+* [HTML5 Elements](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list) on MDN
 
 ### Modernizr
 
