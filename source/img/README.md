@@ -1,6 +1,6 @@
 # Images
 
-Images should be optimized, run `grunt minify` or run manually using [ImageOptim](https://imageoptim.com/).
+Images will be optimized on `grunt watch`, and can be ran manually with `grunt minify` or using [ImageOptim](https://imageoptim.com/).
 
 Naming Conventions:
 

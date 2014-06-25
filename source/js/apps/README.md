@@ -1,3 +1,3 @@
 # JS Apps
 
-The master app and other apps when needed.
+The master app and other apps as needed.
