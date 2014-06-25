@@ -1,12 +1,12 @@
-Project Name
-===================
-
-
-## Initial Project Setup
+##### Initial Setup
 
 * Update project name in /README.md
 * Update project name in /package.json
 
+***
+
+Project Name
+===================
 
 ## Quick Start
 
@@ -25,9 +25,9 @@ A few quick reminders as you are developing.
 
 ### Modernizr
 
-Boilerplate includes a very basic custom build of [Modernizr](http://modernizr.com/download/#-shiv-cssclasses) that includes the HTML5 shiv and adds the CSS classes. Please update the file as tests are needed instead of loading the whole development version.
+Boilerplate has a custom build of [Modernizr](http://modernizr.com/download/#-shiv-cssclasses) that includes the HTML5 shiv and CSS classes. Please update the file as tests are needed instead of loading the whole development version.
 
-This will limit the tests to only those actually needed for the project. As a benefit to this approach we prevent running every Modernizr test on every page load of the site.
+This approach will limit the Modernizr tests to only those needed for the project. As a benefit we prevent running every Modernizr test on every page load of the site.
 
 ### Grunt Tasks
 
@@ -39,5 +39,5 @@ This will limit the tests to only those actually needed for the project. As a be
 
 ***
 
-## License
+### License
 [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html)
