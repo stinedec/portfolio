@@ -1,4 +1,4 @@
-##### Initial Setup
+#### Initial Setup
 
 * Update project name in /README.md
 * Update project name in /package.json
