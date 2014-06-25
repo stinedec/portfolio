@@ -5,6 +5,11 @@
 .sass-cache
 node_modules/
 
+# Ignore generated files from Grunt
+source/css/generated
+source/css/min
+source/js/min
+
 # vim temp files
 *.swp
 *.swo
