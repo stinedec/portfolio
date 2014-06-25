@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   config.css    = config.root + '/css';
   config.cssgen = config.css  + '/generated';
   config.cssmin = config.css  + '/min';
-  config.images = config.root + '/img';
+  config.images = config.root + '/images';
 
 
   // Project configuration.
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
    */
   grunt.registerTask('default', [
     // CSS
-    'newer:compass:all',// run compass to process scss
+    'compass:all',      // run compass to process scss
     'concat:css',       // concatenate processed css
     'cssmin:css',       // minify concatenated css
     'clean:concatcss',  // delete the concatenated css directory/file
