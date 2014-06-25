@@ -74,7 +74,8 @@ img { max-width: 100%; }
 a {
   color: $black;
   text-decoration: underline;
-  @include color-each-pseudo-element-link($black, $black, $black, $black);
+  // Optionally color each psuedo link element, see _modules/mixins.scss
+  //@include color-each-pseudo-element-link($black, $black, $black, $black);
 
   &:focus { outline: thin dotted; } 
   &:hover, &:active { outline: 0; }
