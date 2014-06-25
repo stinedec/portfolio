@@ -17,7 +17,7 @@ Project Name
 
 ## Development Notes
 
-A few quick reminders as your developing.
+A few quick reminders as you are developing.
 
 * When deleting .scss files make sure to run `grunt cleanup` or remove the /css/generated/ version of the deleted file
 * Boilerplate contains the Underscore build of Lodash, so all [Lodash methods](http://lodash.com/docs) are available when required.
