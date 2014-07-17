@@ -1,8 +1,14 @@
 /**
  * build.config.cssmin
  */
-module.exports = function(config) {
+module.exports = function(grunt) {
 
+  var config = grunt.config.get('config');
+
+  // Load task
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+  // Config
   return {
 
     options: {

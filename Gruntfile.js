@@ -1,40 +1,20 @@
 /**
- * @module Build
- * @class Build.Config
- * @static
+ * build.config
  */
 module.exports = function(grunt) {
 
-  var config = {};
+  // Define grunt config option
+  grunt.config.set('config', require('./Gruntconfig')());
 
-  // Config
-  config.root  = 'source';
-  config.js    = config.root + '/js';
-  config.jsmin = config.js + '/min';
-
-  config.css    = config.root + '/css';
-  config.cssgen = config.css  + '/generated';
-  config.cssmin = config.css  + '/min';
-  config.images = config.root + '/images';
-
-
-  // Project configuration.
-  grunt.initConfig({
-    clean:     require('./build/config/clean.js')(config),
-    watch:     require('./build/config/watch.js')(config),
-    concat:    require('./build/config/concat.js')(config),
-    imagemin:  require('./build/config/imagemin.js')(config),
-    compass:   require('./build/config/compass.js')(config),
-    cssmin:    require('./build/config/cssmin.js')(config),
-    jshint:    require('./build/config/jshint.js')(config),
-    requirejs: require('./build/config/requirejs.js')(config)
+  // Load project configuration
+  require('grunt-config-dir')(grunt, {
+    configDir: require('path').resolve('build/config')
   });
 
+  // Load task
+  grunt.loadNpmTasks('grunt-newer');
 
-  // Load grunt plugins
-  require('load-grunt-tasks')(grunt);
-
-  // measures the time each task takes
+  // Measures the time each task takes
   require('time-grunt')(grunt);
 
 
