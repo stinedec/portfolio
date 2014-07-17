@@ -3,17 +3,17 @@
  */
 module.exports = function() {
 
-  var config = {
-    root:  'source',
-    js:    config.root + '/js',
-    jsmin: config.js   + '/min',
+  var config = { };
 
-    css:    config.root + '/css',
-    cssgen: config.css  + '/generated',
-    cssmin: config.css  + '/min',
+  config.root  = 'source';
+  config.js    = config.root + '/js';
+  config.jsmin = config.js   + '/min';
 
-    images: config.root + '/images'
-  };
+  config.css    = config.root + '/css';
+  config.cssgen = config.css  + '/generated';
+  config.cssmin = config.css  + '/min';
+
+  config.images = config.root + '/images';
 
   return config;
 };
