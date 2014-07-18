@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     configDir: require('path').resolve('build/config')
   });
 
-  // Load task
+  // Load additional tasks without configs
   grunt.loadNpmTasks('grunt-newer');
 
   // Measures the time each task takes
