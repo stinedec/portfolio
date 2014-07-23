@@ -26,6 +26,10 @@ require.config({
 
     underscore: {
       exports: '_'
+    },
+
+    lodash: {
+      exports: '_'
     }
 
   }
