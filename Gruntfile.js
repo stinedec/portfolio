@@ -3,6 +3,9 @@
  */
 module.exports = function(grunt) {
 
+  //Compass stuff
+  grunt.loadNpmTasks('grunt-contrib-compass');
+
   // Define grunt config option
   grunt.config.set('config', require('./Gruntconfig')());
 

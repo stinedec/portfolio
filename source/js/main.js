@@ -12,6 +12,7 @@ require.config({
 
   paths: {
     // Core Libraries
+    backbone: 'libs/backbone-min', 
     jquery:    'libs/jquery-1.11.1.min',
     underscore:'libs/lodash.underscore.min',
 
@@ -23,6 +24,11 @@ require.config({
 
   // Sets the configuration for your third party scripts that are not AMD compatible
   shim: {
+
+    backbone: {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
+    },
 
     underscore: {
       exports: '_'

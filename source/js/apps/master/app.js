@@ -2,12 +2,33 @@
  * apps/master/app
  */
 
-define('apps/master/app', function(require) {
+define(['apps/master/app', 'backbone', 'apps/models/m_project'], function(require, Backbone, Project) {
 
   'use strict';
 
-  var settings = require('settings'),
-      App = {};
+  //var settings = require('settings'),
+    var App = {},
+
+      bootBackboneRouter = function () {
+        var AppRouter = Backbone.Router.extend({
+          initialize: function () {
+            this.projects = new Project.Collection();
+          },
+          routes: {
+            '': 'main'
+          },
+
+          main: function () {
+            var that = this;
+            var view = new ProjectsView({ collection: that.projects });
+            projects.fetch({
+              success: function () {
+
+              }
+            });
+          }
+        });
+      };
 
 
   // Mediaqueries
@@ -25,6 +46,7 @@ define('apps/master/app', function(require) {
    * Gets the application running
    */
   App.start = function() {
+    bootBackboneRouter();
     $('main').append('<p>App Started</p>');
     console.log('App Started');
   };
